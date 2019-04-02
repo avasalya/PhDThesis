@@ -1,7 +1,105 @@
 \chapter{HRI: human-human \& human-robot dual arm object handover\newline}
 
+\section*{}
+Our prediction controller behavior can be tuned by two initially required constant time periods, $t_{observe}$ ---which defines the time period required to observe the motion of object and $t_{predict}$ ---required to predict the object handover location in advance.
 
-\section{A Section}
+\paragraph*{}
+Inputs of the controller are robot left end effector pose $\mathcal{T}^{efL}_R$ and mocap markers position data in the mocap frame of reference $mocapFrameData$. $\mathcal{T}^{efL_{marker}}_M$ is the left end effector marker pose in the mocap frame. Similarly, object marker pose given by $\mathcal{T}^{obj_{marker}}_M$. For simplicity, at the moment, we have assumed zero rotation of the markers and end effector, therefore rotation part of $\mathcal{T}^{efL}_R$, $\mathcal{T}^{efl_{marker}}_M$ and $\mathcal{T}^{obj_{marker}}_M$ are Identity matrix $\mathcal{I}$. 
+
+\paragraph*{}
+The transformation matrix $\mathcal{T}^{efL}_{obj_{marker}}$, provides the relative pose of object marker w.r.t. robot left end effector in the robot coordinate system. $P^{obj_{marker}}_0$ $P^{obj_{marker}}_{t_{observe}}$ are the updated observed positions of object whenever the condition ($i\%t_{observe}==0$) satisfy. Based on the  $P^{obj_{marker}}_0$ $P^{obj_{marker}}_{t_{observe}}$, average velocity $\mathcal{\bar{V}}^{efL}_{obj_{marker}}$ of the observed object motion calculated. Where, $\mathcal{F}_c$, $\mathcal{F}_{diff}$, $\mathcal{F}_{avg}$ are the \textit{helper functions}.
+
+\paragraph*{}
+Function $PREDICTPOS$, returns the predicted position of the handover $P^{obj}_{t_{predict}}$ at time $t_{predict}$.
+
+Function $GENERATEWP$, returns the way-points $wp^{efL}_{obj}$ between robot left end effector and object handover location, which is the final output of the controller. 
+
+Later, $wp^{efL}_{obj}$ is being fed in the \texttt{mc\_rtc positionTask}.
+
+\newpage
+
+\begin{algorithm}[H]
+	\caption{linear prediction controller}
+	
+	\begin{algorithmic}[1]
+		
+		\Statex\textbf{Input:} $\mathcal{T}^{efL}_R, mocapFrameData$
+		
+		\Statex\textbf{Output:}  $wp^{efL}_{obj}$ ---{way points to predicted handover location} % $ \mathcal{T}^{efL}_{obj_{marker}} $]
+		
+		\Statex\textbf{Initial require:} $t_{observe}=10ms, t_{predict}=1sec, i=1 $\newline
+		%		\Statex \textit{$\textbf{i}$} increments as per controller run-time (5ms)
+		
+		
+		\If{$mocapStart$ \textbf{and} $mocapFrameData(i)!=NaN$}
+		
+		\If{$(i\%t_{observe})==0$ }\newline
+		
+		\State $\mathcal{T}^{efL}_R\gets \textit{endEffectorTask}$
+		
+		\State $\mathcal{T}^{efL_{marker}}_M\gets \textit{mocapFrameData}.robotMarker((i-t_{observe})+1)$\newline
+		
+		%		\For{$j=1; j\le t_{observe} $}
+		\For{$j \gets 1 \textrm{ to } t_{observe} $}
+		
+		
+		\State $\mathcal{T}^{obj_{marker}}_M\gets \textit{mocapFrameData}.objectMarker(i-t_{observe})+j)$	
+		
+		\State $\mathcal{T}^{efL}_{obj_{marker}} = {\mathcal{T}^{efL}_R}^{-1} \times  \mathcal{T}^{obj_{marker}}_M \times {\mathcal{T}^{efL_{marker}}_M}^{-1} \times  \mathcal{T}^{efL}_R$	
+		
+		
+		\If{$j==1$}
+		\State $P^{obj_{marker}}_0 \gets \mathcal{T}^{efL}_{obj_{marker}}.translation()(1) $
+		\EndIf 
+		
+		\If{$j== t_{observe}$}
+		\State $P^{obj_{marker}}_{t_{observe}} \gets \mathcal{T}^{efL}_{obj_{marker}}.translation()(t_{observe}) $
+		\EndIf
+		
+		
+		\EndFor  \newline %t_observe 
+		
+		\State $\mathcal{C} \gets \mathcal{F}_c( P^{obj_{marker}}_0, P^{obj_{marker}}_{t_{observe}}, t_{observe} )$
+		
+		\State $\mathcal{V}^{efL}_{obj_{marker}} \gets \mathcal{F}_{diff}({\mathcal{T}^{efL}_{obj_{marker}}.translation()})$
+		
+		
+		\State $\mathcal{\bar{V}}^{efL}_{obj_{marker}} \gets \mathcal{F}_{avg}(\mathcal{V}^{efL}_{obj_{marker}})$\newline
+		
+		
+		\Statex \underline{\textit{predict position of object handover at $t_{predict}$}}
+		\Function{PredictPos}{$ \mathcal{\bar{V}}^{efL}_{obj_{marker}}, \mathcal{C}, t_{predict} $}
+		
+		\State $P^{obj}_{t_{predict}} \gets \mathcal{\bar{V}}^{efL}_{obj_{marker}}\times t_{predict}  + \mathcal{C}$ % \times 0.005
+		
+		\Return $P^{obj}_{t_{predict}}$
+		
+		\EndFunction\newline
+		
+		
+		\Statex \underline{\textit{generate way points between robot left end effector and object handover location}}
+		\Function{generateWp}{$P^{obj_{marker}}_{t_{observe}}, P^{obj}_{t_{predict}}, t_{predict} $}
+		
+		
+		\For{$k \gets 0 \textrm{ to } t_{predict} $}
+		
+		\State $wp^{efL}_{obj}(k) \gets (P^{obj}_{t_{predict}} - P^{obj_{marker}}_{t_{observe}}) \times k  +  P^{obj_{marker}}_{t_{observe}} $ 
+		
+		\EndFor
+		
+		\Return $wp^{efL}_{obj}$
+		
+		\EndFunction\newline
+		
+		\EndIf %i%t_observe
+		
+		\State $i = i + 1$
+		
+		\EndIf %mocapStart
+		
+	\end{algorithmic}
+	
+\end{algorithm}
 
 
 \subsection{A Subsection}
