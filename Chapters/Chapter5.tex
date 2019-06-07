@@ -1,108 +1,368 @@
-\chapter{HRI: human-human \& human-robot dual arm object handover\newline}
-
-\section*{}
-Our prediction controller behavior can be tuned by two initially required constant time periods, $t_{observe}$ ---which defines the time period required to observe the motion of object and $t_{predict}$ ---required to predict the object handover location in advance.
-
-\paragraph*{}
-Inputs of the controller are robot left end effector pose $\mathcal{T}^{efL}_R$ and mocap markers position data in the mocap frame of reference $mocapFrameData$. $\mathcal{T}^{efL_{marker}}_M$ is the left end effector marker pose in the mocap frame. Similarly, object marker pose given by $\mathcal{T}^{obj_{marker}}_M$. For simplicity, at the moment, we have assumed zero rotation of the markers and end effector, therefore rotation part of $\mathcal{T}^{efL}_R$, $\mathcal{T}^{efl_{marker}}_M$ and $\mathcal{T}^{obj_{marker}}_M$ are Identity matrix $\mathcal{I}$. 
-
-\paragraph*{}
-The transformation matrix $\mathcal{T}^{efL}_{obj_{marker}}$, provides the relative pose of object marker w.r.t. robot left end effector in the robot coordinate system. $P^{obj_{marker}}_0$ $P^{obj_{marker}}_{t_{observe}}$ are the updated observed positions of object whenever the condition ($i\%t_{observe}==0$) satisfy. Based on the  $P^{obj_{marker}}_0$ $P^{obj_{marker}}_{t_{observe}}$, average velocity $\mathcal{\bar{V}}^{efL}_{obj_{marker}}$ of the observed object motion calculated. Where, $\mathcal{F}_c$, $\mathcal{F}_{diff}$, $\mathcal{F}_{avg}$ are the \textit{helper functions}.
-
-\paragraph*{}
-Function $PREDICTPOS$, returns the predicted position of the handover $P^{obj}_{t_{predict}}$ at time $t_{predict}$.
-
-Function $GENERATEWP$, returns the way-points $wp^{efL}_{obj}$ between robot left end effector and object handover location, which is the final output of the controller. 
-
-Later, $wp^{efL}_{obj}$ is being fed in the \texttt{mc\_rtc positionTask}.
+\chapter{Bi-directional dual arm object handover\newline}
 
 \newpage
+\section{Introduction}
+--perform fluid object handover in a dynamic settings
 
-\begin{algorithm}[H]
-	\caption{linear prediction controller}
+--Design a planner considering —humans field of view, attention, preferences (left/right handed, etc),
+
+--current state (sleeping, sitting, working etc) and the robot’s field of view, kinematics and dynamics
+
+\newpage
+\section{Handover Procedure}
+We formulate the bi-directional human-robot handover as one shot object handover from different starting positions and hand speed and trajectories (of the human). The robot start from half-site and take the object that is handed by the subject in one shot (and vice-versa). A person takes an object and hands it seriously to the robot that must take it (and vice-versa). The subject start and try to give the object from different positions and orientations w.r.t the robot.
+
+
+\newpage
+\section{Notation and Terminology}
+
+Let $\mathcal{M}$ (Mocap) and $\mathcal{R}$ (Robot) be the two fixed frames that denote both Cartesian coordinate systems and Pl\"ucker coordinate systems denoted by $X$ in the Euclidean space. Both $\mathcal{M}$ and $\mathcal{R}$ are defined by their position and orientation of a Cartesian frame, such that ${}^MX_R$ denotes the Pl\"ucker coordinate transform which depends only on the position and orientation of frame $\mathcal{M}$ relative to frame $\mathcal{R}$\cite{featherstone2014rigid} (see Fig~\ref{fig:frames}).
+
+
+\begin{figure}[h]
+	\centering{\includegraphics[width=1\columnwidth]{Chapters/c5-plots/frame}}
+	\caption{$\mathcal{M}$ and $\mathcal{R}$ Cartesian coordinate systems.}
+	\label{fig:frames}
+\end{figure}
+
+
+\begin{itemize}
+	\item using QP Orientation Task and Position Task (see~\ref{qpTasks}), we get robot end-effector current orientation ${{}^{ef}\mathcal{O}_R} \in \mathbb{R}^{3\times3}$ and current position ${{}^{ef}\mathcal{P}_R} \in \mathbb{R}^{3}$ respectively in the $\mathcal{R}$ frame, therefore,
+	\begin{gather}\label{X_R_ef}
+		{}^{ef}{X}_R =
+		\left[\begin{array}{cc}
+		{}^{ef}\mathcal{O}_R & {}^{ef}\mathcal{P}_R
+		\end{array}\right]
+	\end{gather}
 	
-	\begin{algorithmic}[1]
-		
-		\Statex\textbf{Input:} $\mathcal{T}^{efL}_R, mocapFrameData$
-		
-		\Statex\textbf{Output:}  $wp^{efL}_{obj}$ ---{way points to predicted handover location} % $ \mathcal{T}^{efL}_{obj_{marker}} $]
-		
-		\Statex\textbf{Initial require:} $t_{observe}=10ms, t_{predict}=1sec, i=1 $\newline
-		%		\Statex \textit{$\textbf{i}$} increments as per controller run-time (5ms)
-		
-		
-		\If{$mocapStart$ \textbf{and} $mocapFrameData(i)!=NaN$}
-		
-		\If{$(i\%t_{observe})==0$ }\newline
-		
-		\State $\mathcal{T}^{efL}_R\gets \textit{endEffectorTask}$
-		
-		\State $\mathcal{T}^{efL_{marker}}_M\gets \textit{mocapFrameData}.robotMarker((i-t_{observe})+1)$\newline
-		
-		%		\For{$j=1; j\le t_{observe} $}
-		\For{$j \gets 1 \textrm{ to } t_{observe} $}
-		
-		
-		\State $\mathcal{T}^{obj_{marker}}_M\gets \textit{mocapFrameData}.objectMarker(i-t_{observe})+j)$	
-		
-		\State $\mathcal{T}^{efL}_{obj_{marker}} = {\mathcal{T}^{efL}_R}^{-1} \times  \mathcal{T}^{obj_{marker}}_M \times {\mathcal{T}^{efL_{marker}}_M}^{-1} \times  \mathcal{T}^{efL}_R$	
-		
-		
-		\If{$j==1$}
-		\State $P^{obj_{marker}}_0 \gets \mathcal{T}^{efL}_{obj_{marker}}.translation()(1) $
-		\EndIf 
-		
-		\If{$j== t_{observe}$}
-		\State $P^{obj_{marker}}_{t_{observe}} \gets \mathcal{T}^{efL}_{obj_{marker}}.translation()(t_{observe}) $
-		\EndIf
-		
-		
-		\EndFor  \newline %t_observe 
-		
-		\State $\mathcal{C} \gets \mathcal{F}_c( P^{obj_{marker}}_0, P^{obj_{marker}}_{t_{observe}}, t_{observe} )$
-		
-		\State $\mathcal{V}^{efL}_{obj_{marker}} \gets \mathcal{F}_{diff}({\mathcal{T}^{efL}_{obj_{marker}}.translation()})$
-		
-		
-		\State $\mathcal{\bar{V}}^{efL}_{obj_{marker}} \gets \mathcal{F}_{avg}(\mathcal{V}^{efL}_{obj_{marker}})$\newline
-		
-		
-		\Statex \underline{\textit{predict position of object handover at $t_{predict}$}}
-		\Function{PredictPos}{$ \mathcal{\bar{V}}^{efL}_{obj_{marker}}, \mathcal{C}, t_{predict} $}
-		
-		\State $P^{obj}_{t_{predict}} \gets \mathcal{\bar{V}}^{efL}_{obj_{marker}}\times t_{predict}  + \mathcal{C}$ % \times 0.005
-		
-		\Return $P^{obj}_{t_{predict}}$
-		
-		\EndFunction\newline
-		
-		
-		\Statex \underline{\textit{generate way points between robot left end effector and object handover location}}
-		\Function{generateWp}{$P^{obj_{marker}}_{t_{observe}}, P^{obj}_{t_{predict}}, t_{predict} $}
-		
-		
-		\For{$k \gets 0 \textrm{ to } t_{predict} $}
-		
-		\State $wp^{efL}_{obj}(k) \gets (P^{obj}_{t_{predict}} - P^{obj_{marker}}_{t_{observe}}) \times k  +  P^{obj_{marker}}_{t_{observe}} $ 
-		
-		\EndFor
-		
-		\Return $wp^{efL}_{obj}$
-		
-		\EndFunction\newline
-		
-		\EndIf %i%t_observe
-		
-		\State $i = i + 1$
-		
-		\EndIf %mocapStart
-		
-	\end{algorithmic}
+	\item Likewise, ${{}^{h}\mathcal{O}_M} \in \mathbb{R}^{3\times3}$ and ${{}^{h}\mathcal{P}_M} \in \mathbb{R}^{3}$, denotes the subject's hand $h$ orientation and position respectively in the $\mathcal{M}$ frame, obtained from the $\mathcal{L}$ shape body (see subsection~\ref{hand_orientation}),
+	\begin{gather}\label{X_M_h}
+		{}^{h}{X}_M =
+		\left[\begin{array}{cc}
+		{}^{h}\mathcal{O}_M & {}^{h}\mathcal{P}_M \\
+		\end{array}\right]
+	\end{gather}
+
+	\item ${{}^{h}\mathcal{O}_{ef}} \in \mathbb{R}^{3\times3}$ and ${{}^{h}\mathcal{P}_{ef}} \in \mathbb{R}^{3}$, denotes the subject's hand $h$ orientation and position respectively in relative to the robot's local $ef$ (end-effector) frame,
+	\begin{gather}\label{X_ef_h}
+		{}^{h}{X}_{ef} =
+		\left[\begin{array}{cc}
+		{}^{h}\mathcal{O}_{ef} & {}^{h}\mathcal{P}_{ef} \\
+		\end{array}\right]
+	\end{gather}
 	
+	\item For convenience, we formulate the problem with a common origin {\it O}, such that $\mathcal R \equiv M$, we can get subject's hand pose $\mathsf{w.r.t.}$ or relative to robot's end-effector
+%	
+	\begin{equation}\label{X_ef_h1}
+		{}^{h}{X}_{ef} = {}^{h}{X}_{M}  {}^{ef}{X_{R}}^{-1}
+	\end{equation}
+	\item otherwise, when $\mathcal R \neq M$
+
+	\begin{equation}\label{X_ef_h2}
+	{}^{h}{X}_{ef} = {}^{h}{X}_{M}  {}^{M}{X}_R  {}^{ef}{X_{R}}^{-1}
+	\end{equation}
+	
+\end{itemize}
+
+
+
+
+\newpage
+\section{Subject's Hand Orientation Model}\label{hand_orientation}
+
+To get the orientation of subject's hand, we placed a rigid body with a shape similar to alphabet $L$ on wrist of subject's hand(s) as shown in Fig~\ref{fig:lshapes}. The three mocap markers $A, B$ and $C$ make up the three vertices of $\mathcal{L}$ shape body, such that during object handover scenario, vector $\vec{AB}^{\,}$ along the longer side and vector $\vec{BC}^{\,}$ along the shorter side are set to be parallel with the $X$-axis and $Y$-axis of the mocap frame $\mathcal{M}$ respectively. The vectors $\vec{AB}^{\,}$ and $\vec{BC}^{\,}$ are orthogonal to each other. For simplicity, let $\hat{x}$ be the unit vector, which is parallel and along the $X$-axis and likewise, unit vector $\hat{y}$ is parallel and along the $Y$-axis of the mocap frame $\mathcal{M}$, such that
+
+\begin{figure}[h]
+	\centering{\includegraphics[width=1\columnwidth]{Chapters/c5-plots/lshpe-lt-rt}}
+	\caption{$\mathcal{L}$ shape rigid body on the subject's hand(s)}
+	\label{fig:lshapes}
+\end{figure}
+
+\begin{equation*}
+\hat{x} = \frac{\vec{AB}^{\,}}{\norm{\vec{AB}^{\,}}}
+\end{equation*}
+
+\begin{equation*}
+\hat{y} = \frac{\vec{BC}^{\,}}{\norm{\vec{BC}^{\,}}}
+\end{equation*}
+
+\paragraph*{}
+Let ${}^{h}\mathcal{O}_{M}$ in equation (\ref{X_M_h}) be the column rotation matrix representing the subject's hand orientation in the mocap frame $\mathcal{M}$ and since $\hat{x} \in \mathbb{R}^{3}$ and $\hat{y} \in \mathbb{R}^{3}$ are the two orthogonal unit vectors of an $\mathcal{L}$ shape rigid body on subject's each hand (Fig~\ref{fig:lshapes}), the cross product of them would result in another unit vector $\hat{z} \in \mathbb{R}^{3}$ which is orthogonal to both $\hat{x}$ and $\hat{y}$. The direction of the cross product would be given by equation (\ref{cross}) using right-hand rule.
+
+
+\begin{equation}\label{cross}
+\hat{z} = \hat{x} \times \hat{y}
+\end{equation}
+
+
+\paragraph*{}
+To get the orientation of subject's hand we used these unit vectors $\hat{x}, \hat{y}$ and $\hat{z}$ as columns of the rotation matrix~\cite{evans2001rotations, altmann2005rotations, jia2017rotation} ${}^{h}\mathcal{O}_{M}$ in equation (\ref{rotationmatrix}), such that the unit vectors $\hat{x}, \hat{y}$ and $\hat{z}$ represents subject's hand orientation around the $roll-pitch-yaw$ axes respectively.
+
+\begin{equation}\label{rotationmatrix}
+{}^{h}\mathcal{O}_{M} = 
+\left\{\begin{array}{cccc}
+\hat{x.x} & \hat{y.x} & \hat{z.x} \\
+\hat{x.y} & \hat{y.y} & \hat{z.y} \\
+\hat{x.z} & \hat{y.z} & \hat{z.z}
+\end{array}\right\}_{3\times 3}
+\end{equation}
+
+
+
+\newpage
+\section{Handover Position Prediction Model}
+
+Algorithm~\ref{positionalgo} explains the procedure of predicting subject's hand position and estimating handover location. Inputs to the prediction model are robot left end-effector pose $\mathcal{}^{ef}{X}_R$ (eq~\ref{X_R_ef}) in the robot frame and subject's hand mocap markers positions ${}^{h}\mathcal{P}_M$ (eq~\ref{X_M_h}) in the mocap frame of reference.
+
+\paragraph*{}
+Note that for simplicity, we formulated the problem with a common origin {\it O}, such that $\mathcal R \equiv M$, also from onwards by ${}^{h}\mathcal{P}_M$ we meant position of the point $A$ on the $\mathcal{L}$ shape body as the subject's hand marker position as shown in Fig~\ref{fig:lshapes}.
+
+
+\paragraph*{}
+The prediction model behavior can be tuned by two initially required constant time periods, $t_{observe}$ ---a predefined time period required to observe the motion of subject's hand and $t_{predict}$ ---required to predict the subject's hand position in advance.
+
+\paragraph*{}
+In order for handover between human subject and robot HRP2-Kai to be smooth and fluent, the robot needs to estimate the position of handover location in advance during both cases when robot act as receiver or when robot acts as giver, therefore we formulate the motion of subject's hand as a constant velocity based linear motion model (see Algorithm~\ref{positionalgo}) to predict the handover position continuously. The robot observes subject's hand for a predefined time period $t_{observe}$ and estimates the subject's hand direction and position based on the subject's hand velocity using equations (\ref{predictVel}) and (\ref{predict}) during the predefined time period. 
+
+\begin{equation} \label{predictVel}
+{}^{h}\mathcal{\bar{V}}_{M} = \frac{1}{t_{observe}}{\sum_{j=1}^{j=t_{observe}} f'({}^{h}\mathcal{P}_{M}(j)/dt }
+\end{equation}
+
+
+\begin{equation} \label{predict}
+{}^{h}\mathcal{P}_M(t_{predict}) = {}^{h}\mathcal{\bar{V}}_{M} \cdot t_{predict}  + {}^{h}\mathcal{P}_{M}(t_{observe})
+\end{equation}
+
+\paragraph*{}
+The prediction model then updates and converges itself over time and in doing so update the robot's end-effector position towards the subject's hand, upon condition if updated position is within the end-effector's constraint workspace, see Fig XXX.
+
+\paragraph*{}
+Using equations~\ref{rotationmatrix} and~\ref{predict} we get the orientation and translation components of ${}^{h}{X}_M$ in~\ref{X_M_h}, and recalling equations~\ref{X_ef_h1} and~\ref{X_ef_h2}, the updated translation component of pl\"ucker transformation ${}^{h}{X}_{ef}$, which provides the predicted position of subject's hand with respect to robot end-effector in the robot coordinate system is given by~\ref{X_ef_ht}, the relative orientation component of ${}^{h}{X}_{ef}$ is discussed in next section~\ref{relOri}.
+
+\begin{equation}\label{X_ef_ht}
+{}^{h}{X}_{ef}(t_{predict}) =  {}^{h}{X}_M  {}^{M}{X}_R {{}^{ef}{X}_R}^{-1}
+\end{equation}
+
+where, ${}^{M}{X}_R$ is the Pl\"ucker coordinate transform frame $\mathcal{M}$ relative to frame $\mathcal{R}$, if $\mathcal R \neq M$.
+
+\paragraph{}
+Finally, the handover location is estimated as the subject's hand predicted position when the following conditions satisfy (\ref{min_posErr_vel}), that is when the subject's hand velocity is minimum and robot end-effector is closest to the subject's hand.
+
+\begin{equation}\label{min_posErr_vel}
+\left.\begin{aligned}
+\norm{{}^{h}\mathcal{\bar{V}}_{M}}& <= 1e^{-2} \\
+\norm{({}^{h}\mathcal{P}_{ef}(t_{predict}) - {}^{ef}\mathcal{P}_{R})} & <= 1e^{-2}
+\end{aligned}
+\right\}
+\end{equation}
+
+
+\subsection{Algorithm: Position Prediction Model}
+
+\begin{algorithm}[H] \label{positionalgo}
+	\DontPrintSemicolon
+	
+	\KwInput{$\mathcal{}^{M}{X}_R, {}^{ef}{X}_R, mocapData$}
+	\KwOutput{${}^{h}wp_{ef}$ \tcp*{predicted waypoints}  }
+	\KwData{Initial require: $t_{observe}=10ms, t_{predict}=100ms, i=dt=5ms$}
+	
+	
+	\textit{$\textbf{i+=dt}$} \tcp*{increments as per controller run-time (dt)}
+	
+	\If{$(i\%t_{observe})==0$}
+	{
+		\For{$j = 1 \textrm{ to } t_{observe} $}
+		{
+			${}^{h}\mathcal{P}_M= \textit{mocapData}.handMarker(i-t_{observe})+j)$	
+		}
+		
+		${}^{h}\mathcal{\bar{V}}_{M} = \frac{1}{t_{observe}}{\sum_{j=1}^{j=t_{observe}} f'({}^{h}\mathcal{P}_{M}(j)/dt }$\newline 
+		
+		
+		\tcc{predict subject's hand handover position at $t_{predict}$}
+		${}^{h}\mathcal{P}_M(t_{predict}) = {}^{h}\mathcal{\bar{V}}_{M} \cdot t_{predict}  + {}^{h}\mathcal{P}_{M}(t_{observe})$ %\newline % \times 0.005
+		
+	
+		${}^{h}{X}_M= \begin{bmatrix} {}^{h}\mathcal{O}_{M} &  {}^{h}\mathcal{P}_M	\end{bmatrix}$ \newline
+			
+		\tcc{transform handover position relative to robot end-effector}	
+		${}^{h}{X}_{ef}(t_{predict}) =  {}^{h}{X}_M  {}^{M}{X}_R {{}^{ef}{X}_R}^{-1}$ \newline
+		
+
+		\tcc{\textit{way points between subject hand and robot end-effector handover location}}
+		\SetKwFunction{FMain}{generateWp}
+		\SetKwProg{Fn}{Function}{:}{}
+		\Fn{\FMain{$ {}^{ef}\mathcal{P}_{R}, {}^{h}\mathcal{P}_{ef}(t_{predict}), t_{predict} $}}
+		{
+			\For{$k = 0 \textrm{ to } t_{predict} $}
+			{
+				${}^{h}wp_{ef}(k) = [{}^{h}\mathcal{P}_{ef}(t_{predict}) - {}^{ef}\mathcal{P}_{R}] . (\frac{k}{t_{predict}})  + {}^{ef}\mathcal{P}_{R} $ 
+			}	
+			\textbf{return} $ {}^{h}wp_{ef} $
+		}
+	}
+	\caption{linear prediction model - Position}
 \end{algorithm}
 
 
-\subsection{A Subsection}
+%\subsection{Block Diagram: Position Prediction Model}
 
 
-\section{Another Section}
+\newpage
+\section{Relative Mirror Orientation Model}\label{relOri}
+
+The translation component of ${}^{ef}{X}_R $ in the equation (\ref{X_R_ef}) is updated based on the predicted position of subject's hand  while the orientation component is updated based on the relative orientation of subject's hand. In order to correctly transform subject's hand orientation into robot end-effector frame...
+
+Let ${{}^{efInit}\mathcal{O}_R}$ denote the initial and fixed orientation of the robot end-effector in the robot frame $\mathcal{R}$ during human-robot object handover as shown in Fig~\ref{fig:robot_lt_empty_hand}. In order to get the desired robot end-effector orientation relative to the subject's hand, we transform the 
+
+
+
+\begin{figure}[h]
+	\centering{\includegraphics[width=1\columnwidth]{Chapters/c5-plots/rviz_robot_lt_hand_obj_frame}}
+	\caption{Robot HRP2-Kai (left end-effector) initial and fixed orientation during handover}
+	\label{fig:robot_lt_empty_hand}
+\end{figure}
+
+
+
+As mentioned in the equation (\ref{X_R_ef}) and recalling equation (\ref{X_ef_h}), and using subject's hand orientation (\ref{rotationmatrix}), we can get the relative orientation component of ${}^{h}{X}_{ef}$ in equation (\ref{X_ef_ht}).
+
+
+
+
+For {\it mirror} orientation to work, we needed transformation matrix $\mathcal{}^{M}{X}_W$ between mocap frame $\mathcal{M}$ and robot world frame $\mathcal{W}$, therefore, using the average position of markers on the robot end-effector, such that $\mathcal{}^{ef}{P}_W == {}^{{ef}_{marker}}{P}_M$, we have assumed that end-effector's markers have same orientation as that of the end-effector in the world frame, therefore rotation part of $\mathcal{}^{efL}{X}_W$, $\mathcal{}^{efl_{marker}}{X}_M$ and $\mathcal{}^{fin_{marker}}{X}_M$ are 
+
+
+
+
+
+
+\newpage
+\section{Gripper Force Control}
+
+The object marker pose given by $\mathcal{}^{obj}{X}_M$ in the mocap frame $\mathcal{M}$.
+
+Chapter 12
+FORCE CONTROL// robot dynamics and control book
+
+
+
+\subsection{FSM}
+
+
+
+\subsection{Algorithm: Gripper Force Control}
+
+\begin{algorithm}[H]
+	\DontPrintSemicolon
+	
+	\KwInput{$\mathcal{F}_{w}$\tcp*{EF wrist worldWrenchWithoutGravity}}
+	\KwOutput{$\mathcal{F}_{pull}, T_{new}$ \tcp*{Pull force, new threshold based on object mass\newline} }
+	\textit{$\textbf{i++}$} \tcp*{increments as per controller run-time (5ms)}
+	
+	\If{subject hand is near robot}
+	{
+		\tcc{when SUBJECT holds the object}
+		\If{$\mathcal{F}_{w}.norm()<1.0 $\tcp*{gripper is empty}}
+		{
+			$\mathcal{F}_{zero}= \mathcal{F}_{w}$\tcp*{wrench offset}
+		}
+		\ElseIf{$\mathcal{F}_{w}.norm()>2.0 $}
+		{
+			$\mathcal{F}_{load}= \mathcal{F}_{w}$\tcp*{wrench with object}
+		}
+		\tcc{when ROBOT holds the object}
+		\SetKwFunction{FMain}{CheckPullForce}
+		\SetKwProg{Fn}{Function}{:}{}
+		\Fn{\FMain{$axis\forall${x,y,z}}}
+		{
+			$objectMass = \mathcal{F}_{load}/9.81 $\tcp*{get object mass}
+			
+			$\mathcal{F}_{inert} = objectMass * efAce  $\tcp*{$efAce$ using gripper markers}
+			
+			$\mathcal{F}_{pull} = \vert{(\mathcal\vert{{F}}_{w} - \mathcal\vert{{F}}_{inert})}$
+			
+			$T_{new} = \mathcal{F}_{load} + T_{old}$\tcp*{$T_{old}$ set to min by user}
+			
+			\If{$\mathcal{F}_{pull} > T_{new}$ {$\forall${x,y,z}}}
+			{
+				$openGripper$\tcp*{release object}
+			}
+			
+		}
+		
+	}
+	\Else
+	{
+		\If{$(i \% 200)$}
+		{
+			$\mathcal{F}_{load} = \vert{(\mathcal{F}_{w} - \mathcal{F}_{zero})} $\tcp*{$\forall${x,y,z} average over time}
+		}
+	}
+	
+	
+	\caption{Force Based Gripper Controller}
+\end{algorithm}
+
+
+\newpage
+\section{Robot Control - QP Tasks}\label{qpTasks}
+
+\subsection{Position Task}
+
+\subsection{Orientation Task}
+
+\subsection{COM Task}
+
+\subsection{vector look at HEAD Task}
+
+\subsection{Contact Task}
+
+\newpage
+\section{both hands indiviudal- adding another hand}
+
+the switching is based on the function which  uses hysteresis to compute relative position of object between subject's hand and robot end-effectors 
+
+\newpage
+\section{both hands together- using hands together}
+
+\newpage
+\section{add a step-walk \& native stablizer}
+
+\newpage
+\section{repeat handover with step-walk}
+
+\newpage
+\section{experiments}
+
+\newpage
+\section{quantitive analysis}
+
+\newpage
+\section{Results}
+
+\newpage
+\section{Discussion}
+%----an idea --have velocity proportional to the distance between robot ef and subj w.r.t. handover location
+
+
+
+
+
+
+%the maths of rotation matrix look for relative rotation
+%http://www.fastgraph.com/makegames/3drotation/
+
+%page 11, 12  %http://web.cs.iastate.edu/~cs577/handouts/rotation.pdf
+
+%wiki page ... {$https://en.wikipedia.org/wiki/Rotation_formalisms_in_three_dimensions$}
+
+%3D to 2D rotation matrix reduction
+%http://www.continuummechanics.org/rotationmatrix.html
+
+%function ==direction-vector-to-rotation-matrix
+%https://stackoverflow.com/questions/18558910/direction-vector-to-rotation-matrix
+
+%vector direction link below
+%${https://en.wikipedia.org/wiki/Direction_cosine}$
+

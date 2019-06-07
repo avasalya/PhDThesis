@@ -149,108 +149,108 @@
 \examiner    {}
 \degree      {}
 \authors     {}
-\university  {\texorpdfstring{\href{University Web Site URL Here (include http://)}
-                {University Name}}
-                {University Name}}
-\UNIVERSITY  {\texorpdfstring{\href{University Web Site URL Here (include http://)}
-                {UNIVERSITY NAME (IN BLOCK CAPITALS)}}
-                {UNIVERSITY NAME (IN BLOCK CAPITALS)}}
-\department  {\texorpdfstring{\href{Department or School Web Site URL Here (include http://)}
-                {Department or School Name}}
-                {Department or School Name}}
-\DEPARTMENT  {\texorpdfstring{\href{Department or School Web Site URL Here (include http://)}
-                {DEPARTMENT OR SCHOOL NAME (IN BLOCK CAPITALS)}}
-                {DEPARTMENT OR SCHOOL NAME (IN BLOCK CAPITALS)}}
-\group       {\texorpdfstring{\href{Research Group Web Site URL Here (include http://)}
-                {Research Group Name}}
-                {Research Group Name}}
-\GROUP       {\texorpdfstring{\href{Research Group Web Site URL Here (include http://)}
-                {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}}
-                {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}}
-\faculty     {\texorpdfstring{\href{Faculty Web Site URL Here (include http://)}
-                {Faculty Name}}
-                {Faculty Name}}
-\FACULTY     {\texorpdfstring{\href{Faculty Web Site URL Here (include http://)}
-                {FACULTY NAME (IN BLOCK CAPITALS)}}
-                {FACULTY NAME (IN BLOCK CAPITALS)}}
-\addresses   {}
-\subject     {}
-\keywords    {}
-\renewcommand\maketitle{
-  \btypeout{Title Page}
-  \hypersetup{pdftitle={\@title}}
-  \hypersetup{pdfsubject=\subjectname}
-  \hypersetup{pdfauthor=\authornames}
-  \hypersetup{pdfkeywords=\keywordnames}
-  \thispagestyle{empty}
-  \begin{titlepage}
-    \let\footnotesize\small
-    \let\footnoterule\relax
-    \let \footnote \thanks
-    \setcounter{footnote}{0}
-    \null\vfil
-    \vskip 60\p@
-    \begin{center}
-      \setlength{\parskip}{0pt}
-      {\large\textbf{\UNIVNAME}\par}
-      \vfill
-      {\huge \bf \@title \par}
-      \vfill
-      {\LARGE by \par}
-      \smallskip
-      {\LARGE \authornames \par}
-      \vfill
-      {\large A thesis submitted in partial fulfillment for the \par}
-      {\large degree of Doctor of Philosophy \par}
-      \bigskip
-      \bigskip
-      {\large in the \par}
-      {\large \facname \par}
-      {\large \deptname \par}
-      \bigskip
-      \bigskip
-      \bigskip
-      {\Large \@date \par}
-      \bigskip
-    \end{center}
-    \par
-    \@thanks
-    \vfil\null
-  \end{titlepage}
-  \setcounter{footnote}{0}%
-  \global\let\thanks\relax
-  \global\let\maketitle\relax
-  \global\let\@thanks\@empty
-  \global\let\@author\@empty
-  \global\let\@date\@empty
-  \global\let\@title\@empty
-  \global\let\title\relax
-  \global\let\author\relax
-  \global\let\date\relax
-  \global\let\and\relax
-  \cleardoublepage
-}
+%\university  {\texorpdfstring{\href{University Web Site URL Here (include http://)}
+%                {University Name}}
+%                {University Name}}
+%\UNIVERSITY  {\texorpdfstring{\href{University Web Site URL Here (include http://)}
+%                {UNIVERSITY NAME (IN BLOCK CAPITALS)}}
+%                {UNIVERSITY NAME (IN BLOCK CAPITALS)}}
+%\department  {\texorpdfstring{\href{Department or School Web Site URL Here (include http://)}
+%                {Department or School Name}}
+%                {Department or School Name}}
+%\DEPARTMENT  {\texorpdfstring{\href{Department or School Web Site URL Here (include http://)}
+%                {DEPARTMENT OR SCHOOL NAME (IN BLOCK CAPITALS)}}
+%                {DEPARTMENT OR SCHOOL NAME (IN BLOCK CAPITALS)}}
+%\group       {\texorpdfstring{\href{Research Group Web Site URL Here (include http://)}
+%                {Research Group Name}}
+%                {Research Group Name}}
+%\GROUP       {\texorpdfstring{\href{Research Group Web Site URL Here (include http://)}
+%                {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}}
+%                {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}}
+%\faculty     {\texorpdfstring{\href{Faculty Web Site URL Here (include http://)}
+%                {Faculty Name}}
+%                {Faculty Name}}
+%\FACULTY     {\texorpdfstring{\href{Faculty Web Site URL Here (include http://)}
+%                {FACULTY NAME (IN BLOCK CAPITALS)}}
+%                {FACULTY NAME (IN BLOCK CAPITALS)}}
+%\addresses   {}
+%\subject     {}
+%\keywords    {}
+%\renewcommand\maketitle{
+%  \btypeout{Title Page}
+%  \hypersetup{pdftitle={\@title}}
+%  \hypersetup{pdfsubject=\subjectname}
+%  \hypersetup{pdfauthor=\authornames}
+%  \hypersetup{pdfkeywords=\keywordnames}
+%  \thispagestyle{empty}
+%  \begin{titlepage}
+%    \let\footnotesize\small
+%    \let\footnoterule\relax
+%    \let \footnote \thanks
+%    \setcounter{footnote}{0}
+%    \null\vfil
+%    \vskip 60\p@
+%    \begin{center}
+%      \setlength{\parskip}{0pt}
+%      {\large\textbf{\UNIVNAME}\par}
+%      \vfill
+%      {\huge \bf \@title \par}
+%      \vfill
+%      {\LARGE by \par}
+%      \smallskip
+%      {\LARGE \authornames \par}
+%      \vfill
+%      {\large A thesis submitted in partial fulfillment for the \par}
+%      {\large degree of Doctor of Philosophy \par}
+%      \bigskip
+%      \bigskip
+%      {\large in the \par}
+%      {\large \facname \par}
+%      {\large \deptname \par}
+%      \bigskip
+%      \bigskip
+%      \bigskip
+%      {\Large \@date \par}
+%      \bigskip
+%    \end{center}
+%    \par
+%    \@thanks
+%    \vfil\null
+%  \end{titlepage}
+%  \setcounter{footnote}{0}%
+%  \global\let\thanks\relax
+%  \global\let\maketitle\relax
+%  \global\let\@thanks\@empty
+%  \global\let\@author\@empty
+%  \global\let\@date\@empty
+%  \global\let\@title\@empty
+%  \global\let\title\relax
+%  \global\let\author\relax
+%  \global\let\date\relax
+%  \global\let\and\relax
+%  \cleardoublepage
+%}
 \newenvironment{abstract}
 {
   \btypeout{Abstract Page}
   \thispagestyle{empty}
   \null\vfil
-  \begin{center}
-    \setlength{\parskip}{0pt}
-    {\normalsize \UNIVNAME \par}
-    \bigskip
-    {\huge{\textit{Abstract}} \par}
-    \bigskip
-    {\normalsize \facname \par}
-    {\normalsize \deptname \par}
-    \bigskip
-    {\normalsize Doctor of Philosophy\par}
-    \bigskip
-    {\normalsize\bf \@title \par}
-    \medskip
-    {\normalsize by \authornames \par}
-    \bigskip
-  \end{center}
+%  \begin{center}
+%    \setlength{\parskip}{0pt}
+%    {\normalsize \UNIVNAME \par}
+%    \bigskip
+%    {\huge{\textit{Abstract}} \par}
+%    \bigskip
+%    {\normalsize \facname \par}
+%    {\normalsize \deptname \par}
+%    \bigskip
+%    {\normalsize Doctor of Philosophy\par}
+%    \bigskip
+%    {\normalsize\bf \@title \par}
+%    \medskip
+%    {\normalsize by \authornames \par}
+%    \bigskip
+%  \end{center}
 }
 {
   \vfil\vfil\vfil\null

@@ -1,7 +1,7 @@
 acmart.cls
-
-
-
+acmart.pdf
+acmguide.pdf
+sample-*.pdf
 *.log
 *.aux
 *.cfg
@@ -25,5 +25,5 @@ acmart.cls
 *.zip
 *.rpi
 *.gz
-
+*.pdf
 *~
