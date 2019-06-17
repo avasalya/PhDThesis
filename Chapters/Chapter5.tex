@@ -1,21 +1,38 @@
 \chapter{Bi-directional dual arm object handover\newline}
 
 \newpage
-\section{Introduction}
+\section{Introduction*}
 --perform fluid object handover in a dynamic settings
 
 --Design a planner considering —humans field of view, attention, preferences (left/right handed, etc),
 
 --current state (sleeping, sitting, working etc) and the robot’s field of view, kinematics and dynamics
 
+
 \newpage
-\section{Handover Procedure}
+\section{Robot Control - QP Tasks}\label{qpTasks}
+
+\subsection{Position Task}\label{positionTask}
+
+\subsection{Orientation Task}\label{orientationTask}
+
+\subsection{COM Task}\label{comTask}
+
+\subsection{Vector look at Head Task}\label{HeadTask}
+
+\subsection{Contact Task}\label{contact}
+
+
+
+\newpage
+\section{Bi-directional Handover}
 We formulate the bi-directional human-robot handover as one shot object handover from different starting positions and hand speed and trajectories (of the human). The robot start from half-site and take the object that is handed by the subject in one shot (and vice-versa). A person takes an object and hands it seriously to the robot that must take it (and vice-versa). The subject start and try to give the object from different positions and orientations w.r.t the robot.
+
+two important key features that we want to focus during human humanoid robot object handover is the time of handover and pose of handover.
 
 
 \newpage
 \section{Notation and Terminology}
-
 Let $\mathcal{M}$ (Mocap) and $\mathcal{R}$ (Robot) be the two fixed frames that denote both Cartesian coordinate systems and Pl\"ucker coordinate systems denoted by $X$ in the Euclidean space. Both $\mathcal{M}$ and $\mathcal{R}$ are defined by their position and orientation of a Cartesian frame, such that ${}^MX_R$ denotes the Pl\"ucker coordinate transform which depends only on the position and orientation of frame $\mathcal{M}$ relative to frame $\mathcal{R}$\cite{featherstone2014rigid} (see Fig~\ref{fig:frames}).
 
 
@@ -35,7 +52,7 @@ Let $\mathcal{M}$ (Mocap) and $\mathcal{R}$ (Robot) be the two fixed frames that
 		\end{array}\right]
 	\end{gather}
 	
-	\item Likewise, ${{}^{h}\mathcal{O}_M} \in \mathbb{R}^{3\times3}$ and ${{}^{h}\mathcal{P}_M} \in \mathbb{R}^{3}$, denotes the subject's hand $h$ orientation and position respectively in the $\mathcal{M}$ frame, obtained from the $\mathcal{L}$ shape body (see subsection~\ref{hand_orientation}),
+	\item Likewise, ${{}^{h}\mathcal{O}_M} \in \mathbb{R}^{3\times3}$ and ${{}^{h}\mathcal{P}_M} \in \mathbb{R}^{3}$, denotes the subject's hand $h$ orientation and position respectively in the $\mathcal{M}$ frame, obtained from the $\mathcal{L}$ shape body (see Section~\ref{hand_orientation}),
 	\begin{gather}\label{X_M_h}
 		{}^{h}{X}_M =
 		\left[\begin{array}{cc}
@@ -51,7 +68,7 @@ Let $\mathcal{M}$ (Mocap) and $\mathcal{R}$ (Robot) be the two fixed frames that
 		\end{array}\right]
 	\end{gather}
 	
-	\item For convenience, we formulate the problem with a common origin {\it O}, such that $\mathcal R \equiv M$, we can get subject's hand pose $\mathsf{w.r.t.}$ or relative to robot's end-effector
+	\item For convenience, we formulate the problem with a common origin {\it O}, such that $\mathcal R \equiv M$ (both frames are located between the feet of robot HRP2-Kai), we can get subject's hand pose $\mathsf{w.r.t.}$ or relative to robot's end-effector
 %	
 	\begin{equation}\label{X_ef_h1}
 		{}^{h}{X}_{ef} = {}^{h}{X}_{M}  {}^{ef}{X_{R}}^{-1}
@@ -69,7 +86,6 @@ Let $\mathcal{M}$ (Mocap) and $\mathcal{R}$ (Robot) be the two fixed frames that
 
 \newpage
 \section{Subject's Hand Orientation Model}\label{hand_orientation}
-
 To get the orientation of subject's hand, we placed a rigid body with a shape similar to alphabet $L$ on wrist of subject's hand(s) as shown in Fig~\ref{fig:lshapes}. The three mocap markers $A, B$ and $C$ make up the three vertices of $\mathcal{L}$ shape body, such that during object handover scenario, vector $\vec{AB}^{\,}$ along the longer side and vector $\vec{BC}^{\,}$ along the shorter side are set to be parallel with the $X$-axis and $Y$-axis of the mocap frame $\mathcal{M}$ respectively. The vectors $\vec{AB}^{\,}$ and $\vec{BC}^{\,}$ are orthogonal to each other. For simplicity, let $\hat{x}$ be the unit vector, which is parallel and along the $X$-axis and likewise, unit vector $\hat{y}$ is parallel and along the $Y$-axis of the mocap frame $\mathcal{M}$, such that
 
 \begin{figure}[h]
@@ -110,8 +126,7 @@ To get the orientation of subject's hand we used these unit vectors $\hat{x}, \h
 
 
 \newpage
-\section{Handover Position Prediction Model}
-
+\section{Handover Position Prediction Model}\label{prediction_model}
 Algorithm~\ref{positionalgo} explains the procedure of predicting subject's hand position and estimating handover location. Inputs to the prediction model are robot left end-effector pose $\mathcal{}^{ef}{X}_R$ (eq~\ref{X_R_ef}) in the robot frame and subject's hand mocap markers positions ${}^{h}\mathcal{P}_M$ (eq~\ref{X_M_h}) in the mocap frame of reference.
 
 \paragraph*{}
@@ -137,7 +152,7 @@ In order for handover between human subject and robot HRP2-Kai to be smooth and 
 The prediction model then updates and converges itself over time and in doing so update the robot's end-effector position towards the subject's hand, upon condition if updated position is within the end-effector's constraint workspace, see Fig XXX.
 
 \paragraph*{}
-Using equations~\ref{rotationmatrix} and~\ref{predict} we get the orientation and translation components of ${}^{h}{X}_M$ in~\ref{X_M_h}, and recalling equations~\ref{X_ef_h1} and~\ref{X_ef_h2}, the updated translation component of pl\"ucker transformation ${}^{h}{X}_{ef}$, which provides the predicted position of subject's hand with respect to robot end-effector in the robot coordinate system is given by~\ref{X_ef_ht}, the relative orientation component of ${}^{h}{X}_{ef}$ is discussed in next section~\ref{relOri}.
+Using equations~\ref{rotationmatrix} and~\ref{predict} we get the orientation and translation components of ${}^{h}{X}_M$ in~\ref{X_M_h}, and recalling equations~\ref{X_ef_h1} and~\ref{X_ef_h2}, the updated translation component of pl\"ucker transformation ${}^{h}{X}_{ef}$, which provides the predicted position of subject's hand with respect to robot end-effector in the robot coordinate system is given by~\ref{X_ef_ht}, the relative orientation component of ${}^{h}{X}_{ef}$ is discussed in next Section~\ref{relOri}.
 
 \begin{equation}\label{X_ef_ht}
 {}^{h}{X}_{ef}(t_{predict}) =  {}^{h}{X}_M  {}^{M}{X}_R {{}^{ef}{X}_R}^{-1}
@@ -145,7 +160,7 @@ Using equations~\ref{rotationmatrix} and~\ref{predict} we get the orientation an
 
 where, ${}^{M}{X}_R$ is the Pl\"ucker coordinate transform frame $\mathcal{M}$ relative to frame $\mathcal{R}$, if $\mathcal R \neq M$.
 
-\paragraph{}
+\paragraph*{}
 Finally, the handover location is estimated as the subject's hand predicted position when the following conditions satisfy (\ref{min_posErr_vel}), that is when the subject's hand velocity is minimum and robot end-effector is closest to the subject's hand.
 
 \begin{equation}\label{min_posErr_vel}
@@ -155,6 +170,41 @@ Finally, the handover location is estimated as the subject's hand predicted posi
 \end{aligned}
 \right\}
 \end{equation}
+
+
+
+\subsection{Block Diagram: Position Prediction Model*}
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=yellow!20, 
+text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=green!20, 
+text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=blue!20, node distance=3cm,
+minimum height=2em]
+
+\begin{tikzpicture}[node distance = 3cm, auto]
+% Place nodes
+\node [block] (init) {initialize model};
+\node [cloud, left of=init] (expert) {${}^{ef}{X}_R $};
+\node [cloud, right of=init] (system) {${}^{R}{X}_M $};
+\node [block, below of=init] (identify) {object relative pose to robot};
+\node [block, below of=identify] (evaluate) {evaluate candidate models};
+\node [block, left of=evaluate, node distance=3cm] (update) {update model};
+\node [decision, below of=evaluate] (decide) {is best candidate better?};
+\node [block, below of=decide, node distance=3cm] (stop) {stop};
+% Draw edges
+\path [line] (init) -- (identify);
+\path [line] (identify) -- (evaluate);
+\path [line] (evaluate) -- (decide);
+\path [line] (decide) -| node [near start] {yes} (update);
+\path [line] (update) |- (identify);
+\path [line] (decide) -- node {no}(stop);
+\path [line,dashed] (expert) -- (init);
+\path [line,dashed] (system) -- (init);
+\path [line,dashed] (system) |- (evaluate);
+\end{tikzpicture}
 
 
 \subsection{Algorithm: Position Prediction Model}
@@ -205,53 +255,73 @@ Finally, the handover location is estimated as the subject's hand predicted posi
 \end{algorithm}
 
 
-%\subsection{Block Diagram: Position Prediction Model}
-
-
 \newpage
-\section{Relative Mirror Orientation Model}\label{relOri}
-
-The translation component of ${}^{ef}{X}_R $ in the equation (\ref{X_R_ef}) is updated based on the predicted position of subject's hand  while the orientation component is updated based on the relative orientation of subject's hand. In order to correctly transform subject's hand orientation into robot end-effector frame...
-
-Let ${{}^{efInit}\mathcal{O}_R}$ denote the initial and fixed orientation of the robot end-effector in the robot frame $\mathcal{R}$ during human-robot object handover as shown in Fig~\ref{fig:robot_lt_empty_hand}. In order to get the desired robot end-effector orientation relative to the subject's hand, we transform the 
-
-
+\section{Relative Orientation Model}\label{relOri}
+The translation component of ${}^{ef}{X}_R $ in the equation (\ref{X_R_ef}) is updated based on the predicted position of subject's hand (see Section~\ref{prediction_model}) while the orientation component is updated based on the relative orientation of subject's hand (see Section~\ref{hand_orientation}).
 
 \begin{figure}[h]
-	\centering{\includegraphics[width=1\columnwidth]{Chapters/c5-plots/rviz_robot_lt_hand_obj_frame}}
-	\caption{Robot HRP2-Kai (left end-effector) initial and fixed orientation during handover}
-	\label{fig:robot_lt_empty_hand}
-\end{figure}
+	\centering{\includegraphics[width=.7\linewidth]{Chapters/c5-plots/rviz_robot_lt_hand_obj_frame}}
+	\caption{Robot HRP2-Kai (left end-effector) holding object with fixed orientation during handover in the robot frame $\mathcal{R}$}
+	\label{fig:robot_lt_hand_obj}
+\end{figure} 
+
+\paragraph*{}
+Since our robot HRP2-Kai lacks conventional anthropomorphic hands, but instead it has gripper alike hands. For relative orientation model to work, we were required to know the fixed initial orientation of the robot end-effector, in which object handover is feasible between human and robot HRP2-Kai, irrespective of the subject's hand orientation, therefore consider a possible  scenario where the robot end-effector orientation is fixed throughout the handover cycle (transfer of object from human to robot and return to human), irrespective of the condition where robot is a giver or receiver. Let ${{}^{efInit}\mathcal{O}_R}$ denote the initial and fixed orientation of the robot end-effector in the robot frame $\mathcal{R}$ during such human robot object handover scenarios as shown in Fig~\ref{fig:robot_lt_hand_obj}, and Fig~\ref{fig:robot_lt_hand_2layers}, where, ${{}^{efInit}\mathcal{O}_R}$ $\subset$ ${{}^{ef}\mathcal{O}_R}$.
+
+\begin{figure}[h]
+	\centering{\includegraphics[width=.7\linewidth]{Chapters/c5-plots/rviz_robot_lt_hand_obj-2layer-empty}}
+	\caption{Robot HRP2-Kai (left end-effector) fixed orientation during two handover trials in the robot frame $\mathcal{R}$}
+	\label{fig:robot_lt_hand_2layers}
+\end{figure} 
 
 
+In order to correctly transform desired subject's hand orientation into robot end-effector frame, we further utilize the equation (\ref{X_ef_ht}). We take advantage of the QP's Orientation Task (see subsection~\ref{orientationTask}) and calculate the task error $e$ between \textit{current} subject's hand and \textit{fixed} robot end-effector orientations,
+the resulting orientation from the Orientation Task is the desired robot end-effector orientation relative to the subject's hand orientation, see Fig~\ref{fig:robot_lt_orientations}, therefore, using fixed orientation component  ${{}^{efInit}\mathcal{O}_R}$, of equation (\ref{X_R_ef}) and current subject's hand orientation ${}^{h}\mathcal{O}_M$ from equation (\ref{rotationmatrix}) derived in Section~\ref{hand_orientation}, we further modify equation (\ref{X_ef_ht}).
 
-As mentioned in the equation (\ref{X_R_ef}) and recalling equation (\ref{X_ef_h}), and using subject's hand orientation (\ref{rotationmatrix}), we can get the relative orientation component of ${}^{h}{X}_{ef}$ in equation (\ref{X_ef_ht}).
+\begin{figure}[h]
+	\centering{\includegraphics[width=1\columnwidth]{Chapters/c5-plots/robot_lt_orientations}}
+	\caption{Robot HRP2-Kai (left end-effector) holding object in multiple possible orientations during handover trials in the robot frame $\mathcal{R}$}
+	\label{fig:robot_lt_orientations}
+\end{figure} 
 
 
-
-
-For {\it mirror} orientation to work, we needed transformation matrix $\mathcal{}^{M}{X}_W$ between mocap frame $\mathcal{M}$ and robot world frame $\mathcal{W}$, therefore, using the average position of markers on the robot end-effector, such that $\mathcal{}^{ef}{P}_W == {}^{{ef}_{marker}}{P}_M$, we have assumed that end-effector's markers have same orientation as that of the end-effector in the world frame, therefore rotation part of $\mathcal{}^{efL}{X}_W$, $\mathcal{}^{efl_{marker}}{X}_M$ and $\mathcal{}^{fin_{marker}}{X}_M$ are 
-
-
-
-
+\begin{gather}\label{X_efinit_hori}
+\left[\begin{array}{cc}
+{}^{h}\mathcal{O}_{ef} & {}^{h}\mathcal{P}_{ef}
+\end{array}\right] =
+\left[\begin{array}{cc}
+\bf{{}^{h}\mathcal{O}_M} & {}^{h}\mathcal{P}_M
+\end{array}\right]
+\left[\begin{array}{cc}
+{}^{M}\mathcal{O}_R & {}^{M}\mathcal{P}_R
+\end{array}\right]
+\left[\begin{array}{cc}
+\bf{{}^{efInit}\mathcal{O}_{R}} & {}^{ef}\mathcal{P}_{R}
+\end{array}\right]^{-1}
+\end{gather}
 
 
 \newpage
-\section{Gripper Force Control}
-
-The object marker pose given by $\mathcal{}^{obj}{X}_M$ in the mocap frame $\mathcal{M}$.
-
+\section{Force Control}
 Chapter 12
 FORCE CONTROL// robot dynamics and control book
 
 
-
-\subsection{FSM}
-
+we came up we two methods to solve this problem, one highlights simplicity and other highlights efficiency but when used together we get reliability and safest solution possible.
 
 
-\subsection{Algorithm: Gripper Force Control}
+\subsection{Mocap Marker Based}
+The HRP2-Kai gripper hands are equipped with 6-axis The object marker pose given by $\mathcal{}^{obj}{X}_M$ in the mocap frame $\mathcal{M}$.
+
+
+
+
+
+\subsubsection{Finite State Machine}
+
+
+
+\subsubsection{Algorithm: Gripper Force Control}
 
 \begin{algorithm}[H]
 	\DontPrintSemicolon
@@ -288,9 +358,7 @@ FORCE CONTROL// robot dynamics and control book
 			{
 				$openGripper$\tcp*{release object}
 			}
-			
 		}
-		
 	}
 	\Else
 	{
@@ -299,24 +367,9 @@ FORCE CONTROL// robot dynamics and control book
 			$\mathcal{F}_{load} = \vert{(\mathcal{F}_{w} - \mathcal{F}_{zero})} $\tcp*{$\forall${x,y,z} average over time}
 		}
 	}
-	
-	
 	\caption{Force Based Gripper Controller}
 \end{algorithm}
 
-
-\newpage
-\section{Robot Control - QP Tasks}\label{qpTasks}
-
-\subsection{Position Task}
-
-\subsection{Orientation Task}
-
-\subsection{COM Task}
-
-\subsection{vector look at HEAD Task}
-
-\subsection{Contact Task}
 
 \newpage
 \section{both hands indiviudal- adding another hand}
@@ -325,6 +378,8 @@ the switching is based on the function which  uses hysteresis to compute relativ
 
 \newpage
 \section{both hands together- using hands together}
+
+\subsection{Force Control changes}
 
 \newpage
 \section{add a step-walk \& native stablizer}
