@@ -3,25 +3,42 @@
 %% ---------------------------------------------------------------- 
 
 % Set up the document
-\documentclass[a4paper, 11pt, oneside]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
+\documentclass[a4paper, 12pt, oneside]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
 \graphicspath{Figures/}  % Location of the graphics files (set up for graphics to be in PDF format)
 
 % Include any extra LaTeX packages required
-\usepackage[square, numbers, comma, sort&compress]{natbib}  % Use the "Natbib" style for the references in the Bibliography
+\usepackage[square, numbers, comma, sort&compress]{natbib}
 \usepackage{verbatim}  % Needed for the "comment" environment to make LaTeX comments
 \usepackage{vector}  % Allows "\bvec{}" and "\buvec{}" for "blackboard" style bold vectors in maths
 \usepackage{amsmath}
 \usepackage{physics}
 \usepackage{hyperref}
+\usepackage{bookmark}
 \usepackage{amsmath,empheq}
 \usepackage{caption}
-%\usepackage{subcaption}
 \usepackage{pdfpages} 
-%\usepackage[latin1]{inputenc}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows, automata}
+\usetikzlibrary{shapes, arrows, automata}
 \usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{enumitem}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage[T1]{fontenc} %normes d'encodage
+\usepackage[utf8]{inputenc} %normes d'encodage
+\usepackage{lmodern} %correction d'affichage
+\usepackage{graphicx} %insertion d'images
+\usepackage{csquotes} %guillemets français
+\usepackage{sectsty} %modifier l'apparence des titres
+\usepackage{fancyhdr} %en tête et pieds de page personnalisables
+\usepackage{etoolbox} %idem
+\usepackage{color} %gestion des couleurs
+\usepackage{setspace} %interligne
+\usepackage{natbib} %pour pouvoir ne citer que l'année
+\usepackage{chngcntr} %compteurs modifiables
+\usepackage{amsmath} %package maths
+\usepackage{amssymb} %package maths
+\usepackage{url} %gestion des liens hypertextes
+\usepackage{blindtext} %génération de texte aléatoire : \Blindtext
 \usepackage{listings}
 \lstset{
 	frame=tb, % draw a frame at the top and bottom of the code block
@@ -33,36 +50,99 @@
 	stringstyle=\color{red} % string color
 }
 
-%opening
-%\title{Thesis overview}
-%\author{Ashesh Vasa
 
 %%% Coloring the comment as blue
 \newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
 \SetCommentSty{mycommfont}
 
-\SetKwInput{KwInput}{Input}                % Set the Input
+\SetKwInput{KwInput}{Input}
 \SetKwInput{KwOutput}{Output}
 
-%userPackage
-\usepackage{tabularx}
-\usepackage{enumitem}
-%\usepackage{ulem}
-
-\hypersetup{urlcolor=blue, colorlinks=true}  % Colours hyperlinks in blue, but this can be distracting if there are many links.
+\hypersetup{urlcolor=blue, colorlinks=true}
 
 %% ----------------------------------------------------------------
 \begin{document}
 
-\frontmatter      % Begin Roman style (i, ii, iii, iv...) page numbering
+% =======================================================================
+%                              Title
+% =======================================================================
 
-%\title  {Towards Non-physical to Physical Interactions between Human-Humanoid Robot Co-workers (INCOMPLETE)}
+%\title  {Towards Non-physical to Physical Interactions between Human-Humanoid Robot Co-workers }
 %\setboolean{@twoside}{false}
 % \includepdf[pages={1},width=\textwidth]{cover.pdf} 
-\includepdf[pages={1},offset=75 -75]{cover.pdf}
+% \includepdf[pages={1},offset=75 -75]{cover.pdf}
+
+\thispagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay, shift=(current page.south)]
+  \shade[top color=white , bottom color=gray] (current page.north west) rectangle (-3, 0);
+\end{tikzpicture}
+
+\begin{tikzpicture}[remember picture, overlay, shift=(current page.north west)]
+    
+    \node[inner sep=0pt] (thèse) at (15, -2)
+    {\includegraphics[width=0.8\textwidth]{plots/cover/these.png}};
+    
+    \node[inner sep=0pt] (collegeDoctoral) at (5, -3)
+    {\includegraphics[width=.225\textwidth]{plots/cover/doctoral.png}};
+    
+    \node[inner sep=0pt] (montpellier) at (5,-11)
+    {\includegraphics[width=.225\textwidth]{plots/cover/montpellier.png}};
+    
+    \node[inner sep=0pt] (cnrs) at (5,-20)
+    {\includegraphics[width=.225\textwidth]{plots/cover/cnrs.png}};
+    
+    \node[inner sep=0pt] (aist) at (5,-26)
+    {\includegraphics[width=.25\textwidth]{plots/cover/aist.png}};
+  
+
+    \node[align=center] at (15,-10) {
+    \\ \large 
+    Délivrée par \textbf{
+    l'Université de Montpellier %%%% UNIVERSITÉ %%%%
+    }\\ \\ \\ \large 
+    Préparée au sein de l'école doctorale I2S - Information,
+    \\ \large 
+    Structure, Systèmes % XX %%%% ÉCOLE DOCTORALE %%%%
+    \\ \large 
+    Et de l'unité de recherche UMR 5506 % XX %%%% UNITÉ DE RECHERCHE %%%%
+    \\ \\ \\ \large 
+    
+    Spécialité : \textbf{
+    SYAM - Systèmes Automatiques et
+    }\\ \large 
+    \textbf{
+    Microélectroniques
+    }\\ \\ \\ \\ \large 
+    
+    Présentée par : \textbf{
+    Ashesh VASALYA
+    }\\ \\};
+    
+    \node[draw, align=center] at (15, -17) {\, \hspace{12cm}
+    \\ \Large \textbf{ 
+    TITRE DE LA THÈSE} \\ \Large \textbf{ 
+    SUR DEUX LIGNES   %%%% TITRE %%%%
+    }\\ \large \textbf{
+    sous-titre %%%% SOUS-TITRE %%%%
+    }};
+    
+    \node[align=center] at (15, -20) {Soutenue le
+    XX September 2019 %%%% DATE %%%%
+    devant le jury composé de};
+    
+    \node[text width=12cm] at (15,-23) { %%%% JURY %%%%
+    Civilité Prénom NOM, Grade, Etablissement \hfill Statut Jury \\
+    Civilité Prénom NOM, Grade, Etablissement \hfill Statut Jury \\
+    Civilité Prénom NOM, Grade, Etablissement \hfill Statut Jury \\
+    Civilité Prénom NOM, Grade, Etablissement \hfill Statut Jury \\};
+\end{tikzpicture}
+
 
 
 %% ----------------------------------------------------------------
+
+\frontmatter      % Begin Roman style (i, ii, iii, iv...) page numbering
 
 \setstretch{1.3}  % It is better to have smaller font and larger line spacing than the other way round
 
@@ -73,6 +153,7 @@
 
 \pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
 
+\clearpage
 %% ----------------------------------------------------------------
 % Declaration Page required for the Thesis, your institution may give you a different text to place here
 \Declaration{
@@ -206,12 +287,12 @@ $\omega$ & angular frequency & rads$^{-1}$ \\
 % Include the chapters of the thesis, as separate files
 % Just uncomment the lines as you write the chapters
 
-%\input{Chapters/Chapter1} % Introduction
-%\input{Chapters/Chapter2} % S-O-T-A
-%\input{Chapters/Chapter3} % PLosOne morethan
-%\input{Chapters/Chapter4} % Ro-MAN distinct
-%\input{Chapters/Chapter5} % Handover
-%\input{Chapters/Chapter6} %  Conclusion Discussion/future possibilities
+%\input{plots/Chapter1} % Introduction
+%\input{plots/Chapter2} % S-O-T-A
+%\input{plots/Chapter3} % PLosOne morethan
+%\input{plots/Chapter4} % Ro-MAN distinct
+%\input{plots/Chapter5} % Handover
+%\input{plots/Chapter6} %  Conclusion Discussion/future possibilities
 
 % ======================================================================= %
 %                           Introduction
@@ -232,7 +313,7 @@ talk little about each chapter
 %2.1.6 Challenges for the application to pHRI: reasons for a haptic language
 %thesis paul-evrard
 
-% ======================================================================= %
+% ====================================================================== %
 %                           State-of-the-art
 % ======================================================================= %
 \chapter{State-of-the-art}
@@ -266,7 +347,8 @@ talk little about each chapter
 \chapter{Distinct Motor Contagions}
 
 \addcontentsline{toc}{section}{Abstract}
-\section*{\huge Abstract}
+% \section*{\huge Abstract}
+
 Multiple studies have shown that the mere observation of movements by a robot can affect an observing human's movement; effects referred to as motor contagions. However, previous studies have either analyzed motor contagions induced during (which we call \emph{on-line} contagions), or induced after (\emph{off-line} contagions) observation of the robot, but never both together. It thus remains unclear whether and how these two contagions differ from each other. Here, in an empirical industrial co-worker setting, we examine the differences in the off-line and on-line contagions induced in participants by the observation of the same movements performed by a human, or a humanoid robot co-worker. We observed that while the off-line contagions predominantly affect the participant's movement velocity, the on-line contagions affect their movement frequency. Furthermore, the off-line contagions were prominent after observing another human, while the on-line contagions were equally strong with either a human or a humanoid co-worker. These results suggest that actions by a humanoid robot can induce distinct effects on human behaviors, during and after observation.  	
 
 \clearpage
@@ -277,13 +359,13 @@ Motor contagions are implicit effects that cause certain features of an individu
 Motor contagions may be divided into two categories depending on when, relative to the action observation, they are induced. \emph{On-line contagions} are induced \emph{during} the observation of actions performed by another human or robot~\cite{Kupferberg:Methods:2009, Oztop:RAS_ICHR:2004, Chaminade:JPP:2009, Kupferberg:PlosOne:2012, Brass:ActaPsych:2001, Press:CBR:2005}. For example,~\cite{Kilner:CurBio:2003} analyzed the variance in movements of a human participant when s/he observed spatially congruent and in-congruent movements made by either another human or a robot. Their experiment thus focused on on-line contagions, and showed that on-line contagions (in terms of a change in movement variance) are induced while observing a human but not while observing a robot making non-biological movements.
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{Chapters/c3-plots/setup}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/setup}}
 	\caption{Experimental setup: The participants in our experiment worked in three conditions; (i) with a robot co-worker performing \textit{biological} movements ($\textit{R}_{\text{biol}}$), (ii) a human co-worker ($\textit{H}$), and (iii) a robot co-worker performing \textit{non-biological} movements ($\textit{R}_{\text{nonbiol}}$). The coordinate axis defining the movement setup is indicated in white and fixed on the participant's table.}
 	\label{fig:setup}
 \end{figure}
 
 \begin{figure*}[t]
-	\includegraphics[width=\textwidth,height=6cm]{Chapters/c3-plots/trialprotocol}
+	\includegraphics[width=\textwidth,height=6cm]{plots/c3-plots/trialprotocol}
 	\caption{A) Trial protocol: The participants worked in repeated trials with either a robot or human co-worker (the figure shows the trial with a human co-worker). Each trial consisted of a period when the participant worked alone and co-worker relaxed (participant-alone period), both worked together (together period), and the co-worker worked alone (co-worker-alone period). The notation of the kinematic and time variables (represented in general by \boldmath{$\eta$}) in each period are shown in the figure. B) The trajectories made by the robot co-worker in the $\textit{R}_{\text{biol}}$ and $\textit{R}_{\text{nonbiol}}$ conditions. C) The time trajectories followed by the robot co-worker in the $\textit{R}_{\text{nonbiol}}$ condition in the Y and Z dimension, and the via-points (blue circles) used to generate the trajectory.}
 	\label{fig:trial}
 \end{figure*}
@@ -364,7 +446,7 @@ Our initial sample size was 35 participants such that all of them participated i
 
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{Chapters/c3-plots/all_fit}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/all_fit}}
 	\caption{Examples of linear regression fits obtained in the $\textit{H}$ (orange), $\textit{R}_{\text{biol}}$ (blue), $\textit{R}_{\text{nonbiol}}$ (magenta) conditions: A) Off-line contagions in the participant's \boldmath{$|\overline{\dot{y}}|$} ($\textbf{y}$-axis) as a function of co-worker's \boldmath{$|\overline{\dot{y}}|$} ($\textbf{x}$-axis); B) On-line contagions in the participant's \textit{htp}s ($\textbf{y}$-axis) as a function of co-worker's \textit{htp}s ($\textbf{x}$-axis). We used the AIC to choose either a first or second order model to fit the data for each participant. The lines represent the tangent slopes at the minimal co-worker feature value.}
 	\label{fig:fitting}
 \end{figure}
@@ -378,7 +460,7 @@ We quantified a participant's change in behavior after observing the co-worker, 
 For quantifying effects due to the on-line contagions, we looked again at the average value of each of the analyzed kinematic or time variable $\eta_p$ in the together period. However, in order to remove any persistent off-line contagions in this period, we regressed the change in the participant's behavior, between the together period and alone-period in a trial ($\eta_p^t (i)- \eta_p^a (i)$), and the corresponding value of the same variable in the co-worker behavior in the same trial $\eta_c(i)$. A first order, or second order regression model was chosen again using AIC for each participant, and like with the off-line contagion analysis, the tangent slope at the minimum co-worker variable value ($\min[\eta_c(i)]$) was collected across participants, checked for normality using the {\it Shapiro-Wilk}, and then analyzed for difference from zero using a one-sample {\it T}-test or a {\it Signed Rank} test. The fitting of {\it htp} in representative participants in the three reported conditions are shown in Fig.~\ref{fig:fitting}B and the collection of slopes are in shown in Fig.~\ref{fig:online}B.
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{Chapters/c3-plots/offline_result_vel_htp}}	
+	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/offline_result_vel_htp}}	
 	\caption{The off-line contagions: Observed changes in the participant's \boldmath{$|\overline{\dot{y}}|$} and \textit{htp} in the $\textit{H}$ (orange plots), $\textit{R}_{\text{biol}}$ (blue plots), $\textit{R}_{\text{nonbiol}}$ (magenta plots) conditions. All p values are Bonferroni corrected.}
 	\label{fig:offline}
 \end{figure}
@@ -408,7 +490,7 @@ On the other hand, we did not observe a significant effect on the participant's 
 
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{Chapters/c3-plots/online_result_vel_htp}}	
+	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/online_result_vel_htp}}	
 	\caption{The on-line contagions: Observed changes in the participant's \boldmath{$|\overline{\dot{y}}|$} and \textit{htp} in the $\textit{H}$ (orange plots), $\textit{R}_{\text{biol}}$ (blue plots), $\textit{R}_{\text{nonbiol}}$ (magenta plots) conditions. All p values are Bonferroni corrected.}
 	\label{fig:online}
 \end{figure}
@@ -423,7 +505,7 @@ We observed that the on-line contagions are distinct from off-line contagions. P
 
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{Chapters/c3-plots/online_result_cong}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/online_result_cong}}
 	\caption{Effect of congruency on on-line contagions: the difference in slopes, between the velocity congruent and incongruent iterations across participants, was zero for both the \boldmath{$|\overline{\dot{y}}|$} and \textit{htp}s of participants during the observation of the human ($\textit{H}$, orange plot) condition and robot co-worker ($\textit{R}_{\text{biol}}$, blue plot) condition. The lack of effect difference suggests that the on-line contagion does not affect the movement velocities in our study.}
 	\label{fig:cong}
 \end{figure}
@@ -461,7 +543,7 @@ Overall, our observations suggest that distinct motor contagions are induced in 
 \chapter{More than just co-workers}
 
 \addcontentsline{toc}{section}{Abstract}
-\section*{\huge Abstract}
+% \section*{\huge Abstract}
 Does the presence of a robot co-worker influence the performance of humans around it? Studies of motor contagions during human-robot interactions have examined either how the observation of a robot affects a human's movement velocity, or how it affects the human's movement variance, but never both together. Performance however, has to be measured considering both task speed (or frequency) as well as task accuracy. Here we examine an empirical repetitive industrial task in which a human participant and a humanoid robot work near each other. We systematically varied the robot behavior, and observed whether and how the performance of a human participant is affected by the presence of the robot. To investigate the effect of physical form, we added conditions where the robot co-worker torso and head were covered, and only the moving arm was visible to the human participants. Finally, we compared these behaviors with a human co-worker, and examined how the observed behavioral affects scale with experience of robots. Our results show that human task frequency, but not task accuracy, is affected by the observation of a humanoid robot co-worker, provided the robot's head and torso are visible.
 
 \clearpage
@@ -474,11 +556,11 @@ Furthermore, while there is contradictory evidence to suggest that the physical 
 
 To address these issues, we examined an empirical repetitive industrial task in which a human participant and a humanoid robot work near each other, see Fig.~\ref{fig:setup}. We systematically varied the behavior, specifically frequency of robot movements and examined whether and how the frequency of movements by the human participants, and their task accuracy, is affected by the presence of the robot. To investigate the effect of physical form, we added conditions where the robot co-worker torso and head were covered, and only the moving arm was visible to the human participants. Finally, in order to compare the humanoid co-worker to a human co-worker, we also checked how the effects on the participants changed with a human co-worker, with and without his/her torso and head visible. To anticipate our results, we found that the presence of a humanoid co-worker can affect human performance, but only when it's humanoid form is visible. Furthermore, the effect was observed to increase with prior robot experience by the humans.
 
-%\begin{figure}[hpt]
-%	\centering{\includegraphic/s[width=\columnwidth]{Chapters/c4-plots/setup}}
-%	\caption{{\bf Experimental setup.} The participants in our experiment worked in six conditions; with a robot performing \textit{biological} movements in A) robot co-worker condition; B) human co-worker condition; to check relevance of  human form in C) robot covered co-worker condition; and D) human covered co-worker condition; E) a robot co-worker performing \textit{non-biological} movements in robot non-biol co-worker condition; F) a robot co-worker performing industrial movements. The coordinate axis defining the movement setup is indicated in white (A).}
-%	\label{fig:setup}
-%\end{figure}
+\begin{figure}[b]
+	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/Fig1}}
+	\caption{{\bf Experimental setup.} The participants in our experiment worked in six conditions; with a robot performing \textit{biological} movements in A) robot co-worker condition; B) human co-worker condition; to check relevance of  human form in C) robot covered co-worker condition; and D) human covered co-worker condition; E) a robot co-worker performing \textit{non-biological} movements in robot non-biol co-worker condition; F) a robot co-worker performing industrial movements. The coordinate axis defining the movement setup is indicated in white (A).}
+	\label{fig:setup1}
+\end{figure}
 
 
 \clearpage
@@ -492,17 +574,16 @@ Participants for our study were recruited through an advertisement via a local e
 
 \subsection{Setup}
 
-The participant and co-worker (a human or a humanoid robot) were seated on a chair with tables facing each other as shown in the experiment setup (Fig.~\ref{fig:setup}). On a horizontally placed touch-screen (23-inch HD DELL, P2314T) on the table, participants were presented with two red circles of diameter $\oslash$5 cm at distance of 50 cm from each other. The co-worker was similarly presented with two red circles on black cardboard $\oslash$9 cm at distance of 50 cm. The whole setup was enclosed by movable panels and the panel behind the co-worker was covered with a dark grey curtain. A motion tracking system (Motion Analysis Co.) with six infrared cameras (kestrel) and ten passive markers were used to record the arm motions of the participant and co-worker at 200Hz. A bipedal HRP-2Kai~\cite{Kaneko:RAS_ICHR:2015} humanoid robot (154 cm tall, 58 kg, 32 degrees of freedom) was used as the robot co-worker (Fig.~\ref{fig:setup}). A well-trained experimenter (M, 37) acted as the human co-worker. Both co-workers used their right arm throughout the experiment.
+The participant and co-worker (a human or a humanoid robot) were seated on a chair with tables facing each other as shown in the experiment setup (Fig.~\ref{fig:setup1}). On a horizontally placed touch-screen (23-inch HD DELL, P2314T) on the table, participants were presented with two red circles of diameter $\oslash$5 cm at distance of 50 cm from each other. The co-worker was similarly presented with two red circles on black cardboard $\oslash$9 cm at distance of 50 cm. The whole setup was enclosed by movable panels and the panel behind the co-worker was covered with a dark grey curtain. A motion tracking system (Motion Analysis Co.) with six infrared cameras (kestrel) and ten passive markers were used to record the arm motions of the participant and co-worker at 200Hz. A bipedal HRP-2Kai~\cite{Kaneko:RAS_ICHR:2015} humanoid robot (154 cm tall, 58 kg, 32 degrees of freedom) was used as the robot co-worker (Fig.~\ref{fig:setup1}). A well-trained experimenter (M, 37) acted as the human co-worker. Both co-workers used their right arm throughout the experiment.
 
 \subsection{Experimental task and conditions}
 
-
-Motivated by the hand movements during an industrial pick-and-place, or parts assembly task, our task required participants to repeatedly touch two static red circles on the touch-screen with a stylus in their right hand during the task (Fig.~\ref{fig:setup}). While the participants were asked to touch the circle in each trial, they were free to touch anywhere on the circle. In preliminary experiments, we found that the standard deviation of the participant's touches were less than 1 cm (both in the $x$ and $y$ directions), and we purposely chose the radius of the touched circles to be more than 2 times larger than their standard deviation (targets were of 5 cm in diameter). This large size was crucial because, while the participants were asked to touch the circle in each trial, they were free to touch anywhere on the circle. The large target size therefore enabled us to observe any change in participant's touch location (that may accompany contagions in their speed), in terms of position and standard deviation, across our experiment. 
+Motivated by the hand movements during an industrial pick-and-place, or parts assembly task, our task required participants to repeatedly touch two static red circles on the touch-screen with a stylus in their right hand during the task (Fig.~\ref{fig:setup1}). While the participants were asked to touch the circle in each trial, they were free to touch anywhere on the circle. In preliminary experiments, we found that the standard deviation of the participant's touches were less than 1 cm (both in the $x$ and $y$ directions), and we purposely chose the radius of the touched circles to be more than 2 times larger than their standard deviation (targets were of 5 cm in diameter). This large size was crucial because, while the participants were asked to touch the circle in each trial, they were free to touch anywhere on the circle. The large target size therefore enabled us to observe any change in participant's touch location (that may accompany contagions in their speed), in terms of position and standard deviation, across our experiment. 
 
 A co-worker (human or HRP-2Kai) worked on the same task in front of the participants. The participants were asked to perform their task at their own chosen `comfortable' frequency, and ignore the co-worker. The participants worked in a series of 50 second trials with the co-worker. In a trial, participants initially performed alone for 10 seconds (participant-alone period), performed with the co-worker for next 20 seconds (together period) and then relaxed while watching the co-worker performs the task for the last 20 seconds (co-worker-alone period) (Fig.~\ref{fig:trialprotocol2}).   
 
 \begin{figure}[hpt]
-	\centering{\includegraphics[width=1\columnwidth]{Chapters/c4-plots/Fig2}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/Fig2}}
 	\caption{{\bf Trial protocol.} The participants worked in repeated trials with either a robot or human co-worker (the figure shows the trial with a robot co-worker). Each trial consisted of period when the participant worked alone and co-worker relaxed (participant-alone period), both worked together (together period), and the co-worker worked alone (co-worker-alone period). The notation of the time variable (represented in general by $\tau$) in each period are shown.}
 	\label{fig:trialprotocol2}
 \end{figure}
@@ -545,7 +626,7 @@ The biological movements played on HRP-2Kai in robot co-worker and robot covered
 
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=\columnwidth]{Chapters/c4-plots/Fig3}}
+		\centering{\includegraphics[width=\columnwidth]{plots/c4-plots/Fig3}}
 	\caption{{\bf HRP-2Kai movement trajectories.} The trajectories played by the robot in robot co-worker, robot covered co-worker, robot non-biol co-worker and robot indus co-worker conditions.}
 	\label{fig:trajectories}
 \end{figure}
@@ -555,7 +636,7 @@ Well learnt human movements are characterized by a bell-shaped velocity profile.
 
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=\columnwidth]{Chapters/c4-plots/Fig4}}
+		\centering{\includegraphics[width=\columnwidth]{plots/c4-plots/Fig4}}
 	\caption{{\bf HRP-2Kai trajectory generation.} The time trajectories in the Y and Z axis by the HRP-2Kai in the robot non-biol co-worker and robot indus co-worker condition, and the via-points (blue circles) used to generate both trajectories.}
 	\label{fig:trajectories2}
 \end{figure}
@@ -573,14 +654,14 @@ Our analysis is based on the position data from both the participant's and co-wo
 We quantified the motor contagion in a participant' {\it htp} (the average time between two consecutive alternate touches) by analyzing the change of participant's {\it htp} between the together period and alone-period (see Fig.~\ref{fig:trialprotocol2}) in a trial ($\tau_p^t(i)-\tau_p^a(i)$), relative to the {\it htp} of the co-worker behavior in the same trial ($\tau_c (i)-Av(\tau_p^a)$), where $Av(\tau_p^a)$ represents the average undisturbed {\it htp} by a participants across his/her participant-alone periods. This data was regressed with either a first or second order regression model that was chosen based on the Akaike Information Criteria (AIC)~\cite{Akaike:ISIT:1973} and by using MATLAB's {\tt fitlm} function for each participant. The tangent slope at the minimum data abscissa value ($\min[\tau_c(i)-Av(\tau_p^a)]$) was collected across participants, checked for normality using the Shapiro-Wilk test and then analyzed for difference from zero using a one sample T-test (in case the distribution was normal) or a Signed Rank test. The fitting of {\it htp} in one sample participant from each of the six reported conditions are shown in Fig.~\ref{fig:allfit}, and the plot of the collection of slopes are in shown in Fig.~\ref{fig:slope_allcond}. A similar procedure was used to analyze the change in a participant's average X press location, average Y press location, standard deviation of X press location, and standard deviation of Y press locations relative to the {\it htp} of the co-worker behavior in the same trial ($\tau_c(i)-Av(\tau_p^a)$). The slopes from these analysis are shown in Fig.~\ref{fig:variance}.
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=1\columnwidth]{Chapters/c4-plots/Fig5}}
+		\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/Fig5}}
 	\caption{{\bf Examples of linear regression  fits.} The change of participant's {\it htp} (the average time between two consecutive alternate touches) between the together period and alone-period ($\tau_p^t(i)-\tau_p^a(i)$), relative to the {\it htp} of the co-worker behavior in the same trial ($\tau_c (i)-Av(\tau_p^a)$), where $Av(\tau_p^a)$ represents the average undisturbed {\it htp} by a participant across all his/her participant-alone periods. Note that the (robot or human) co-worker {\it htp} was random across trials, and the data in plots here are the ensemble of the participant behaviors arranged in increasing co-worker's {\it htp} on the abscissa. Each plot represent a condition, A) robot co-worker (blue); B) human co-worker (orange); C) robot covered co-worker (dark blue); D) human covered co-worker (dark orange); E) robot non-biol co-worker (cyan); F) robot indus co-worker (magenta) conditions. We used the AIC to choose either a first or second order model to fit the data for each participant. The lines represent the tangent slopes at the minimal data abscissa value.}
 	\label{fig:allfit}
 \end{figure}
 
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=1\columnwidth]{Chapters/c4-plots/Fig6}}
+		\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/Fig6}}
 	\caption{{\bf All six conditions \textit{htp} comparision.} The plot of the collection of slopes which is obtained in Fig.~\ref{fig:allfit} and ~\nameref{S1_Fig} to~\nameref{S6_Fig} supplementary figures. The condition-wise comparison of the change of participants {\it htp} with co-worker {\it htp}. P-values are Bonferroni corrected where required. The tangent slope at the minimum data abscissa value ($\min[\tau_c(i)-Av(\tau_p^a)]$) was collected across participants (as shown in Fig.~\ref{fig:allfit}), checked for normality using the Shapiro-Wilk test and then analyzed for difference from zero using a one sample T-test (in case the distribution was normal) or a Signed Rank test.}
 	\label{fig:slope_allcond}
 \end{figure}
@@ -588,13 +669,13 @@ We quantified the motor contagion in a participant' {\it htp} (the average time 
 
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=1\columnwidth]{Chapters/c4-plots/Fig7}}
+		\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/Fig7}}
 	\caption{{\bf Participants touch variance.} Change of participant touch position with A) robot co-worker {\it htp}; B) human co-worker {\it htp}. A similar procedure which was used to quantify {\it htp} was also used here (see subsection~\nameref{data_analysis}) to analyze the change in a participant's average X press location, average Y press location, standard deviation of X press location, and standard deviation of Y press locations relative to the {\it htp} of the co-worker behavior in the same trial.}
 	\label{fig:variance}
 \end{figure}
 
 
-Next, to check the relevance of the human form, we conducted the robot covered co-worker and human covered co-worker conditions, in which the head and torso of the co-worker was covered and only the moving arm was visible to the human (see Fig.~\ref{fig:setup}C, D or inset photos in Fig.~\ref{fig:slope_allcond}). All other experimental settings and analysis were same as in the robot co-worker and human co-worker conditions.
+Next, to check the relevance of the human form, we conducted the robot covered co-worker and human covered co-worker conditions, in which the head and torso of the co-worker was covered and only the moving arm was visible to the human (see Fig.~\ref{fig:setup1}C, D or inset photos in Fig.~\ref{fig:slope_allcond}). All other experimental settings and analysis were same as in the robot co-worker and human co-worker conditions.
 
 
 \subsection{Participant sample size}
@@ -702,7 +783,7 @@ We received answers from 23 participants on our robot exposure questionnaire. Ou
 
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=1\columnwidth]{Chapters/c4-plots/Fig8}}
+		\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/Fig8}}
 	\caption{{\bf Robot experience exposure.} The plot of the change of participant {\it htp}, with respect to their prior robot exposure and experience (self-scored by participants) showed a significant correlation between the two.}
 	\label{fig:corelation}
 \end{figure}
@@ -772,7 +853,9 @@ Please see Appendix~\ref{morethan} for supporting figures.
 \chapter{Bi-directional dual arm object handover}
 
 \addcontentsline{toc}{section}{Abstract}
-\section*{\huge Abstract}
+% \section*{\huge Abstract}
+chapter abstract goes here
+
 
 \clearpage
 \section{Introduction}
@@ -892,7 +975,7 @@ We used 6D spatial vectors to express the pose of human hand and robot end-effec
 
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=1\columnwidth]{Chapters/c5-plots/frame}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/frame}}
 	\caption{$\mathcal{M}$ and $\mathcal{R}$ Cartesian coordinate systems.}
 	\label{fig:frames}
 \end{figure}
@@ -1009,7 +1092,7 @@ index += rows;
 To get the orientation of human's hand, we placed a rigid body with a shape similar to alphabet $L$ on wrist of human's hand(s) as shown in Fig~\ref{fig:lshapes}. The three mocap markers $A, B$ and $C$ make up the three vertices of $\mathcal{L}$ shape body, such that during object handover scenario, vector $\vec{AB}^{\,}$ along the longer side and vector $\vec{BC}^{\,}$ along the shorter side are set to be parallel with the $X$-axis and $Y$-axis of the mocap frame $\mathcal{M}$ respectively. The vectors $\vec{AB}^{\,}$ and $\vec{BC}^{\,}$ are orthogonal to each other. For simplicity, let $\hat{x}$ be the unit vector, which is parallel and along the $X$-axis and likewise, unit vector $\hat{y}$ is parallel and along the $Y$-axis of the mocap frame $\mathcal{M}$, such that
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=1\columnwidth]{Chapters/c5-plots/lshpe-lt-rt}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/lshpe-lt-rt}}
 	\caption{$\mathcal{L}$ shape rigid body on the human's hand(s)}
 	\label{fig:lshapes}
 \end{figure}
@@ -1145,7 +1228,7 @@ Finally, the handover location is estimated as the human's hand predicted positi
 The translation component of ${}^{ef}{X}_R $ in the equation (\ref{X_R_ef}) is updated based on the predicted position of human's hand (see Section~\ref{prediction_model}) while the orientation component is updated based on the relative orientation of human's hand (see Section~\ref{hand_orientation}).
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=.7\linewidth]{Chapters/c5-plots/rviz_robot_lt_hand_obj_frame}}
+	\centering{\includegraphics[width=.7\linewidth]{plots/c5-plots/rviz_robot_lt_hand_obj_frame}}
 	\caption{Robot HRP-2Kai (left end-effector) holding object with fixed orientation during handover in the robot frame $\mathcal{R}$}
 	\label{fig:robot_lt_hand_obj}
 \end{figure} 
@@ -1154,7 +1237,7 @@ The translation component of ${}^{ef}{X}_R $ in the equation (\ref{X_R_ef}) is u
 Since our robot HRP-2Kai lacks conventional anthropomorphic hands, but instead it has gripper alike hands~\cite{kaneko2015humanoid, stasse2019overview} mainly to increase the manipulability. For relative orientation model to work, we were required to know the fixed initial orientation of the robot end-effector, in which object handover is feasible between human and robot HRP-2Kai, irrespective of the human's hand orientation, therefore consider a possible  scenario where the robot end-effector orientation is fixed throughout the handover cycle (transfer of object from human to robot and return to human), irrespective of the condition where robot is a giver or receiver. Let ${{}^{efInit}\mathcal{O}_R}$ denote the initial and fixed orientation of the robot end-effector in the robot frame $\mathcal{R}$ during such human robot object handover scenarios as shown in Fig~\ref{fig:robot_lt_hand_obj}, and Fig~\ref{fig:robot_lt_hand_2layers}, where, ${{}^{efInit}\mathcal{O}_R}$ $\subset$ ${{}^{ef}\mathcal{O}_R}$.
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=.7\linewidth]{Chapters/c5-plots/rviz_robot_lt_hand_obj-2layer-empty}}
+	\centering{\includegraphics[width=.7\linewidth]{plots/c5-plots/rviz_robot_lt_hand_obj-2layer-empty}}
 	\caption{Robot HRP-2Kai (left end-effector) fixed orientation during two handover trials in the robot frame $\mathcal{R}$}
 	\label{fig:robot_lt_hand_2layers}
 \end{figure} 
@@ -1164,7 +1247,7 @@ In order to correctly transform desired human's hand orientation into robot end-
 the resulting orientation from the Orientation Task is the desired robot end-effector orientation relative to the human's hand orientation, see Fig~\ref{fig:robot_lt_orientations}, therefore, using fixed orientation component  ${{}^{efInit}\mathcal{O}_R}$, of equation (\ref{X_R_ef}) and current human's hand orientation ${}^{h}\mathcal{O}_M$ from equation (\ref{rotationmatrix}) derived in Section~\ref{hand_orientation}, we further modify equation (\ref{X_ef_ht}).
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=1\columnwidth]{Chapters/c5-plots/robot_lt_orientations}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/robot_lt_orientations}}
 	\caption{Robot HRP-2Kai (left end-effector) holding object in multiple possible orientations during handover trials in the robot frame $\mathcal{R}$}
 	\label{fig:robot_lt_orientations}
 \end{figure} 
@@ -1417,7 +1500,7 @@ the switching is based on the function which  uses hysteresis to compute relativ
 \label{Bibliography}
 \lhead{\emph{Bibliography}}  % Change the left side page header to "Bibliography"
 \bibliographystyle{unsrtnat}  % Use the "unsrtnat" BibTeX style for formatting the Bibliography
-\bibliography{Bibliography}  % The references (bibliography) information are stored in the file named "Bibliography.bib"
+\bibliography{bib}  % The references (bibliography) information are stored in the file named "bib.bib"
 
 
 
