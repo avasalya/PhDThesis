@@ -3,7 +3,7 @@
 %% ---------------------------------------------------------------- 
 
 % Set up the document
-\documentclass[a4paper, 12pt, oneside]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
+\documentclass[a4paper, 12pt, oneside, draft]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
 \graphicspath{Figures/}  % Location of the graphics files (set up for graphics to be in PDF format)
 
 % Include any extra LaTeX packages required
@@ -11,8 +11,12 @@
 \usepackage{verbatim}  % Needed for the "comment" environment to make LaTeX comments
 \usepackage{vector}  % Allows "\bvec{}" and "\buvec{}" for "blackboard" style bold vectors in maths
 \usepackage[usenames, dvipsnames]{color}
+\usepackage{mathrsfs}
 \usepackage{amsmath}
 \usepackage{physics}
+\usepackage{hyphenat}
+\usepackage{hyphenat}
+\usepackage{hyphenat}
 \usepackage{hyperref}
 \usepackage{bookmark}
 \usepackage{amsmath,empheq}
@@ -52,6 +56,13 @@
 	keywordstyle=\color{blue}, % keyword color
 	stringstyle=\color{red} % string color
 }
+
+
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
 
 %%% Coloring the comment as blue
 \newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
@@ -306,6 +317,7 @@ This thesis work is about the interactions between human and humanoid robot as c
 
 \lhead{\emph{Reader's Guide}}
 \section{Reader's Guide}
+chapter 1 of robot dynamics and control book~\cite{spong2008robot}
 
 \subsection{chapter 1:}
 talk little about each chapter
@@ -324,7 +336,7 @@ talk little about each chapter
 \lhead{\emph{State of the art}}
 \chapter{State-of-the-art}
 
-
+\url{https://onedrive.live.com/redir?resid=52CDCC7290FBBB36%21414703&page=Edit&wd=target%28Read%20paper%20summary.one%7C664fe7ce-8808-4584-88a1-91adf3b4b827%2FSummary%7Cc9d7bb87-4a0b-4d20-8084-fbfa6f12f0fd%2F%29}
 %thesis agravante
 %1.1.1Terminology with a cognitive and behavioral science
 
@@ -347,10 +359,18 @@ talk little about each chapter
 \clearpage
 \section{Human Robot interaction: Physical \& Non-Physical}
 
+{\bf Human-in-the-loop // Collaborative Task // Haptic and Vision }
+\url{https://onedrive.live.com/redir?resid=52CDCC7290FBBB36%21414703&page=Edit&wd=target%28Read%20paper%20summary.one%7C664fe7ce-8808-4584-88a1-91adf3b4b827%2FHuman-in-the-loop%20%5C%2F%5C%2F%20Collaborative%20%7C6df6c193-c236-423d-94c7-1ae0fdda87a0%2F%29}
+\subsection{collaborative task}
+
+\subsection{handover study}
+
 % ======================================================================= %
 %                        Distinct Motor Contagions
 % ======================================================================= %
 
+
+\clearpage
 
 \chapter{Distinct Motor Contagions}
 \lhead{\emph{Distinct Motor Contagions}}
@@ -867,8 +887,6 @@ chapter abstract goes here
 
 Learning Continuous Human-Robot Interactions from Human-Human Demonstrations ~\cite{vogt2017system}
 
-chapter 1 of robot dynamics and control book~\cite{spong2008robot}
-
 --perform fluid object handover in a dynamic settings
 
 --Design a planner considering —humans field of view, attention, preferences (left/right handed, etc),
@@ -877,11 +895,11 @@ chapter 1 of robot dynamics and control book~\cite{spong2008robot}
 
 \textbf{talk about previous work}
 
+\textbf{compare our work with previous works, humanoid robot, whole-body control bla bla}
+
 \clearpage
 
 \section{Bi-directional Handover}
-
-\textbf{compare our work with previous works, humanoid robot, whole-body control bla bla}
 
 we take similar approach as one mentioned in~\cite{medina2016human} and treat handover as one stage cycle to perform fluid and intuitive handover between human and humanoid robot co-worker.
 
@@ -906,9 +924,34 @@ The main objectives of this study are as follows:
 
 Many position prediction methods have already been explored in the past like~\cite{li2015predicting} discussed several position prediction model, however since position prediction is not the focus of our study, therfore, we primarily decided to go with most common method i.e.\textit{constant velocity} based model, see Section~\ref{prediction_model} for details.
 
+\subsection{Setup-environment}
+Our multi-contact planner is model-based. It needs the
+models of the HRP-2, the ladder and the pertinent parts of
+the environment, to generate off-line a sequence of postures
+in contact to climb the ladder. 
+
+\subsubsection{robot}
+
+
+\subsubsection{mocap}
+
+{\bf ros cortex bridge}
+
+
+Ten passive reflective markers were placed on the arms and
+hands of the participant and co-worker. These were tracked
+using six kestrel infra-red cameras (Motion Analysis Co.,) at
+200Hz.
+We used an HRP-2Kai (154cm tall, 58kg, 32DOF)
+humanoid robot [1] as the robot co-worker. A trained
+experimenter (M, 37) acted as the human co-worker. Both
+co-workers used their right hand in the experiment.
+
+\subsubsection{Variable object(s)}
+
 
 \subsection{Handover Routine}\label{handover routine}
-This section focuses on simplified explanation of position prediction model using basic block diagram structure.
+This section focuses on simplified explanation of bi-directional handover model using basic block diagram structure.
 
 We started handover routine to handover object using human right hand to robot left end-effector, hereafter until before Section~\ref{both hands individual} we will explain the everything under this condition, afterwards we will talk about generalization of handover using the possible handover combination scenarios. Such as 
 \begin{itemize}
@@ -918,6 +961,8 @@ We started handover routine to handover object using human right hand to robot l
     \item robot right end-effector $\longleftrightarrow$ human right hand
 \end{itemize}
 
+
+talk about human hand/object-head tracking task
 
 \begin{figure}[htp]
 	\centering
@@ -981,20 +1026,88 @@ We started handover routine to handover object using human right hand to robot l
 	\caption{Overview of human humanoid robot bi-directional handover procedure}
 \end{figure}
 
-\subsection{Setup-environment}
 
-\subsubsection{robot}
-\subsubsection{mocap}
-Ten passive reflective markers were placed on the arms and
-hands of the participant and co-worker. These were tracked
-using six kestrel infra-red cameras (Motion Analysis Co.,) at
-200Hz.
-We used an HRP-2Kai (154cm tall, 58kg, 32DOF)
-humanoid robot [1] as the robot co-worker. A trained
-experimenter (M, 37) acted as the human co-worker. Both
-co-workers used their right hand in the experiment.
+\clearpage
 
-\subsubsection{Variable object(s)}
+\section{Robot QP Controller}\label{qpTasks}
+
+We used a multi objective Quadratic Programming (QP) based low-level controller, previously designed in our group~\cite{ladder-HRP-2Kai}, to operate and control HRP-2Kai robot behavior. In order to realize human humanoid robot bi-directional object/tool handover study, we introduced several tasks and formulate them in a quadratic fashion so it is conform with our QP based controller. The QP enables whole-body control of our HRP2-Kai humanoid robot while respecting internal constraints. To name a few such constraints encompass joints limits, force and torque limits, contact constraints, stability constraints such as keeping center of mass (CoM) inside the support polygon along with self collision constraints and with the environment itself while generating optimal joint trajectories. Some major constraints that robot must satisfy at each time step during human robot object handover are mentioned below.
+
+
+\subsection{QP Constraints}
+The QP controller's objective is to compute an acceleration $\ddot{q}$, where $q$ is the robot configuration vector at each time step $dt$, so as to achieve a set of targets or tasks. The double integration of desired acceleration act as input to built-in PD control of HRP-2Kai. At each $dt$, the QP is formulated and solved by the LSSOL~\cite{gill1986fortran} solver. The tasks are formulated either linear constraints or quadratic costs~\cite{ladder-HRP-2Kai, pfeiffer2017nut}. However, we want to solve these tasks in best possible manner as linearization of some tasks may not be feasible or may be conflicting, therefore using least-square approximation, the quadratic cost $c$ corresponding to task $\mathscr{T}_i =0$ is given by:
+
+\begin{equation}
+c_i(q,\dot{q}, \ddot{q})  = \frac{1}{2}{\norm{ J_i\ddot{q} + \dot{J}_i\dot{q} -\ddot{\mathscr{T}}_i }^2 }
+\end{equation}
+
+where $J_i$ the Jacobian matrix of $\mathscr{T}_i$, and the QP controller writes following quadratic objective function,
+
+\begin{equation}\label{qp equation}
+\min_{\ddot{q},\tau,f} \; \sum_{i\in O} \omega_i c_i(q,\dot{q},\ddot{q}) + \omega_{f}\lVert f\rVert^2
+\end{equation}
+
+subject to constraint on equation of motion, as well as other below mentioned constraints,
+
+\begin{equation}
+	M(q)\ddot{q} + N(q,\dot{q}) =  J_c^T f
+\end{equation}
+
+where $f$ is the set of contact forces, $M$ denotes inertial matrix of the robot, $N$ accounts for Coriolis  and gravity effects, $J_c$ is the Jacobian matrix of all points of contact. The QP objective function in equation (\ref{qp equation}) is made of two terms and the tasks $\mathscr{T}_i$ mentioned in Subsection~\ref{tasks} are weighted against each other by weight $w_i$ based on their relative importance and priority. While the damping weight $w_f$ ensures the smoothness and uniqueness of solution by keeping Hessian matrix positive definite.
+
+\begin{itemize}	
+	\item Static equilibrium:
+
+	$\underline{\tau} \leq J^i(q_i)^Tf_i - g^i(q_i) \leq \overline{\tau}$
+	
+	where sub-script or super-script $i$ is the $i$-th robot, $q_i$ is the $i$-th robot configuration vector, $f_i$ is the set of contact forces vector of $i$-th robot, $J$ is the Jacobian matrix of all points of contact forces, and $\overline{\tau}$ and $\underline{\tau}$ are the maximum and minimum steady state torque limits respectively, and g be the gravity constant.
+	
+	\item Joint limits:
+	
+	$\underline{q_i} \leq q_i \leq \overline{q_i}$
+	
+	$\underline{q_i}$ and $\overline{q_i}$ are the lower and upper limits for robot joints.
+	
+	\item Self collisions:
+	
+	$\delta(X^i_j(q_i), X^i_k(q_i)) > \epsilon_{jk} \qquad \forall(j,k)\in {\mathscr{I}}^i_{self\; collision}$
+	
+	$\delta$ is the function of distance, $X^i_n(q_i)$ is the occupied volume by $n$-th body of robot in configuration $q_i$, $\epsilon_{jk}$ is the pair of user select minimum distances($j$,$k$) and ${\mathscr{I}}^i_{self\;collision}$ is the robot sets of self collision pairs.
+	
+	\item Environment collision:
+	
+	$\delta(X^i_j(q_i), X_k) > \epsilon_{jk} \qquad \forall(j,k)\in {\mathscr{I}}^i_{robot\;environment}$
+	
+	${\mathscr{I}}^i_{robot\;environment}$ is the set of robot environment (object) collision pairs.
+	
+\end{itemize}
+
+
+
+\subsection{QP Tasks}\label{tasks}
+As mentioned earlier, we introduced below following outlined tasks to our multi-objective QP controller to achieve safe and reliable human robot object handover. Let function $\mathscr{T}_i(q)$ denote the geometric objectives (task error) that we require to regulate to zero or maintain above zero, i.e. $\mathscr{T}_i(q) = 0$ and $\mathscr{T}_i(q) \geq 0$.  
+
+\begin{enumerate}[start=1,label={\bf\arabic*.}]
+
+\item Posture task: $\mathscr{T}_{posture} = q_d - q = 0$  
+
+\item Com task: $\mathscr{T}_{CoM} = CoM_d - CoM(q) = 0$
+
+\item Joint limit task: $\mathscr{T}_{jlim} = \underline{q_i} \leq q_i \leq \overline{q_i}$  
+
+\item Position task at body $k$: $\mathscr{T}_{pos} = r^d_k - r_k(q) = 0$\\
+Where, $r_k$ and $r^d_k$ are the current and desired position of $i$-th robot $k$-th body. Robot end-effector position task is used to reach the desired handover location~\cite{ladder-HRP-2Kai}.
+
+\item Orientation task at body $k$: $\mathscr{T}_{ori} = Err((E^d_k),  E_k(q))$\\
+Where, $E_k$ is the orientation of $i$-th robot body to world. Robot end-effector orientation task is used to compute orientation relative to human hand orientation.
+
+\item Gaze task : $\mathscr{T}_{gaze} =u_{target} - u = 0$\\
+Where, $u_{target}$  and $u$ are the target vector in world and body vector that needs to be orient respectively. We used gaze task to orient the head joints of HRP-2Kai towards the active human hand position in world, more details can be found in~\cite{samy2017VecOriTask}.
+
+\item Contact velocity constraint task: $\mathscr{T}_{contact} = J_i(q)\ddot{q}_{s(k)} + \dot{J}(q)_i\dot{q}_{p(k)} = 0$\\
+Where, $p(k)$ and $s(k)$ are the predecessor and successor bodies of robot(s) in contact that imposes a constraint~\cite{featherstone2014rigid}.\\
+
+\end{enumerate}
 
 
 \clearpage
@@ -1010,126 +1123,46 @@ Let $\mathcal{M}$ (Mocap) and $\mathcal{R}$ (Robot) be the two fixed frames with
 
 
 \begin{itemize}
-    \item The mathematical notations in the following sections follows ISO guidelines. The Euclidean distance is represented in meters and angles are represented in degrees. The time unit is set in seconds or mentioned otherwise.
-
-    \item We used 6D spatial vectors to express the pose of human hand and robot end-effector as well as object. We therefore adopt a 6D notation based on spatial vectors, which is explained in Chapter 2 of~\cite{featherstone2014rigid}.
-
+	\item The mathematical notations in the following sections follows ISO guidelines. The Euclidean distance is represented in meters and angles are represented in degrees. The time unit is set in seconds or mentioned otherwise.
+	
+	\item We used 6D spatial vectors to express the pose of human hand and robot end-effector as well as object. We therefore adopt a 6D notation based on spatial vectors, which is explained in Chapter 2 of~\cite{featherstone2014rigid}.
+	
 	\item using QP Orientation Task and Position Task (see Sections~\ref{qpTasks}), we get robot end-effector current orientation ${{}^{ef}\mathcal{O}_R} \in \mathbb{R}^{3\times3}$ and current position ${{}^{ef}\mathcal{P}_R} \in \mathbb{R}^{3}$ respectively in the $\mathcal{R}$ frame, therefore,
 	\begin{gather}\label{X_R_ef}
-		{}^{ef}{X}_R =
-		\left[\begin{array}{cc}
-		{}^{ef}\mathcal{O}_R & {}^{ef}\mathcal{P}_R
-		\end{array}\right]
+	{}^{ef}{X}_R =
+	\left[\begin{array}{cc}
+	{}^{ef}\mathcal{O}_R & {}^{ef}\mathcal{P}_R
+	\end{array}\right]
 	\end{gather}
 	
 	\item Likewise, ${{}^{h}\mathcal{O}_M} \in \mathbb{R}^{3\times3}$ and ${{}^{h}\mathcal{P}_M} \in \mathbb{R}^{3}$, denotes the human hand $h$ orientation and position respectively in the $\mathcal{M}$ frame, obtained from the $\mathcal{L}$ shape body (see Section~\ref{hand_orientation}),
 	\begin{gather}\label{X_M_h}
-		{}^{h}{X}_M =
-		\left[\begin{array}{cc}
-		{}^{h}\mathcal{O}_M & {}^{h}\mathcal{P}_M \\
-		\end{array}\right]
+	{}^{h}{X}_M =
+	\left[\begin{array}{cc}
+	{}^{h}\mathcal{O}_M & {}^{h}\mathcal{P}_M \\
+	\end{array}\right]
 	\end{gather}
-
+	
 	\item ${{}^{h}\mathcal{O}_{ef}} \in \mathbb{R}^{3\times3}$ and ${{}^{h}\mathcal{P}_{ef}} \in \mathbb{R}^{3}$, denotes the human hand $h$ orientation and position respectively in relative to the robot's local $ef$ (end-effector) frame,
 	\begin{gather}\label{X_ef_h}
-		{}^{h}{X}_{ef} =
-		\left[\begin{array}{cc}
-		{}^{h}\mathcal{O}_{ef} & {}^{h}\mathcal{P}_{ef} \\
-		\end{array}\right]
+	{}^{h}{X}_{ef} =
+	\left[\begin{array}{cc}
+	{}^{h}\mathcal{O}_{ef} & {}^{h}\mathcal{P}_{ef} \\
+	\end{array}\right]
 	\end{gather}
 	
 	\item For convenience, we formulate the problem with a common origin {\it O}, such that $\mathcal R \equiv M$ (both frames are located between the feet of robot HRP-2Kai), we can get human hand pose $\mathsf{w.r.t.}$ or relative to robot's end-effector
-%	
+	%	
 	\begin{equation}\label{X_ef_h1}
-		{}^{h}{X}_{ef} = {}^{h}{X}_{M}  {}^{ef}{X_{R}}^{-1}
+	{}^{h}{X}_{ef} = {}^{h}{X}_{M}  {}^{ef}{X_{R}}^{-1}
 	\end{equation}
 	\item otherwise, when $\mathcal R \neq M$
-
+	
 	\begin{equation}\label{X_ef_h2}
 	{}^{h}{X}_{ef} = {}^{h}{X}_{M}  {}^{M}{X}_R  {}^{ef}{X_{R}}^{-1}
 	\end{equation}
 	
 \end{itemize}
-
-
-
-
-\clearpage
-
-\section{Robot Control - QP Tasks}\label{qpTasks}
-ladder climbing paper~\cite{ladder-HRP-2Kai}
-
-
-\subsection{Position Task}\label{positionTask}
-get $a_{ef}$ acceleration 
-
-
-\subsection{Orientation Task}\label{orientationTask}
-
-\subsection{Com Task}\label{comTask}
-
-\subsection{Vector Tracking Task}\label{HeadTask}
-look at Head Task
-
-\subsection{Contact Task}\label{contact}
-
-refer chapter 11 of \cite{featherstone2014rigid}
-constraint motion, look for velocity constraint
-8.2 Loop Constraint Equations
-$https://en.wikipedia.org/wiki/Holonomic_constraints$
-
-$T^{T}_{k}(v_s(k)-v_p(k)=0$
-
-Tasks::qp::ContactSpeedConstr(timeStep)
-QPContactConstr.h/cpp
-
-\begin{lstlisting}[language=C++,basicstyle=\footnotesize, caption={QPContactConstr}]
-
-void ContactSpeedConstr::update(const std::vector<rbd::MultiBody>& mbs,
-const std::vector<rbd::MultiBodyConfig>& mbcs,
-const SolverData& data)
-{
-using namespace Eigen;
-
-A_.block(0, 0, nrEq_, totalAlphaD_).setZero();
-b_.head(nrEq_).setZero();
-// J_i*alphaD + JD_i*alpha = 0
-
-int index = 0;
-for(std::size_t i = 0; i < cont_.size(); ++i)
-{
-ContactData& cd = cont_[i];
-int rows = int(cd.dof.rows());
-
-for(std::size_t j = 0; j < cd.contacts.size(); ++j)
-{
-ContactSideData& csd = cd.contacts[j];
-const rbd::MultiBody& mb = mbs[csd.robotIndex];
-const rbd::MultiBodyConfig& mbc = mbcs[csd.robotIndex];
-
-// AEq = J_i
-sva::PTransformd X_0_p = csd.X_b_p*mbc.bodyPosW[csd.bodyIndex];
-const MatrixXd& jacMat = csd.jac.jacobian(mb, mbc, X_0_p);
-dofJac_.block(0, 0, rows, csd.jac.dof()).noalias() =
-csd.sign*cd.dof*jacMat;
-csd.jac.fullJacobian(mb, dofJac_.block(0, 0, rows, csd.jac.dof()),
-fullJac_);
-A_.block(index, csd.alphaDBegin, rows, mb.nrDof()).noalias() +=
-fullJac_.block(0, 0, rows, mb.nrDof());
-
-// BEq = -JD_i*alpha
-Vector6d normalAcc = csd.jac.normalAcceleration(
-mb, mbc, data.normalAccB(csd.robotIndex), csd.X_b_p,
-sva::MotionVecd(Vector6d::Zero())).vector();
-Vector6d velocity = csd.jac.velocity(mb, mbc, csd.X_b_p).vector();
-b_.segment(index, rows).noalias() -= csd.sign*cd.dof*(normalAcc +
-velocity/timeStep_);
-}
-index += rows;
-}
-}
-\end{lstlisting}
-
 
 \clearpage
 
@@ -1192,7 +1225,7 @@ In order for handover between human and humanoid robot HRP-2Kai to be smooth and
 {}^{h}\mathcal{\bar{V}}_{M} = \frac{1}{t_{observe}}{\sum_{j=1}^{j=t_{observe}} ({}^{h}\mathcal{P}_{M}(j)-{}^{h}\mathcal{P}_{M}(j-1))/dt }
 \end{equation}
 
-where, $dt$ is controller run-time, in our case it is 5ms.
+where, $dt$ is controller run-time, in our case it is 5ms, see Section~\ref{qpTasks}.
 
 \begin{equation} \label{predict}
 {}^{h}\mathcal{P}_M(t_{predict}) = {}^{h}\mathcal{\bar{V}}_{M} \cdot t_{predict}  + {}^{h}\mathcal{P}_{M}(t_{observe})
@@ -1202,7 +1235,7 @@ where, $dt$ is controller run-time, in our case it is 5ms.
 The prediction model then updates and converges itself over time and in doing so update the robot's end-effector position towards the human hand, upon condition if updated position is within the end-effector's constraint/conditioned workspace, see Fig XXX.
 
 \paragraph*{}
-Using equations~\ref{rotationmatrix} and~\ref{predict} we get the orientation and translation components of ${}^{h}{X}_M$ in~\ref{X_M_h}, and recalling equations~\ref{X_ef_h1} and~\ref{X_ef_h2}, the updated translation component of pl\"ucker transformation ${}^{h}{X}_{ef}$, which provides the predicted position of human hand with respect to robot end-effector in the robot coordinate system is given by~\ref{X_ef_ht}, the relative orientation component of ${}^{h}{X}_{ef}$ is discussed in next Section~\ref{relOri}.
+Using equations (\ref{rotationmatrix}) and (\ref{predict}) we get the orientation and translation components of ${}^{h}{X}_M$ in (\ref{X_M_h}), and recalling equations (\ref{X_ef_h1}) and (\ref{X_ef_h2}), the updated translation component of pl\"ucker transformation ${}^{h}{X}_{ef}$, which provides the predicted position of human hand with respect to robot end-effector in the robot coordinate system is given by (\ref{X_ef_ht}), the relative orientation component of ${}^{h}{X}_{ef}$ is discussed in next Section~\ref{relOri}.
 
 \begin{equation}\label{X_ef_ht}
 {}^{h}{X}_{ef}(t_{predict}) =  {}^{h}{X}_M  {}^{M}{X}_R {{}^{ef}{X}_R}^{-1}
@@ -1214,11 +1247,10 @@ where, ${}^{M}{X}_R$ is the Pl\"ucker coordinate transform frame $\mathcal{M}$ r
 Finally, the handover location is estimated as the human hand predicted position when the following conditions satisfy (\ref{min_posErr_vel}), that is when the human hand velocity is minimum and robot end-effector is closest to the human hand.
 
 \begin{equation}\label{min_posErr_vel}
-\left.\begin{aligned}
-\norm{{}^{h}\mathcal{\bar{V}}_{M}}& <= 1e^{-2} \\
-\norm{({}^{h}\mathcal{P}_{ef}(t_{predict}) - {}^{ef}\mathcal{P}_{R})} & <= 1e^{-2}
-\end{aligned}
-\right\}
+\begin{cases}
+	\norm{{}^{h}\mathcal{\bar{V}}_{M}}& <= 1e^{-2} \\
+	\norm{({}^{h}\mathcal{P}_{ef}(t_{predict}) - {}^{ef}\mathcal{P}_{R})} & <= 1e^{-2}
+\end{cases}
 \end{equation}
 
 
@@ -1291,11 +1323,11 @@ Since our robot HRP-2Kai lacks conventional anthropomorphic hands, but instead i
 \end{figure} 
 
 \paragraph*{}
-In order to correctly transform desired human hand orientation into robot end-effector frame, we further utilize the equation (\ref{X_ef_ht}). We take advantage of the QP's Orientation Task (see Subsection~\ref{orientationTask}) (\textbf{Computing orientation task Err from~\cite{ladder-HRP-2Kai}}) and calculate the task error $e$ between \textit{current} human hand and \textit{fixed} robot end-effector orientations, the resulting orientation from the Orientation Task is the desired robot end-effector orientation relative to the human hand orientation (see Fig~\ref{fig:robot_lt_orientations} for few of many possible orientations), therefore, using fixed orientation component  ${{}^{efInit}\mathcal{O}_R}$, of equation (\ref{X_R_ef}) and current human hand orientation ${}^{h}\mathcal{O}_M$ from equation (\ref{rotationmatrix}) derived in Section~\ref{hand_orientation}, we further modify equation (\ref{X_ef_ht}) to get the desired orientation $ {}^{h}\mathcal{O}_{ef} $ of robot end-effector to handover the object.
+In order to correctly transform desired human hand orientation into robot end-effector frame, we further utilize the equation (\ref{X_ef_ht}). We take advantage of the QP's Orientation Task~\cite{murray2017mathematical, ladder-HRP-2Kai} (see Section~\ref{qpTasks}) and compute the task error $Err$ between \textit{current} human hand orientation and \textit{fixed} robot end-effector orientation, the resulting orientation from the Orientation Task is the desired robot end-effector orientation relative to the human hand orientation (see Fig~\ref{fig:robot_lt_orientations} for few of many possible orientations), therefore using fixed orientation component  ${{}^{efInit}\mathcal{O}_R}$, of equation (\ref{X_R_ef}) and current human hand orientation ${}^{h}\mathcal{O}_M$ from equation (\ref{rotationmatrix}) derived in Section~\ref{hand_orientation}, we further modify equation (\ref{X_ef_ht}) to get the desired orientation $ {}^{h}\mathcal{O}_{ef} $ of robot end-effector to handover the object.
 
 \begin{figure}[ht]
 	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/robot_lt_orientations}}
-	\caption{Robot HRP-2Kai (left end-effector) holding object in multiple possible orientations during handover trials in the robot frame $\mathcal{R}$}
+	\caption{Robot HRP-2Kai (left end-effector) holding object in multiple possible orientations during handover trials in the robot frame $\mathcal{R}$.}
 	\label{fig:robot_lt_orientations}
 \end{figure} 
 
@@ -1353,7 +1385,7 @@ where $\vec{A}$, $\vec{B}$, $\vec{C}$ are the three coordinate vectors of a tria
     \centering
     f({}^{obj}\vec{P}) = 
     \begin{cases}
-     (\triangle{{}^{wa}P {}^{wb}P {}^{ga}P} - \triangle{{}^{wa}P {}^{wb}P {}^{obj}P}) > 0 \bigwedge \\
+     (\triangle{{}^{wa}P {}^{wb}P {}^{ga}P} - \triangle{{}^{wa}P {}^{wb}P {}^{obj}P}) > 0 \quad \bigwedge \\
      (\triangle{{}^{wa}P {}^{wb}P {}^{gb}P} - \triangle{{}^{wa}P {}^{wb}P {}^{obj}P}) > 0
    \end{cases}         
 \end{equation}
@@ -1441,7 +1473,7 @@ The whole handover procedure is a continuous process but for clarity we have div
         {}^{zero}\vec{\mathcal{F}} = \vert{\vec{\mathcal{F}}}
     \end{equation}
 
-    \item ${}^{surf}\vec{f} \geq 2N \bigwedge { }{ } f({}^{obj}\vec{P})  == 1$\\
+    \item ${}^{surf}\vec{f} \geq 2N \quad \bigwedge \quad f({}^{obj}\vec{P})  == 1$\\
     We declare object is inside gripper if output of equations (\ref{area bool},~\ref{force surf}) satisfy together.
     
     \item Close Gripper\\
@@ -1498,7 +1530,7 @@ The whole handover procedure is a continuous process but for clarity we have div
 
     \begin{equation}
     \begin{cases}
-     \norm{{}^h{P} - {}^{obj}{P}} < 0.02 \bigwedge  \\
+     \norm{{}^h{P} - {}^{obj}{P}} < 0.02 \quad \bigwedge  \\
      {}^{pull}\vec{\mathcal{F}}\geq {}^{new}\vec{T}, & \lor x, \lor y, \lor z
    \end{cases}
    \end{equation}
@@ -1524,7 +1556,7 @@ The whole handover procedure is a continuous process but for clarity we have div
 	\tikzstyle{blank} = [circle ,fill=white!20, text width=5em, text centered, node distance=5em, auto, inner sep=0pt, minimum height=2em]
 	\tikzstyle{line} = [draw, -latex', inner sep=0pt, minimum height=2em]
 	
-	\node[cloud, initial] (human has object) {human has object?};
+	\node[cloud,initial above] (human has object) {human has object?};
 	\node[cloud, node distance=4cm] (human hand is near?) [right of=human has object] {is object near robot?};
 	\node[cloud] (open gripper) [below of=human hand is near?] {open gripper};
 	\node[cloud] (stop motion) [right of=open gripper] {maintain current pose};
@@ -1536,7 +1568,7 @@ The whole handover procedure is a continuous process but for clarity we have div
 	\node[cloud, node distance=3.8cm] (human hand is near again?) [left of=start motion] {human hand near object?};	
 	\node[cloud] (pull handover object) [below of=human hand is near again?] {human pulls object?};
 	\node[cloud, node distance=5cm] (open gripper release object) [right of=pull handover object] {gripper releases object};
-	\node[cloud] (handover occurred) [below of=open gripper release object] {object returns to human};
+	\node[cloud] (handover occurred) [below of=open gripper release object] {human receives object};
 	\node[cloud, node distance=5cm] (go rest pose2) [left of=handover occurred] {go to rest pose};
 	\node[blank] (blank)[left of = go rest pose2]{};
 	
@@ -1554,7 +1586,7 @@ The whole handover procedure is a continuous process but for clarity we have div
 	\path [line]  (pull handover object)edge       node [below, kant]{t12, ${}^{pull}F >{}^{new}T$} (open gripper release object);
 	\path [line]  (open gripper release object)edge  node {t13}(handover occurred);
 	\path [line]  (handover occurred)edge           node {t14}(go rest pose2);
-	\path [line, dashed]  (go rest pose2) -|       node {t0, \textbf{restart handover}}(human has object);
+	\path [line, dashed]  (go rest pose2) -|       node [near end, above, rotate=90]{t0, \textbf{restart handover}}(human has object);
 	
 	\end{tikzpicture}
 	\caption{Overview of human humanoid robot object handover Finite-State-Machine (FSM)}
@@ -1683,11 +1715,20 @@ Basically we start by utilizing both hands of human and both robot end-effectors
 
 \subsection{Constraint motion}
 
+we Predefined contact surfaces in advance, refer chapter 11 of \cite{featherstone2014rigid} constraint motion, look for velocity constraint,8.2 Loop Constraint Equations
+
+Tasks::qp::ContactSpeedConstr(timeStep)
+QPContactConstr.h/cpp
+$https://en.wikipedia.org/wiki/Holonomic_constraints$
+
+
 \subsection{Force model changes}
 
 
 Finally we measure noise free ${}^{surf}\vec{f}(y)$ force along the local $y$-axis of surface frame $surf$ (see Fig. XXXX) during the interaction between object and gripper just prior to handover and if the measured force $\norm{{}^{surf}\vec{f}(y)}$ is greater than 2N along with the outcome of equation (\ref{area}) then it is safe for robot to close the gripper and hence grasp the object.
 
+
+Our work, which falls in the category of contact-before-motion approach is summarized in~\cite{escande2013planning}
 
 \clearpage
 
