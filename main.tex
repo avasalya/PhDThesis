@@ -3,7 +3,7 @@
 %% ---------------------------------------------------------------- 
 
 % Set up the document
-\documentclass[a4paper, 12pt, oneside, draft]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
+\documentclass[a4paper, 12pt, oneside]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
 \graphicspath{Figures/}  % Location of the graphics files (set up for graphics to be in PDF format)
 
 % Include any extra LaTeX packages required
@@ -345,16 +345,18 @@ talk little about each chapter
 \section{Behavioural Neuroscience}
 
 \clearpage
-\section{Cognitive Robotics}
+\section{Motor Contagions}
 
 \clearpage
-\section{Motor Contagions}
+\section{Cognitive Robotics}
 
 \clearpage
 \section{Humanoid Robots}
 \subsection{Humanoid robot control}
+\subsection{whole body control}
 \subsection{Locomotion and walking principles}
 \subsection{Walking with physical interaction}
+
 
 \clearpage
 \section{Human Robot interaction: Physical \& Non-Physical}
@@ -440,7 +442,7 @@ Our task was motivated by the hand movements during an industrial {\it pick-n-pl
 
 The participants were instructed to ``{\it always hold the stylus like a stamp and touch alternatively inside each red circle on the touch-screen with continuous and smooth hand movements at a comfortable speed}''. No other instructions were given regarding the speed or movement trajectories. All participants wore headphones (through which we sent white noise) and had no audio feedback of the noise from the moving robot (confirmed in the post experiment questionnaire). They were specifically told to ``{\it focus on your own task and ignore the co-worker when he/it starts after them}''.
 
-A total of six experimental conditions were studied. Some aspect of the co-worker's physical appearance or behavior was changed in each condition. We report results from three conditions relevant for distinguishing the on-line and off-line contagions. The other conditions, in which we checked how the physical features of the co-worker effect participant behavior, are not considered in this study.\footnote{They are submitted elsewhere that we cannot reference to meet the double blind submission requirements.}
+A total of six experimental conditions were studied. Some aspect of the co-worker's physical appearance or behavior was changed in each condition. We report results from three conditions relevant for distinguishing the on-line and off-line contagions. The other conditions, in which we checked how the physical features of the co-worker effect participant behavior, are not considered in this study.
 
 First, in the Human ($H$) condition, the participants worked with a human co-worker. In the Robot biological ($R_{\text{biol}}$) condition, the HRP-2Kai robot played the role of the co-worker and played back (biological) hand movements of a human volunteer (blue plot in Fig.~\ref{fig:trial}B), that were recorded in a preliminary experiment (also see section~\ref{hrpTraj}). Finally, in the Robot non-biological ($R_{\text{nonbiol}}$) condition, the participants worked again with the HRP-2Kai robot as the co-worker, but the robot now performed a non-biological movement profile that was roughly trapezoidal in shape and velocity profile (magenta plot in Fig.~\ref{fig:trial}B). 
 
@@ -674,7 +676,7 @@ The industrial trajectory was characterized by a constant velocity phase. Inspir
 
 Our analysis is based on the position data from both the participant's and co-worker's stylus markers. To extract out possible behavioral differences between the movements forward and backward, between the touch points, we analyzed behavioral variables across each movement between the red circles on the touch-screen, which we call as iterations (such that two iterations make a movement cycle). As participants and co-workers were required to make non-stop continuous movements between touches, we could extract individual iterations of participant's and co-worker's by looking for changes in the direction of $y$-velocity in the recorded motion capture data. In this study, we were interested in the task performance of participants, and therefore we primarily concentrated on the time between the alternate touches in each iteration, which we refer to as the half-time period ({\it htp}) or $\tau$, and the location of their touches on the touch-screen (in the X-Y plane). In addition, we also analyzed various measures of position, velocity and acceleration along the Y (horizontal) and Z (vertical) axes over each iteration. However, these results are out of scope of this study.
 
-\subsection{Data analysis} \label{data_analysis}
+\section{Data analysis} \label{data_analysis}
 
 We quantified the motor contagion in a participant' {\it htp} (the average time between two consecutive alternate touches) by analyzing the change of participant's {\it htp} between the together period and alone-period (see Fig.~\ref{fig:trialprotocol2}) in a trial ($\tau_p^t(i)-\tau_p^a(i)$), relative to the {\it htp} of the co-worker behavior in the same trial ($\tau_c (i)-Av(\tau_p^a)$), where $Av(\tau_p^a)$ represents the average undisturbed {\it htp} by a participants across his/her participant-alone periods. This data was regressed with either a first or second order regression model that was chosen based on the Akaike Information Criteria (AIC)~\cite{Akaike:ISIT:1973} and by using MATLAB's {\tt fitlm} function for each participant. The tangent slope at the minimum data abscissa value ($\min[\tau_c(i)-Av(\tau_p^a)]$) was collected across participants, checked for normality using the Shapiro-Wilk test and then analyzed for difference from zero using a one sample T-test (in case the distribution was normal) or a Signed Rank test. The fitting of {\it htp} in one sample participant from each of the six reported conditions are shown in Fig.~\ref{fig:allfit}, and the plot of the collection of slopes are in shown in Fig.~\ref{fig:slope_allcond}. A similar procedure was used to analyze the change in a participant's average X press location, average Y press location, standard deviation of X press location, and standard deviation of Y press locations relative to the {\it htp} of the co-worker behavior in the same trial ($\tau_c(i)-Av(\tau_p^a)$). The slopes from these analysis are shown in Fig.~\ref{fig:variance}.
 
@@ -885,6 +887,16 @@ chapter abstract goes here
 \clearpage
 \section{Introduction}
 
+Handover is naturally an explicit yet complex interactive collaborative task that occurs seamlessly multiple times between humans on a daily basis and under several scenarios.
+
+
+although handovers are fluent phase-less natural events between human human interactions, but during human robot object handovers, many previous works (XXXX) have treated handover routine as non-continuous entity divided into 3 sub-tasks — approach, indication, deliver~\cite{kupcsik2016learning, strabala2013toward}, many previous studies have ha
+ 
+
+question to answer ---  when(timing), where (pos), how(orientation and forces),
+ 
+--- grasp planning- a process that determines the most appropriate object and then the most appropriate grasp for executing the given task.
+
 Learning Continuous Human-Robot Interactions from Human-Human Demonstrations ~\cite{vogt2017system}
 
 --perform fluid object handover in a dynamic settings
@@ -897,11 +909,40 @@ Learning Continuous Human-Robot Interactions from Human-Human Demonstrations ~\c
 
 \textbf{compare our work with previous works, humanoid robot, whole-body control bla bla}
 
+
+\textit{In future, robots will be present in everyday life. The development of these supporting robots is a challenge. A fundamental task for assistance robots is to pick up and hand over objects to humans. By interacting with users, soft factors such as predictability, safety and reliability become important factors for development. Previous works show that collaboration with robots is more acceptable when robots behave and move human-like}. 
+
 \clearpage
 
-\section{Bi-directional Handover}
+\section{Whole-Body Control Based Handover}
 
-we take similar approach as one mentioned in~\cite{medina2016human} and treat handover as one stage cycle to perform fluid and intuitive handover between human and humanoid robot co-worker.
+\url{https://www.ieee-ras.org/whole-body-control}
+
+whole body control~\cite{sentis2006whole} based human humanoid robot bi-directional object handover
+
+Our whole-body handover planner is model-based. It needs the models of the HRP-2Kai, the pertinent information of the environment (object), mainly handover object's shape and size information, though knowing mass of the object is not important in the beginning.
+
+In case of handover, the estimation of handover time as well as the exact position of handover must be realized in order to bring the hand at appropriate place and approximately on appropriate time ---to be ready to receive the tool.
+
+
+\textit{The robot needs to accurately predict this point of transfer to reach out proactively, instead of waiting for the final position to be presented}
+
+--- when to start the motion? -- relative distance -- hysteresis
+
+--- how to meet at handover location ? -- pose estimation
+
+--- what are the precepts on which the robot must relay to release the tool?  --- handover interaction model
+
+--- robot workspace -- field of view
+
+-- two broad categories of handover motion
+•planning-based approaches—that optimize complete trajectory[5,6,7]
+•Controller based approach –that continuously optimize some controller input.[8,9] of [epfl]
+
+---------------------------------------------------------------------------------\\
+
+
+we take similar approach as one mentioned in~\cite{medina2016human} and treat handover as one stage cycle to perform intuitive and responsive handover between human and humanoid robot co-worker.
 
 We formulate the bi-directional human-robot handover as one shot object handover from different starting hand poses (positions and orientations) along with hand speed and trajectories (of the human). The robot start from half-sit pose (see Fig. XXX) and take the object that is handed by the human in one shot (and vice-versa). A person takes an object and hands it seriously to the robot that must take it (and vice-versa). The human start and try to give the object from different positions and orientations w.r.t the robot.
 
@@ -910,10 +951,10 @@ From onwards we will refer the routine of object handover between human and huma
 three important key features that we want to focus during human humanoid robot object handover is the \textit{timing} of handover and \textit{pose} of handover and \textit{magnitude} of interaction forces between human and humanoid robot end-effector.
 
 The main objectives of this study are as follows:
-                                  
+
 \begin{itemize}
 	\item design and perform human humanoid robot bi-directional handover
-	 
+	
 	\item using both hands for different possible objects
 	
 	\item add walking --using whole body control
@@ -924,34 +965,8 @@ The main objectives of this study are as follows:
 
 Many position prediction methods have already been explored in the past like~\cite{li2015predicting} discussed several position prediction model, however since position prediction is not the focus of our study, therfore, we primarily decided to go with most common method i.e.\textit{constant velocity} based model, see Section~\ref{prediction_model} for details.
 
-\subsection{Setup-environment}
-Our multi-contact planner is model-based. It needs the
-models of the HRP-2, the ladder and the pertinent parts of
-the environment, to generate off-line a sequence of postures
-in contact to climb the ladder. 
-
-\subsubsection{robot}
-
-
-\subsubsection{mocap}
-
-{\bf ros cortex bridge}
-
-
-Ten passive reflective markers were placed on the arms and
-hands of the participant and co-worker. These were tracked
-using six kestrel infra-red cameras (Motion Analysis Co.,) at
-200Hz.
-We used an HRP-2Kai (154cm tall, 58kg, 32DOF)
-humanoid robot [1] as the robot co-worker. A trained
-experimenter (M, 37) acted as the human co-worker. Both
-co-workers used their right hand in the experiment.
-
-\subsubsection{Variable object(s)}
-
-
 \subsection{Handover Routine}\label{handover routine}
-This section focuses on simplified explanation of bi-directional handover model using basic block diagram structure.
+This section focuses on simplified explanation of bi-directional handover model using basic block diagram structure as shown in Fig~\ref{fig:handover routine}.
 
 We started handover routine to handover object using human right hand to robot left end-effector, hereafter until before Section~\ref{both hands individual} we will explain the everything under this condition, afterwards we will talk about generalization of handover using the possible handover combination scenarios. Such as 
 \begin{itemize}
@@ -1024,7 +1039,32 @@ talk about human hand/object-head tracking task
 	\end{tikzpicture}
 	
 	\caption{Overview of human humanoid robot bi-directional handover procedure}
+	\label{fig:handover routine}
 \end{figure}
+
+
+\subsection{Experimental Setup}
+
+talk about {environment} lab setup
+
+\subsubsection{robot}
+
+
+\subsubsection{mocap}
+
+{\bf ros cortex bridge}
+
+
+Ten passive reflective markers were placed on the arms and
+hands of the participant and co-worker. These were tracked
+using six kestrel infra-red cameras (Motion Analysis Co.,) at
+200Hz.
+We used an HRP-2Kai (154cm tall, 58kg, 32DOF)
+humanoid robot [1] as the robot co-worker. A trained
+experimenter (M, 37) acted as the human co-worker. Both
+co-workers used their right hand in the experiment.
+
+\subsubsection{Variable object(s)}
 
 
 \clearpage
@@ -1219,7 +1259,7 @@ Note that for simplicity, we formulated the problem with a common origin {\it O}
 The prediction model behavior can be tuned by two initially required constant time periods, $t_{observe}$ ---a predefined time period required to observe the motion of human hand and $t_{predict}$ ---required to predict the human hand position in advance.
 
 \paragraph*{}
-In order for handover between human and humanoid robot HRP-2Kai to be smooth and intuitive, the robot needs to estimate the position of handover location in advance during both cases when robot act as receiver or when robot acts as giver, therefore we formulate the motion of human hand as a constant velocity based linear motion model (see Algorithm~\ref{positionalgo}) to predict the handover position continuously. The robot observes human hand for a predefined time period $t_{observe}$ and estimates the human hand direction and position based on the human hand velocity using equations (\ref{predictVel}) and (\ref{predict}) during the predefined time period. 
+In order for handover between human and humanoid robot HRP-2Kai to be smooth and intuitive, the robot needs to pro-actively estimate the position of handover location in advance during both cases when robot act as receiver or when robot acts as giver, therefore we formulate the motion of human hand as a constant velocity based linear motion model (see Algorithm~\ref{positionalgo}) to predict the handover position continuously. The robot observes human hand for a predefined time period $t_{observe}$ and estimates the human hand direction and position based on the human hand velocity using equations (\ref{predictVel}) and (\ref{predict}) during the predefined time period. 
 
 \begin{equation} \label{predictVel}
 {}^{h}\mathcal{\bar{V}}_{M} = \frac{1}{t_{observe}}{\sum_{j=1}^{j=t_{observe}} ({}^{h}\mathcal{P}_{M}(j)-{}^{h}\mathcal{P}_{M}(j-1))/dt }
@@ -1403,7 +1443,7 @@ where $\vec{A}$, $\vec{B}$, $\vec{C}$ are the three coordinate vectors of a tria
 
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=.5\linewidth]{plots/c5-plots/efmarkers.png}}
+	\centering{\includegraphics[width=\linewidth]{plots/c5-plots/efmarkers.png}}
 	\caption{Passive IR markers on the robot HRP-2Kai right end-effector, human left hand and object during handover.}
 	\label{fig:markerEf2}
 \end{figure} 
@@ -1659,7 +1699,7 @@ In this section we will only mention changes that need to be incorporated into t
 %, this is mainly because recent study has shown that right hand human tend to prefer right hand over left
 
 \paragraph*{}
-The choice of employing end-effector (either left or right) by the robot is based on the shortest relative distance of object to either human hand using equation (\ref{human obj dist}) along with the direction (mainly along $y$-axis) and shortest relative distance of \textit{that} human hand with respect to both end-effectors, as per equations (\ref{human hand dir} and~\ref{robot obj dis}) respectively. For example, if human is holding object in his/her right hand ${}^{hr}{P}$ and if the estimated predicted position of his/her hand (see Section~\ref{prediction_model}) is converging somewhere in the negative $y$-coordinate space, then robot right end-effector ${}^{efr}{P}$ would be utilized to receive the object during handover. see FIG XXX of Rr to Hr handover.
+The choice or preference of employing end-effector (either left or right) by the robot is based on the shortest relative distance of object to either human hand using equation (\ref{human obj dist}) along with the direction (mainly along $y$-axis) and shortest relative distance of \textit{that} human hand with respect to both end-effectors, as per equations (\ref{human hand dir} and~\ref{robot obj dis}) respectively. For example, if human is holding object in his/her right hand ${}^{hr}{P}$ and if the estimated predicted position of his/her hand (see Section~\ref{prediction_model}) is converging somewhere in the negative $y$-coordinate space, then robot right end-effector ${}^{efr}{P}$ would be utilized to receive the object during handover. see FIG XXX of Rr to Hr handover.
 
 
 \begin{equation}\label{human obj dist}
@@ -1736,16 +1776,21 @@ Our work, which falls in the category of contact-before-motion approach is summa
 
 \subsection{Repeat handover with step-walk}
 
-
-
+here we have demonstrated with either hand individual but same method can also be applied on handover procedure using both hands.
 
 \clearpage
 
 \section{Handover Experiments}
 
-\subsection{Quantitative analysis}
+\subsection{Participants}
 
-\subsection{Results}
+\clearpage
+
+\section{Quantitative Analysis}
+
+\clearpage
+
+\section{Results}
 
 
 
@@ -1775,13 +1820,6 @@ Our work, which falls in the category of contact-before-motion approach is summa
 
 \chapter{Conclusion Discussion/Future possibilities}
 
-\section{A Section}
-
-
-\subsection{A Subsection}
-
-
-\section{Another Section}
 
 
 \clearpage
