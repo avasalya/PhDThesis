@@ -46,7 +46,7 @@
 \usepackage{setspace}
 \onehalfspacing
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{2.0ex plus0.5ex minus0.2ex}
+\setlength{\parskip}{1.0ex plus0.5ex minus0.2ex}
 \usepackage{vmargin}
 \setmarginsrb           { 1.5in}  % left margin
                         { 0.6in}  % top margin
