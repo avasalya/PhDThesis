@@ -23,13 +23,13 @@ Motor contagions are implicit effects that cause certain features of an individu
 Motor contagions may be divided into two categories depending on when, relative to the action observation, they are induced. \emph{On-line contagions} are induced \emph{during} the observation of actions performed by another human or robot~\cite{Kupferberg:Methods:2009, Oztop:RAS_ICHR:2004, Chaminade:JPP:2009, Kupferberg:PlosOne:2012, Brass:ActaPsych:2001, Press:CBR:2005}. For example,~\cite{Kilner:CurBio:2003} analyzed the variance in movements of a human participant when s/he observed spatially congruent and in-congruent movements made by either another human or a robot. Their experiment thus focused on on-line contagions, and showed that on-line contagions (in terms of a change in movement variance) are induced while observing a human but not while observing a robot making non-biological movements.
 
 \begin{figure}[hb]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/setup}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c2-plots/setup}}
 	\caption{Experimental setup: The participants in our experiment worked in three conditions; (i) with a robot co-worker performing \textit{biological} movements ($\textit{R}_{\text{biol}}$), (ii) a human co-worker ($\textit{H}$), and (iii) a robot co-worker performing \textit{non-biological} movements ($\textit{R}_{\text{nonbiol}}$). The coordinate axis defining the movement setup is indicated in white and fixed on the participant's table.}
 	\label{fig:setup}
 \end{figure}
 
 \begin{figure*}[t]
-	\includegraphics[width=\textwidth,height=6cm]{plots/c3-plots/trialprotocol}
+	\includegraphics[width=\textwidth,height=6cm]{plots/c2-plots/trialprotocol}
 	\caption{A) Trial protocol: The participants worked in repeated trials with either a robot or human co-worker (the figure shows the trial with a human co-worker). Each trial consisted of a period when the participant worked alone and co-worker relaxed (participant-alone period), both worked together (together period), and the co-worker worked alone (co-worker-alone period). The notation of the kinematic and time variables (represented in general by \boldmath{$\eta$}) in each period are shown in the figure. B) The trajectories made by the robot co-worker in the $\textit{R}_{\text{biol}}$ and $\textit{R}_{\text{nonbiol}}$ conditions. C) The time trajectories followed by the robot co-worker in the $\textit{R}_{\text{nonbiol}}$ condition in the Y and Z dimension, and the via-points (blue circles) used to generate the trajectory.}
 	\label{fig:trial}
 \end{figure*}
@@ -110,7 +110,7 @@ Our initial sample size was 35 participants such that all of them participated i
 
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/all_fit}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c2-plots/all_fit}}
 	\caption{Examples of linear regression fits obtained in the $\textit{H}$ (orange), $\textit{R}_{\text{biol}}$ (blue), $\textit{R}_{\text{nonbiol}}$ (magenta) conditions: A) Off-line contagions in the participant's \boldmath{$|\overline{\dot{y}}|$} ($\textbf{y}$-axis) as a function of co-worker's \boldmath{$|\overline{\dot{y}}|$} ($\textbf{x}$-axis); B) On-line contagions in the participant's \textit{htp}s ($\textbf{y}$-axis) as a function of co-worker's \textit{htp}s ($\textbf{x}$-axis). We used the AIC to choose either a first or second order model to fit the data for each participant. The lines represent the tangent slopes at the minimal co-worker feature value.}
 	\label{fig:fitting}
 \end{figure}
@@ -124,7 +124,7 @@ We quantified a participant's change in behavior after observing the co-worker, 
 For quantifying effects due to the on-line contagions, we looked again at the average value of each of the analyzed kinematic or time variable $\eta_p$ in the together period. However, in order to remove any persistent off-line contagions in this period, we regressed the change in the participant's behavior, between the together period and alone-period in a trial ($\eta_p^t (i)- \eta_p^a (i)$), and the corresponding value of the same variable in the co-worker behavior in the same trial $\eta_c(i)$. A first order, or second order regression model was chosen again using AIC for each participant, and like with the off-line contagion analysis, the tangent slope at the minimum co-worker variable value ($\min[\eta_c(i)]$) was collected across participants, checked for normality using the {\it Shapiro-Wilk}, and then analyzed for difference from zero using a one-sample {\it T}-test or a {\it Signed Rank} test. The fitting of {\it htp} in representative participants in the three reported conditions are shown in Fig.~\ref{fig:fitting}B and the collection of slopes are in shown in Fig.~\ref{fig:online}B.
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/offline_result_vel_htp}}	
+	\centering{\includegraphics[width=1\columnwidth]{plots/c2-plots/offline_result_vel_htp}}	
 	\caption{The off-line contagions: Observed changes in the participant's \boldmath{$|\overline{\dot{y}}|$} and \textit{htp} in the $\textit{H}$ (orange plots), $\textit{R}_{\text{biol}}$ (blue plots), $\textit{R}_{\text{nonbiol}}$ (magenta plots) conditions. All p values are Bonferroni corrected.}
 	\label{fig:offline}
 \end{figure}
@@ -153,7 +153,7 @@ On the other hand, we did not observe a significant effect on the participant's 
 
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/online_result_vel_htp}}	
+	\centering{\includegraphics[width=1\columnwidth]{plots/c2-plots/online_result_vel_htp}}	
 	\caption{The on-line contagions: Observed changes in the participant's \boldmath{$|\overline{\dot{y}}|$} and \textit{htp} in the $\textit{H}$ (orange plots), $\textit{R}_{\text{biol}}$ (blue plots), $\textit{R}_{\text{nonbiol}}$ (magenta plots) conditions. All p values are Bonferroni corrected.}
 	\label{fig:online}
 \end{figure}
@@ -168,7 +168,7 @@ We observed that the on-line contagions are distinct from off-line contagions. P
 
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/online_result_cong}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c2-plots/online_result_cong}}
 	\caption{Effect of congruency on on-line contagions: the difference in slopes, between the velocity congruent and incongruent iterations across participants, was zero for both the \boldmath{$|\overline{\dot{y}}|$} and \textit{htp}s of participants during the observation of the human ($\textit{H}$, orange plot) condition and robot co-worker ($\textit{R}_{\text{biol}}$, blue plot) condition. The lack of effect difference suggests that the on-line contagion does not affect the movement velocities in our study.}
 	\label{fig:cong}
 \end{figure}

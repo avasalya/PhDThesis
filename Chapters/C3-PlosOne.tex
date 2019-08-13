@@ -19,7 +19,7 @@ Furthermore, while there is contradictory evidence to suggest that the physical 
 To address these issues, we examined an empirical repetitive industrial task in which a human participant and a humanoid robot work near each other, see Fig.~\ref{fig:setup}. We systematically varied the behavior, specifically frequency of robot movements and examined whether and how the frequency of movements by the human participants, and their task accuracy, is affected by the presence of the robot. To investigate the effect of physical form, we added conditions where the robot co-worker torso and head were covered, and only the moving arm was visible to the human participants. Finally, in order to compare the humanoid co-worker to a human co-worker, we also checked how the effects on the participants changed with a human co-worker, with and without his/her torso and head visible. To anticipate our results, we found that the presence of a humanoid co-worker can affect human performance, but only when it's humanoid form is visible. Furthermore, the effect was observed to increase with prior robot experience by the humans.
 
 \begin{figure}[b]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/Fig1}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/Fig1}}
 	\caption{{\bf Experimental setup.} The participants in our experiment worked in six conditions; with a robot performing \textit{biological} movements in A) robot co-worker condition; B) human co-worker condition; to check relevance of  human form in C) robot covered co-worker condition; and D) human covered co-worker condition; E) a robot co-worker performing \textit{non-biological} movements in robot non-biol co-worker condition; F) a robot co-worker performing industrial movements. The coordinate axis defining the movement setup is indicated in white (A).}
 	\label{fig:setup1}
 \end{figure}
@@ -45,7 +45,7 @@ Motivated by the hand movements during an industrial pick-and-place, or parts as
 A co-worker (human or HRP-2Kai) worked on the same task in front of the participants. The participants were asked to perform their task at their own chosen `comfortable' frequency, and ignore the co-worker. The participants worked in a series of 50 second trials with the co-worker. In a trial, participants initially performed alone for 10 seconds (participant-alone period), performed with the co-worker for next 20 seconds (together period) and then relaxed while watching the co-worker performs the task for the last 20 seconds (co-worker-alone period) (Fig.~\ref{fig:trialprotocol2}).   
 
 \begin{figure}[hpt]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/Fig2}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/Fig2}}
 	\caption{{\bf Trial protocol.} The participants worked in repeated trials with either a robot or human co-worker (the figure shows the trial with a robot co-worker). Each trial consisted of period when the participant worked alone and co-worker relaxed (participant-alone period), both worked together (together period), and the co-worker worked alone (co-worker-alone period). The notation of the time variable (represented in general by $\tau$) in each period are shown.}
 	\label{fig:trialprotocol2}
 \end{figure}
@@ -88,7 +88,7 @@ The biological movements played on HRP-2Kai in robot co-worker and robot covered
 
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=\columnwidth]{plots/c4-plots/Fig3}}
+		\centering{\includegraphics[width=\columnwidth]{plots/c3-plots/Fig3}}
 	\caption{{\bf HRP-2Kai movement trajectories.} The trajectories played by the robot in robot co-worker, robot covered co-worker, robot non-biol co-worker and robot indus co-worker conditions.}
 	\label{fig:trajectories}
 \end{figure}
@@ -98,7 +98,7 @@ Well learnt human movements are characterized by a bell-shaped velocity profile.
 
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=\columnwidth]{plots/c4-plots/Fig4}}
+		\centering{\includegraphics[width=\columnwidth]{plots/c3-plots/Fig4}}
 	\caption{{\bf HRP-2Kai trajectory generation.} The time trajectories in the Y and Z axis by the HRP-2Kai in the robot non-biol co-worker and robot indus co-worker condition, and the via-points (blue circles) used to generate both trajectories.}
 	\label{fig:trajectories2}
 \end{figure}
@@ -116,14 +116,14 @@ Our analysis is based on the position data from both the participant's and co-wo
 We quantified the motor contagion in a participant' {\it htp} (the average time between two consecutive alternate touches) by analyzing the change of participant's {\it htp} between the together period and alone-period (see Fig.~\ref{fig:trialprotocol2}) in a trial ($\tau_p^t(i)-\tau_p^a(i)$), relative to the {\it htp} of the co-worker behavior in the same trial ($\tau_c (i)-Av(\tau_p^a)$), where $Av(\tau_p^a)$ represents the average undisturbed {\it htp} by a participants across his/her participant-alone periods. This data was regressed with either a first or second order regression model that was chosen based on the Akaike Information Criteria (AIC)~\cite{Akaike:ISIT:1973} and by using MATLAB's {\tt fitlm} function for each participant. The tangent slope at the minimum data abscissa value ($\min[\tau_c(i)-Av(\tau_p^a)]$) was collected across participants, checked for normality using the Shapiro-Wilk test and then analyzed for difference from zero using a one sample T-test (in case the distribution was normal) or a Signed Rank test. The fitting of {\it htp} in one sample participant from each of the six reported conditions are shown in Fig.~\ref{fig:allfit}, and the plot of the collection of slopes are in shown in Fig.~\ref{fig:slope_allcond}. A similar procedure was used to analyze the change in a participant's average X press location, average Y press location, standard deviation of X press location, and standard deviation of Y press locations relative to the {\it htp} of the co-worker behavior in the same trial ($\tau_c(i)-Av(\tau_p^a)$). The slopes from these analysis are shown in Fig.~\ref{fig:variance}.
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/Fig5}}
+		\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/Fig5}}
 	\caption{{\bf Examples of linear regression  fits.} The change of participant's {\it htp} (the average time between two consecutive alternate touches) between the together period and alone-period ($\tau_p^t(i)-\tau_p^a(i)$), relative to the {\it htp} of the co-worker behavior in the same trial ($\tau_c (i)-Av(\tau_p^a)$), where $Av(\tau_p^a)$ represents the average undisturbed {\it htp} by a participant across all his/her participant-alone periods. Note that the (robot or human) co-worker {\it htp} was random across trials, and the data in plots here are the ensemble of the participant behaviors arranged in increasing co-worker's {\it htp} on the abscissa. Each plot represent a condition, A) robot co-worker (blue); B) human co-worker (orange); C) robot covered co-worker (dark blue); D) human covered co-worker (dark orange); E) robot non-biol co-worker (cyan); F) robot indus co-worker (magenta) conditions. We used the AIC to choose either a first or second order model to fit the data for each participant. The lines represent the tangent slopes at the minimal data abscissa value.}
 	\label{fig:allfit}
 \end{figure}
 
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/Fig6}}
+		\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/Fig6}}
 	\caption{{\bf All six conditions \textit{htp} comparision.} The plot of the collection of slopes which is obtained in Fig.~\ref{fig:allfit} and ~\ref{S1_Fig} to~\ref{S6_Fig} supplementary figures. The condition-wise comparison of the change of participants {\it htp} with co-worker {\it htp}. P-values are Bonferroni corrected where required. The tangent slope at the minimum data abscissa value ($\min[\tau_c(i)-Av(\tau_p^a)]$) was collected across participants (as shown in Fig.~\ref{fig:allfit}), checked for normality using the Shapiro-Wilk test and then analyzed for difference from zero using a one sample T-test (in case the distribution was normal) or a Signed Rank test.}
 	\label{fig:slope_allcond}
 \end{figure}
@@ -131,7 +131,7 @@ We quantified the motor contagion in a participant' {\it htp} (the average time 
 
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/Fig7}}
+		\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/Fig7}}
 	\caption{{\bf Participants touch variance.} Change of participant touch position with A) robot co-worker {\it htp}; B) human co-worker {\it htp}. A similar procedure which was used to quantify {\it htp} was also used here (see subsection~\nameref{data_analysis}) to analyze the change in a participant's average X press location, average Y press location, standard deviation of X press location, and standard deviation of Y press locations relative to the {\it htp} of the co-worker behavior in the same trial.}
 	\label{fig:variance}
 \end{figure}
@@ -245,7 +245,7 @@ We received answers from 23 participants on our robot exposure questionnaire. Ou
 
 
 \begin{figure}[hpt]
-		\centering{\includegraphics[width=0.7\columnwidth]{plots/c4-plots/Fig8}}
+		\centering{\includegraphics[width=0.7\columnwidth]{plots/c3-plots/Fig8}}
 	\caption{{\bf Robot experience exposure.} The plot of the change of participant {\it htp}, with respect to their prior robot exposure and experience (self-scored by participants) showed a significant correlation between the two.}
 	\label{fig:corelation}
 \end{figure}

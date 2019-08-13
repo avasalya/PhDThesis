@@ -2,98 +2,114 @@
 %            Bi-directional dual arm object handover
 % ======================================================================= %
 	
-{\color{blue}\chapter{Whole body bi-directional object handover}\label{handover chapter}}
+{\color{blue}\chapter{Proactive object handover using whole body control}\label{handover chapter}}
 \addcontentsline{toc}{section}{Abstract}
 
 \section*{Abstract}
+
+We introduced a novel framework of bi-directional object handover between human and humanoid robot co-worker using whole-body control. We develop our controller by gaining insights from the previous state-of-the-art research during the human-human and the human-robot object handover studies.
+
+\begin{itemize}
+	\item The robot needs to accurately predict this point of transfer to reach out proactively, instead of waiting for the final position to be presented
+	
+	\item when to start the motion? -- relative distance -- hysteresis
+	
+	\item how to meet at handover location ? -- pose estimation
+	
+	\item two broad categories of handover motion\\
+	planning-based approaches—that optimize complete trajectory[5,6,7]\\
+	Controller based approach –that continuously optimize some controller input.[8,9] of [epfl]
+	
+	\item grasp planning- a process that determines the most appropriate object and then the most appropriate grasp for executing the given task.
+	
+	\item change feasible workspace to \textbf{reachability space}
+	
+%	\item what are the precepts on which the robot must relay to release the tool?  --- handover interaction model
+	
+%	\item robot workspace -- field of view \textbf{reachability space}
+	
+%	\item question to answer ---  when(timing), where (pos), how(orientation and forces),
+	
+	
+%	\item Learning Continuous Human-Robot Interactions from Human-Human Demonstrations ~\cite{vogt2017system}
+	
+%	\item perform fluid object handover in a dynamic settings
+	
+%	\item Design a planner considering —humans field of view, attention, preferences (left/right handed, etc),
+	
+%	\item current state (sleeping, sitting, working etc) and the robot’s field of view, kinematics and dynamics
+	
+	
+%	\item \textbf{talk about previous work}
+	
+%	\item \textbf{compare our work with previous works, humanoid robot, whole-body control bla bla}
+	
+%	\item \textbf{reader's guide} talk about each sections and what is done in those sections to accomplish our goal.
+			
+\end{itemize}
+
 
 
 \clearpage
 \section{Introduction}
 
-Handover is naturally an explicit yet simple  physical interactive task that occurs seamlessly multiple times between humans on a daily basis and under several scenarios.
+
+\paragraph*{general handover}
+
+Object handover is a collaborative task that occurs seamlessly and effortlessly during the physical interaction between a dyad, often without any explicit communication. The dyad here we mean by either the human-human or the human-robot co-workers. To name a few object handover examples ---handing over a glass of water to a patient by the care-giver, sharing a tool to a mechanic, handing business card to a client and many more. These natural yet simple physical interactive task occurs flawlessly multiple times between the human dyads on a daily basis and under several scenarios in space and time. Although handovers are fluent phase-less natural events between human-human interactions, but during the human-robot interactions, the handover of an object is a challenging task and often regarded as unnatural behavior. This unnatural behavior mainly arises due the lack of responsiveness and unreliability of the robot co-worker, and the safety issues of the human co-worker during the interaction. In the previous human-robot interaction studies~\cite{huber2008human, strabala2013toward, shibata1995experimental} and also in our previous work (\textbf{Chapter XX}), we have shown that the human acceptance of the robot during a task increases when the robot appear and behaves human-like, specially during the interactive task. Therefore, in our study we primarily chose to consider humanoid robot HRP-2Kai as the robot co-worker.
 
 
-although handovers are fluent phase-less natural events between human human interactions, but during human robot object handovers, many previous works (XXXX) have treated handover routine as non-continuous entity divided into 3 sub-tasks — approach, indication, deliver~\cite{kupcsik2016learning, strabala2013toward}, many previous studies have ha
- 
+\paragraph*{previous work on prediction orientation and interaction forces}
 
-question to answer ---  when(timing), where (pos), how(orientation and forces),
- 
---- grasp planning- a process that determines the most appropriate object and then the most appropriate grasp for executing the given task.
-
-Learning Continuous Human-Robot Interactions from Human-Human Demonstrations ~\cite{vogt2017system}
-
---perform fluid object handover in a dynamic settings
-
---Design a planner considering —humans field of view, attention, preferences (left/right handed, etc),
-
---current state (sleeping, sitting, working etc) and the robot’s field of view, kinematics and dynamics
-
-\textbf{talk about previous work}
-
-\textbf{compare our work with previous works, humanoid robot, whole-body control bla bla}
-
-
-\textit{In future, robots will be present in everyday life. The development of these supporting robots is a challenge. A fundamental task for assistance robots is to pick up and hand over objects to humans. By interacting with users, soft factors such as predictability, safety and reliability become important factors for development. Previous works show that collaboration with robots is more acceptable when robots behave and move human-like}. 
+Several previous studies such as~\cite{strabala2013toward} have treated handover routine as non-continuous entity, and analyzed individually the routine of handover into three main sub-tasks — approach, deliver and retreat. However, we take similar approach as one mentioned in the~\cite{medina2016human, nemlekarprompt} and treat the object handover between human and humanoid robot co-worker as single shot event.
 
 
 
-Three important key features that we want to focus during human humanoid robot object handover is the \textit{timing} of handover and \textit{pose} of handover and \textit{magnitude} of interaction forces between human and humanoid robot end-effector. Basically we would like to answer following questions ---when(\textit{timing}), where (\textit{position}), how(\textit{orientation and interaction forces}).\\
+there are infinite ways to handover an object, but it is important for robot to be able to find the right one during handover \textbf{cite for handover orientation ~\cite{cakmak2011human}}
 
-In case of handover, the estimation of handover time as well as the exact position of handover must be realized in order to bring the hand at appropriate place and approximately on appropriate time ---to be ready to receive the tool.\\
-The robot needs to accurately predict this point of transfer to reach out proactively, instead of waiting for the final position to be presented\\
---- when to start the motion? -- relative distance -- hysteresis\\
---- how to meet at handover location ? -- pose estimation\\
---- what are the precepts on which the robot must relay to release the tool?  --- handover interaction model\\
---- robot workspace -- field of view
+Many position prediction methods have already been explored in the past like~\cite{li2015predicting} discussed several position prediction model, however since position prediction is not the main focus of our study, therefore, we primarily decided to go with most common method i.e.~\textit{constant velocity} based model, see Section~\nameref{prediction_model} for details.
 
+a system Learning Continuous Human-Robot
+Interactions from Human-Human
+Demonstrations~\cite{vogt2017system}
 
-The main objectives of this study are as follows:
+\paragraph*{my general new idea -merge below}
+There are many human-robot object handover studies in the past with traditional robotic arm manipulator~\cite{medina2016human, vogt2018one, kupcsik2016learning} as robot co-workers or with mobile-base humanoid robot. 
 
-\begin{itemize}
-	\item design and perform human humanoid robot bi-directional handover
-	
-	\item using both hands for different possible objects
-	
-	\item add walking --using whole body control
-	cycles
-	\item evaluate using human robot study
-\end{itemize}
+The handover between the above mentioned humanoid dyads could take place either by using one of the hand individually or by using both hands together simultaneously depending upon the shape and size of the object that needs to be transferred.
 
 
-Many position prediction methods have already been explored in the past like~\cite{li2015predicting} discussed several position prediction model, however since position prediction is not the focus of our study, therfore, we primarily decided to go with most common method i.e.\textit{constant velocity} based model, see Section~\nameref{prediction_model} for details.
+Main focus is whole-body control during handover.\sout{Our whole-body handover planner is model-based. It needs the models of the HRP-2Kai, the pertinent information of the environment (object), mainly handover object's shape and size information, though knowing mass of the object is not important in the beginning.}
 
+Three important key features that we want to focus during human humanoid robot object handover is the \textit{timing} of handover and \textit{pose} of handover, \textit{magnitude} of the interaction forces between human hand(s) and humanoid robot end-effector(s). Basically we would like to answer the following questions ---when(\textit{timing}), where (\textit{position in space}), how(\textit{orientation and interaction forces}) of the handover.\\
 
-\subsection{Whole-body control based handover}
+In case of handover, the estimation of handover time as well as the exact position of handover must be realized in order to bring the hand at appropriate location and approximately on appropriate time ---to be ready to receive the tool.\\
 
-talk about each sections and what is done in those sections to accomplish our goal.
+\paragraph*{new things from us , either hand, both hands, step-walk-whole-body: -- merge above}
 
+Our bi-directional handover controller is smooth and intuitive, also it is adaptable to several objects of distinguishable physical properties (shape, size and mass). 
 
-\url{https://www.ieee-ras.org/whole-body-control}
-
+\url{https://www.ieee-ras.org/whole-body-control}\\
 whole body control~\cite{sentis2006whole} based human humanoid robot bi-directional object handover
 
 saki,ganesh paper, --> Humans can predict where their partner would make a handover 
 
 
-Our whole-body handover planner is model-based. It needs the models of the HRP-2Kai, the pertinent information of the environment (object), mainly handover object's shape and size information, though knowing mass of the object is not important in the beginning.
-
-\textbf{
-}\\
+\paragraph*{readers guide}
+talk about each sections and what is done in those sections to accomplish our goal.
 
 
--- two broad categories of handover motion
-•planning-based approaches—that optimize complete trajectory[5,6,7]
-•Controller based approach –that continuously optimize some controller input.[8,9] of [epfl]
+
+
 
 
 
 \clearpage
 \section{Handover routine}\label{handover routine}
 
-We take similar approach as one mentioned in~\cite{medina2016human, nemlekarprompt} (XXX cite more) and treat object handover between human and humanoid robot co-worker as one stage cycle to perform intuitive and responsive handover of object between them. Each handover routine consist of two handover \textit{cycle}s. From onwards we will refer the process of object handover between human and humanoid robot as \textit{cycle}, such that object handover from human to humanoid robot is one \textit{cycle} and return of object from humanoid robot to human as another \textit {cycle}. Therefore, it takes two full handover \textit{cycle}s to return the object back to where it started and complete single handover routine.
+We take similar approach as one mentioned in the~\cite{medina2016human, nemlekarprompt} and treat the object handover between human and humanoid robot co-worker as one stage cycle to perform intuitive and responsive handover of object between them. Each handover routine consist of two handover \textit{cycle}s. From onwards we will refer the process of object handover between human and humanoid robot as \textit{cycle}, such that object handover from human to humanoid robot is one \textit{cycle} and return of object from humanoid robot to human as another \textit {cycle}. Therefore, it takes two full handover \textit{cycle}s to return the object back to where it started and complete single handover routine.
 \begin{figure}[htbp]
-		\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/halfsit}}
+		\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/halfsit}}
 		\caption{Human and humanoid robot starting posture.}
 		\label{fig:halfsit}
 \end{figure}
@@ -197,7 +213,7 @@ As shown in Fig.~\ref{fig:objects}, we used three easily distinguishable objects
 
 
 \begin{figure}[htpb]
-	\centering{\includegraphics[width=0.8\columnwidth]{plots/c5-plots/objects}}
+	\centering{\includegraphics[width=0.8\columnwidth]{plots/c4-plots/objects}}
 	\caption{Distinguishable shape and mass objects used during single hand handover between human and humanoid robot co-worker.}
 	\label{fig:objects}
 \end{figure}
@@ -292,7 +308,7 @@ Where, $u_{target}$  and $u$ are the target vector in world and body vector that
 Let $\mathcal{M}$ (Mocap) and $\mathcal{R}$ (Robot) be the two fixed frames with same orientation that denote both Cartesian coordinate systems and Pl\"ucker coordinate systems denoted by $X$ in the Euclidean space. Both $\mathcal{M}$ and $\mathcal{R}$ are defined by their position and orientation of a Cartesian frame, such that ${}^MX_R$ denotes the Pl\"ucker coordinate transform which depends only on the position and orientation of frame $\mathcal{M}$ relative to frame $\mathcal{R}$ (see Fig~\ref{fig:frames}).
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=0.5\columnwidth]{plots/c5-plots/frame}}
+	\centering{\includegraphics[width=0.5\columnwidth]{plots/c4-plots/frame}}
 	\caption{$\mathcal{M}$ and $\mathcal{R}$ Cartesian coordinate systems.}
 	\label{fig:frames}
 \end{figure}
@@ -346,7 +362,7 @@ Let $\mathcal{M}$ (Mocap) and $\mathcal{R}$ (Robot) be the two fixed frames with
 To get the orientation of human hand, we placed a rigid body with a shape similar to an alphabet $L$ on wrist of human hand(s) as shown in Fig~\ref{fig:lshapes}. The three mocap markers $A, B$ and $C$ make up the three vertices of $\mathcal{L}$ shape body, such that during object handover scenario, vector $\vec{AB}^{\,}$ along the longer side and vector $\vec{BC}^{\,}$ along the shorter side are set to be parallel with the $X$-axis and $Y$-axis of the mocap frame $\mathcal{M}$ respectively. The vectors $\vec{AB}^{\,}$ and $\vec{BC}^{\,}$ are orthogonal to each other. For simplicity, let $\hat{x}$ be the unit vector, which is parallel and along the $X$-axis and likewise, unit vector $\hat{y}$ is parallel and along the $Y$-axis of the mocap frame $\mathcal{M}$, such that
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/lshpe-lt-rt}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/lshpe-lt-rt}}
 	\caption{$\mathcal{L}$ shape rigid body on the human hand(s)}
 	\label{fig:lshapes}
 \end{figure}
@@ -485,13 +501,13 @@ where, ${}^{h}\mathcal{P}_{ef}(t_{predict})$ is the desired position for robot e
 The translation component of ${}^{ef}{X}_R $ in the equation (\ref{X_R_ef}) is updated based on the predicted position of human hand (see Section~\nameref{prediction_model}) while the orientation component is updated based on the relative orientation of human hand (see Section~\nameref{hand_orientation}).
 
 \begin{figure}[htpb]
-	\centering{\includegraphics[width=.7\linewidth]{plots/c5-plots/rviz_robot_lt_hand_obj_frame}}
+	\centering{\includegraphics[width=.7\linewidth]{plots/c4-plots/rviz_robot_lt_hand_obj_frame}}
 	\caption{Robot HRP-2Kai (left end-effector) holding object with fixed orientation during handover in the robot frame $\mathcal{R}$}
 	\label{fig:robot_lt_hand_obj}
 \end{figure} 
 
 \begin{figure}[htpb]
-	\centering{\includegraphics[width=.7\linewidth]{plots/c5-plots/rviz_robot_lt_hand_obj-2layer-empty}}
+	\centering{\includegraphics[width=.7\linewidth]{plots/c4-plots/rviz_robot_lt_hand_obj-2layer-empty}}
 	\caption{Robot HRP-2Kai (left end-effector) fixed orientation during two handover trials in the robot frame $\mathcal{R}$}
 	\label{fig:robot_lt_hand_2layers}
 \end{figure} 
@@ -504,7 +520,7 @@ Since our robot HRP-2Kai lacks conventional anthropomorphic hands, but instead i
 In order to correctly transform desired human hand orientation into robot end-effector frame, we further utilize the equation (\ref{X_ef_ht}). We take advantage of the QP's \texttt{Orientation} Task~\cite{murray2017mathematical, ladder-HRP-2Kai} (see Subsection~\nameref{QPTasks}) and compute the task error $Err$ between \textit{current} human hand orientation and \textit{fixed} robot end-effector orientation, the resulting orientation from the \texttt{Orientation} Task is the desired robot end-effector orientation relative to the human hand orientation (see Fig~\ref{fig:robot_lt_orientations} for few of many possible orientations), therefore using fixed orientation component  ${{}^{efInit}\mathcal{O}_R}$, of equation (\ref{X_R_ef}) and current human hand orientation ${}^{h}\mathcal{O}_M$ from equation (\ref{rotationmatrix}) derived in Section~\nameref{hand_orientation}, we further modify equation (\ref{X_ef_ht}) to get the desired orientation $ {}^{h}\mathcal{O}_{ef} $ of robot end-effector to handover the object.
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/robot_lt_orientations}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/robot_lt_orientations}}
 	\caption{Robot HRP-2Kai (left end-effector) holding object in multiple possible orientations during handover trials in the robot frame $\mathcal{R}$.}
 	\label{fig:robot_lt_orientations}
 \end{figure} 
@@ -543,7 +559,7 @@ HRP-2Kai is equipped with 6-axis \textit{wrist} force sensor on both hands, capa
 Without actual haptic sensor feedback information from the robot end-effector, we had to rely on the wrist force sensor and mocap markers data of the robot end-effector(see Fig.~\ref{fig:markerEf}), therefore we used mocap makers in conjunction with the force feedback from the wrist sensor of HRP-2Kai robot to know whether the object is within its vicinity to grasp or not. Mocap makers on the robot end-effector were crucial to know the relative position of object from the human hand holding it and the humanoid robot end-effector(s). We placed four passive infra-red markers on the robot end-effector(s) in rectangular shape configuration as shown in Fig.~\ref{fig:markerEf2}. Two of the markers were placed parallel and along the local $x$-axis of force sensor on the wrist of robot end-effector and rest two markers were placed on the gripper tips as shown in Fig.~\ref{fig:markerEf}.
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=.5\linewidth]{plots/c5-plots/markerEf.jpg}}
+	\centering{\includegraphics[width=.5\linewidth]{plots/c4-plots/markerEf.jpg}}
 	\caption{Passive IR markers on the robot HRP-2Kai right end-effector.}
 	\label{fig:markerEf}
 \end{figure} 
@@ -582,7 +598,7 @@ where $\vec{A}$, $\vec{B}$, $\vec{C}$ are the three coordinate vectors of a tria
 
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=\linewidth]{plots/c5-plots/efmarkers.png}}
+	\centering{\includegraphics[width=\linewidth]{plots/c4-plots/efmarkers.png}}
 	\caption{Passive IR markers on the robot HRP-2Kai right end-effector, human left hand and object during handover.}
 	\label{fig:markerEf2}
 \end{figure} 
@@ -594,7 +610,7 @@ We explained further in detail in the Subsection~\nameref{FSM}, but before that 
 \subsection{Method 2: surface wrench based}\label{surface wrench}
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=0.8\columnwidth]{plots/c5-plots/wrist-surface2}}
+	\centering{\includegraphics[width=0.8\columnwidth]{plots/c4-plots/wrist-surface2}}
 	\caption{Virtual intrinsic surfaces (green) on robot wrists.}
 	\label{fig:wrist-surface2}
 \end{figure}
@@ -624,7 +640,7 @@ where, ${}^{surf}X_{s}^{*}$ is the transformation matrix for transformation of f
 \subsection{Finite state machine}\label{FSM}
 
 \begin{figure}[hpt]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/h-to-r.jpg}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/h-to-r.jpg}}
 	\caption{human to humanoid robot object handover, t1 to t8 transition states.}
 	\label{fig:h-to-r}
 \end{figure}
@@ -680,7 +696,7 @@ The whole handover routine is a continuous process but for clarity we have divid
 
 
 \begin{figure}[hpt]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/r-to-h.jpg}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/r-to-h.jpg}}
 	\caption{humanoid robot to human object handover t9 to t14 transition states.}
 	\label{fig:r-to-h}
 \end{figure}
@@ -880,7 +896,7 @@ The choice or preference of employing end-effector (either left or right) by the
 
 
 \begin{figure}[hpt]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/hr-rr}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/hr-rr}}
 	\caption{Object handover between human right hand and humanoid robot right end-effector.}
 	\label{fig:hr-to-rr}
 \end{figure}
@@ -935,7 +951,7 @@ We again take the advantage of having a humanoid robot at our disposal and exten
 
 
 \begin{figure}[hpt]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/handoverPipe}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/handoverPipe}}
 	\caption{Hollow cylinder shaft as object for handover between human humanoid robot.}
 	\label{fig:pipe_ex}
 \end{figure}
@@ -945,7 +961,7 @@ The object(s) (two of them) we chose to handover between human and humanoid robo
 
 
 \begin{figure}[hpt]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/robot_has_pipe}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/robot_has_pipe}}
 	\caption{HRP-2Kai using both end-effectors to manipulate handover object based on the human hand relative orientation.}
 	\label{fig:pipe_ori}
 \end{figure}
@@ -974,7 +990,7 @@ Following is an overview of both hands handover motion.
 Here we approach differently during the 1${}^{st}$ and 2${}^{nd}$ \textit{cycle}s of handover. In the 1${}^{st}$ \textit{cycle} of object handover from human to humanoid robot, we predict and estimate both human hands pose individually. Specifically, we use unique \texttt{position} and \texttt{orientation} tasks (see Subsection~\nameref{QPTasks}) to move each of the robot end-effector to the desired handover location. But we remove the \texttt{position} and \texttt{orientation} tasks on one of the end-effector during the 2${}^{nd}$ \textit{cycle} because of the kinematic contact constraints (see Subsection~\nameref{QPConstraints}) imposed by the object, once robot grasps it using both end-effectors. Before we talk about the constraint motion of the robot end-effectors due to object, lets first introduce contact surfaces and kinematic constraints.
 
 \begin{figure}[hptb]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/grippers-intern}}
+	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/grippers-intern}}
 	\caption{Robot grippers with graspable internal surfaces.}
 	\label{fig:gripper-intern}
 \end{figure}
@@ -1012,7 +1028,7 @@ Under handover scenarios, we initiate handover \textit{cycle} when human holds t
 
 
 \begin{figure}[hptb]
-	\centering{\includegraphics[width=0.8\columnwidth]{plots/c5-plots/h-r-pipe-handover}}
+	\centering{\includegraphics[width=0.8\columnwidth]{plots/c4-plots/h-r-pipe-handover}}
 	\caption{Object handover between human and humanoid robot using both human hands and both end-effectors. \textbf{need multiple pose frames}}
 	\label{fig:h-r-pipe-handover}
 \end{figure}
@@ -1023,7 +1039,7 @@ Compared to single hand handover scenario which was discussed in previous Sectio
 Initially we predict and estimate human hand positions by utilizing previously discussed prediction model from Section~\nameref{prediction_model}. Given the object shape and its structural properties (in our case length of cylindrical shaft), the offsets along object's length can be calculated using set of equations (\ref{hand rel pos on obj}) in the object local frame $o$ (see Fig.~\ref{fig:pipe_ex} B) from the center in both directions. This offset is then further transform into robot frame and finally added to already predicted position of the human hands with respect to robot end-effectors using equation (\ref{offset_transform}).
 
 %\begin{figure}[hptb]
-%	\centering{\includegraphics[width=1\columnwidth]{plots/c5-plots/pipe-offset}}
+%	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/pipe-offset}}
 %	\caption{Offset correction to the predicted positions of the human hands.}
 %	\label{fig:pipe-offset}
 %\end{figure}
@@ -1075,7 +1091,7 @@ where, ${}^{o}\mathcal{O}_M$ provides the orientation of object in the mocap fra
 Finally at the handover location, we measure the noise free $\abs{{}^{surf}\vec{f}}$ forces along the both gripper's insertion ($z$)-axes during the interaction between object and gripper just prior to handover. Handover occurs when $\abs{{}^{surf}\vec{f}}$ exceeds 3N on both end-effectors along with the set of following conditions in equation (\ref{min_posErr_vel}) satisfy for both robot end-effectors.
 
 %\begin{figure}[htbp]
-%	\centering{\includegraphics[width=0.8\columnwidth]{plots/c5-plots/handoverpipeIntern}}
+%	\centering{\includegraphics[width=0.8\columnwidth]{plots/c4-plots/handoverpipeIntern}}
 %	\caption{Virtual intrinsic surfaces (green) on robot wrists and grippers.}
 %	\label{fig:wrist-surface}
 %\end{figure}
@@ -1096,7 +1112,7 @@ As already mentioned earlier in this section, the human co-worker is allowed to 
 \end{cases}
 \end{equation}
 
-Where, ${}^{hl}{P}$ and ${}^{hr}{P}$ are the position vectors of the respective left and right human hand. Depending on the choice of dominant human hand, for example if the left human hand is selected then we remove the \texttt{position} and \texttt{orientation} tasks of the left end-effector and therefore the motion of this end-effector is now governed using the \texttt{contact constraint} by targeting the null velocity. By doing this, the robot right end-effector would lead the motion by predicting and estimating the pose of dominant human hand. The problem of predicting and estimating human hand pose can now be treated similarly to the single hand handover routine as mentioned in the Section~\nameref{both hands individual}. Please note, set of equations (\ref{hand rel pos on obj}) is also valid to calculate the offset position of end-effector during when robot predicts and approaches towards the handover location chosen by the dominant human hand.
+Where, ${}^{hl}{P}$ and ${}^{hr}{P}$ are the position vectors of the respective left and right human hand. Depending on the choice of dominant human hand, for example if the left human hand is selected then we remove the \texttt{position} and \texttt{orientation} tasks of the left end-effector and therefore the motion of this end-effector is now governed using the \texttt{contact constraint} by targeting the null velocity. By doing this, the robot right end-effector would lead the motion by predicting and estimating the pose of dominant human hand. The problem of predicting and estimating human hand pose can now be treated similarly to the single hand handover routine as mentioned in the Section~\nameref{both hands individual}. Please note, set of equations (\ref{hand rel pos on obj}) is also valid to calculate the offset position of end-effector, when robot predicts and approaches towards the handover location chosen by the dominant human hand. We just need to replace the human hand position vector ${}^{h}{P}$ with the end-effector position vector ${}^{ef}{P}$. Where, $ef$ in ${}^{ef}{P}$ is either left $efl$ or right $efr$ end-effector.
 
 
 Finally handover occurs when the set of conditions in the equation (\ref{Fpull}) satisfy for both end-effectors (see~\nameref{FSM}). Note that the conditions in the equation (\ref{Fpull}) are valid only if human tries to pull the object from the robot. After the robot grippers release the object, we also remove the null velocity \texttt{contact constraint} between the end-effectors and the object surfaces, and add again the previously removed \texttt{position} and \texttt{orientation} tasks to that end-effector. This completes the handover routine. 
@@ -1108,7 +1124,7 @@ Finally handover occurs when the set of conditions in the equation (\ref{Fpull})
 
 \clearpage
 
-\section{Proactive Handover}
+\section{Step-walk handover}
 
 None of the previous work considered object handover and locomotion in a single framework using a Humanoid robot such as HRP-2Kai.
 
@@ -1125,6 +1141,7 @@ here we have demonstrated with either hand individual but same method can also b
 %
 %\url{file:///home/avasalya/Dropbox%20(CNRS-AIST%20JRL)/PhD/Papers/other's%20thesis/thesis-agravante.pdf}
 
+\cite{kajita2010biped}
 
 \clearpage
 
@@ -1140,6 +1157,8 @@ here we have demonstrated with either hand individual but same method can also b
 refer below link for parameters to analyze
 % \url{file:///home/avasalya/Dropbox%20(CNRS-AIST%20JRL)/PhD/Papers/other's%20thesis/thesis-antonio-bussy.pdf}
 
+for questionnaire
+\url{https://www.researchgate.net/publication/224079156_Evaluation_of_a_Novel_Biologically_Inspired_Trajectory_Generator_in_Human-Robot_Interaction}
 \subsection{Results}
 
 
@@ -1149,4 +1168,6 @@ refer below link for parameters to analyze
 
 \section{Discussion}
 
+
+\clearpage
 
