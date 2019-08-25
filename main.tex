@@ -3,8 +3,9 @@
 %% ---------------------------------------------------------------- 
 
 % Set up the document
-\documentclass[a4paper, 11pt, oneside]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
-\graphicspath{Figures/}  % Location of the graphics files (set up for graphics to be in PDF format)
+\documentclass[a4paper, 11pt, oneside]{Thesis}
+%\documentclass[a4paper, 11pt, oneside, draft]{Thesis}
+%\graphicspath{Figures/}
 
 
 %\usepackage[square, numbers, comma, sort&compress]{natbib}
@@ -276,15 +277,14 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 \clearpage  % End of the Acknowledgements
 %% ----------------------------------------------------------------
 
-%% The Abstract Page
-%\addtotoc{Abstract}  % Add the "Abstract" page entry to the Contents
-%%\abstract{
-%\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
-%\section*{\huge Abstract}
-%%\ldots
-%
-%
-%\clearpage  % Abstract ended, start a new page
+% The Abstract Page
+\addtotoc{Abstract}  % Add the "Abstract" page entry to the Contents
+%\abstract{
+\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
+\section*{\huge Abstract}
+%\ldots
+
+\clearpage  % Abstract ended, start a new page
 
 %% ----------------------------------------------------------------
 
@@ -363,9 +363,9 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 % Include the chapters of the thesis, as separate files
 % Just uncomment the lines as you write the chapters
 
-%\input{Chapters/Introduction.tex} % Introduction
+\input{Chapters/Introduction.tex} % Introduction
 
-%\input{Chapters/C1-StateOfTheArt.tex} % S-O-T-A
+\input{Chapters/C1-StateOfTheArt.tex} % S-O-T-A
 
 \input{Chapters/C2-RoMan.tex} % Ro-MAN distinct
 
@@ -373,7 +373,7 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 
 \input{Chapters/C4-Handover.tex} % Handover
 
-%\input{Chapters/Conclusion.tex} %  Conclusion Discussion/future possibilities
+\input{Chapters/Conclusion.tex} %  Conclusion Discussion/future possibilities
 
 % ======================================================================= %
 % Now begin the Appendices, including them as separate files
@@ -382,12 +382,10 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 
 \appendix
-% Appendix for chapter -contagion and more than co-worker
-%\input{Appendices/Appendix-morethan}\label{morethan}
 
 \input{Appendices/Appendix_A}\label{contagion appendix}
 
-%\input{Appendices/Appendix_B}\label{handover appendix}
+\input{Appendices/Appendix_B}\label{handover appendix}
 
 \addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
 
