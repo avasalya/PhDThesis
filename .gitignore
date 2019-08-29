@@ -25,5 +25,5 @@ acmart.cls
 *.zip
 *.rpi
 *.gz
-
+*.pdf
 *~

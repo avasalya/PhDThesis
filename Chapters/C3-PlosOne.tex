@@ -4,15 +4,13 @@
 
 {\color{blue}\chapter{More than just co-workers}\label{more than just co-workers}}
 
-%\section*{Abstract}
-%\addcontentsline{toc}{section}{Abstract}
-
 \section{Introduction}
 
 Does the presence of a robot co-worker influence the performance of humans around it? Studies of motor contagions during human-robot interactions have examined either how the observation of a robot affects a human's movement velocity, or how it affects the human's movement variance, but never both together. Performance however, has to be measured considering both task speed (or frequency) as well as task accuracy. Here we examine an empirical repetitive industrial task in which a human participant and a humanoid robot work near each other. We systematically varied the robot behavior, and observed whether and how the performance of a human participant is affected by the presence of the robot. To investigate the effect of physical form, we added conditions where the robot co-worker torso and head were covered, and only the moving arm was visible to the human participants. Finally, we compared these behaviors with a human co-worker, and examined how the observed behavioral affects scale with experience of robots. Our results show that human task frequency, but not task accuracy, is affected by the observation of a humanoid robot co-worker, provided the robot's head and torso are visible.
 
-\clearpage
+\textbf{mention follow up from previous chapter, mainly how material and methods \textit{subsections} are connected}
 
+\clearpage
 
 \section{Materials and methods} \label{methods}
 
@@ -22,23 +20,13 @@ Does the presence of a robot co-worker influence the performance of humans aroun
 	\label{fig:setup1}
 \end{figure}
 
-
-
-\subsection{Participants}
-
-% For figure citations, please use "Fig" instead of "Figure".
-A total of 45 healthy adults participated in our study. 3 participants (2 males and a female of 3 nationalities, 29.6$\pm$5, mean$\pm$SD, aged 25-35) worked as volunteer models for the capture of human arm motion data. 42 participants (20 Males and 22 females of 12 nationalities, 25.9$\pm$4.35, mean$\pm$SD, min. age 20, max. age 39), were participated as `co-workers' in our main experiment. 3 out of 45 participants were left-handed according to the {\it Edinburgh Handedness Inventory}~\cite{robinson2013edinburgh}, and all participants had normal or corrected to normal vision. The experiments were approved by the local ethics committee at the National Institute of Advanced Industrial Science and Technology (AIST) in Tsukuba, Japan, and all participants read and signed an informed consent form along with the PLOS consent form for the usage of their images in the paper before taking part in the experiments. Participants were well instructed and informed with the experiment and task procedure, however they were na\"ive to the motives (participants were not told what aspect of their behavior we were analyzing in the experiment) of the experiments to avoid bias in the results as we are interested in the implicit effect of motor contagion. Each Participant received 2021 Japanese Yen (JPY) to participate. 
-Participants for our study were recruited through an advertisement via a local event forum, Facebook page of our experiment and via word of mouth in the Tsukuba University, Tsukuba, Japan. Participants needed to be at least 18 years old to participate in this experiment, apart from that, there were no restrictions.
-
-\subsection{Setup}
-
-The participant and co-worker (a human or a humanoid robot) were seated on a chair with tables facing each other as shown in the experiment setup (Fig.~\ref{fig:setup1}). On a horizontally placed touchscreen (23-inch HD DELL, P2314T) on the table, participants were presented with two red circles of diameter $\oslash$5 cm at distance of 50 cm from each other. The co-worker was similarly presented with two red circles on black cardboard $\oslash$9 cm at distance of 50 cm. The whole setup was enclosed by movable panels and the panel behind the co-worker was covered with a dark grey curtain. A motion tracking system (Motion Analysis Co.) with six infrared cameras (kestrel) and ten passive markers were used to record the arm motions of the participant and co-worker at 200Hz. A bipedal HRP-2Kai~\cite{Kaneko:RAS_ICHR:2015} humanoid robot (154 cm tall, 58 kg, 32 degrees of freedom) was used as the robot co-worker (Fig.~\ref{fig:setup1}). A well-trained experimenter (M, 37) acted as the human co-worker. Both co-workers used their right arm throughout the experiment.
+The arrangement of experimental setup and task are same as mentioned in the Chapter~\ref{distinct motor contagion}. However the total number of conditions and features analyzed are different here. To explain clearly and avoid confusion, we have renamed the conditions as can be seen in Fig.~\ref{fig:setup1} and mentioned again some important details in the below Subsection.
 
 \subsection{Experimental task and conditions}
 
-Motivated by the hand movements during an industrial pick-and-place, or parts assembly task, our task required participants to repeatedly touch two static red circles on the touchscreen with a stylus in their right hand during the task (Fig.~\ref{fig:setup1}). While the participants were asked to touch the circle in each trial, they were free to touch anywhere on the circle. In preliminary experiments, we found that the standard deviation of the participant's touches were less than 1 cm (both in the $x$ and $y$ directions), and we purposely chose the radius of the touched circles to be more than 2 times larger than their standard deviation (targets were of 5 cm in diameter). This large size was crucial because, while the participants were asked to touch the circle in each trial, they were free to touch anywhere on the circle. The large target size therefore enabled us to observe any change in participant's touch location (that may accompany contagions in their speed), in terms of position and standard deviation, across our experiment. 
-
-A co-worker (human or HRP-2Kai) worked on the same task in front of the participants. The participants were asked to perform their task at their own chosen `comfortable' frequency, and ignore the co-worker. The participants worked in a series of 50 second trials with the co-worker. In a trial, participants initially performed alone for 10 seconds (participant-alone period), performed with the co-worker for next 20 seconds (together period) and then relaxed while watching the co-worker performs the task for the last 20 seconds (co-worker-alone period) (Fig.~\ref{fig:trialprotocol2}).   
+As mentioned in previous Chapter, our task was motivated by the industrial \textit{pick-n-place} part assembly task, which required the participants to touch repeatedly inside two static red circles on the touchscreen with a hand stylus. The participants were only instructed to touch inside each circle consecutively, however they were free to touch anywhere inside each circle. During a preliminary experiment, we discover that the participant's touches had less than 1 cm standard deviation, both in the $x$ and $y$ movement directions. Therefore, on purpose we chose to keep the radius of the touch circles more than \texttt{2x} times larger than their standard deviation in the main experiment. Hence the target size of touch circles were 5 cm in diameter. This increase in the size of touch circles were crucial to us since the participants were asked to touch the circle in each trial, but they were free to touch anywhere on the circle. This enabled us to observe and measure the variance along with standard deviation in participant's touch position (that may result contagion in their speed) across our experiment.
+ 
+A co-worker being the human experimenter or HRP-2Kai humanoid robot worked on the same task in front of the participants. Again the participants were asked to perform their task at their own chosen `comfortable' frequency, and ignore the co-worker. The trial protocol was same as mentioned in the previous Chapter. The participants worked in a series of 50 second trials with the co-worker. In a trial, participants initially performed alone for 10 seconds (participant-alone period), performed with the co-worker for next 20 seconds (together period) and then relaxed while watching the co-worker performs the task for the last 20 seconds (co-worker-alone period) (Fig.~\ref{fig:trialprotocol2}).   
 
 \begin{figure}[hpt]
 	\centering{\includegraphics[width=1\columnwidth]{plots/c3-plots/Fig2}}
@@ -46,11 +34,11 @@ A co-worker (human or HRP-2Kai) worked on the same task in front of the particip
 	\label{fig:trialprotocol2}
 \end{figure}
 
-All participants wore ear buds and headphones (through which we sent white noise) and had no external audio feedback (confirmed in the post experiment questionnaire, Q6). They were instructed to ``{\it always hold the stylus like a stamp and touch alternatively inside each red circle on the touchscreen with continuous and smooth hand movements at a comfortable speed}''. They were specifically told to ``{\it focus on your own task and ignore the co-worker when he/it starts after them}''. No instructions were given regarding the speed and movement trajectory.
+All participants wore ear buds and headphones, which enabled them to hear only white noise and had no external audio feedback, it was later confirmed in the post experiment questionnaire, Q6. All participants were instructed to ``{\it always hold the stylus like a stamp and touch alternatively inside each red circle on the touchscreen with continuous and smooth hand movements at a comfortable speed}''. While they were specifically told to ``{\it focus on your own task and ignore the co-worker when he/it starts after them}''. No other instructions were given regarding their hand speed and trajectory.
 
-We studied six experimental conditions. The participants worked with a HRP-2Kai humanoid robot co-worker in four conditions, specifically, a) \textit{robot co-worker} in which the whole robot was visible to the participant, and the robot played back biological movements, b) \textit{robot covered co-worker}, in which the robot played back biological movements, but its head and torso were covered, such that the participant could only see the robot's moving arm. c) \textit{robot non-biol co-worker}, in which a fully visible robot performed \textit{non-biological} arm movements, d) \textit{robot indus co-worker}, in which a fully visible robot performed \textit{industrial} arm movements and they worked with a trained human experimenter in the remaining e) \textit{human co-worker} and f) \textit{human covered co-worker} (where the head and torso of the human experimenter were covered) conditions, (see subsection~\nameref{HRP2_Traj}).
+Unlike Chapter~\ref{distinct motor contagion}, here we have studied and analyzed data from all six experimental conditions. In four conditions, the participants worked with a HRP-2Kai humanoid robot co-worker, specifically in (a) \textit{robot co-worker} in which the robot played back biological movements, and the whole robot was visible to the participant (b) \textit{robot covered co-worker}, in which the robot played back biological movements, but its head and torso were covered, and the participant could only see the robot's moving arm. (c) \textit{robot non-biol co-worker}, in which a fully visible robot performed \textit{non-biological} arm movements, (d) \textit{robot indus co-worker}, in which a fully visible robot performed \textit{industrial} arm movements. While in the remaining two conditions, participants worked with a trained human experimenter in, (e) \textit{human co-worker} and (f) \textit{human covered co-worker}, where the head and torso of the human experimenter were covered (see Fig.~\ref{fig:setup1}).
 
-The experiment for each participant consisted of working in 3 conditions. Each participant was assigned to one of 6 \emph{condition combination} groups, see Table~\ref{groupTable}, each with the robot co-worker condition (main), in addition to two out of five other conditions. The order of the conditions was balanced across the combination groups. This allowed us to compare the behavior of the same participants in each condition in a combination group, with their behavior in the robot co-worker condition.
+In the experiment, all participants worked over 10 trials in each condition and there were 3 conditions per experiment. We had 6 \emph{condition combination} groups, see Table~\ref{groupTable} and each participant was assigned to one of that group. Each participant worked in the robot co-worker condition (as main condition), and in addition to two out of five other remaining conditions. The order of the conditions was balanced across the combination groups. This allowed us to compare the behavior of the same participants in each condition in a combination group, with their behavior in the robot co-worker condition.
 
 
 \begin{table}[hpt]
@@ -73,15 +61,13 @@ The experiment for each participant consisted of working in 3 conditions. Each p
 \end{table}
 
 
-Each condition had 10 trials. The co-worker performed at a constant, pseudo-randomly selected frequency (in the range of 0.16 to 1.1 Hz) in each trial. The pseudo-random nature of the co-worker performance was critical to avoid behavioral drift contamination across trials. The human co-worker was provided with a metronome using earphones like in~\cite{Bisio:PlosOne:2014}, to cue and help maintaining the movement frequency in each trial.
-
-The robot movements in the robot co-worker conditions were a playback of the movements recorded from a previous human volunteer (see subsection~\nameref{HRP2_Traj} for details). We quantified the participant performance in the trials by their half time periods or {\it htp} (the average time between two consecutive alternate touches, measured using motion tracking), and the variance of their press location (measured as a change of mean and standard deviation of their touchscreen presses in the X-Y plane).
+In the robot co-worker conditions, robot movements were a playback of the human recorded movements of a previous human volunteer (see subsection~\nameref{HRP2_Traj} for details). In this study, we quantified the participant performance in the trials by their half time periods or {\it htp} (the average time between two consecutive alternate touches, measured using motion capture system), and the variance of their press location (measured as a change of mean and standard deviation of their touchscreen presses in the \texttt{X}-\texttt{Y} plane).
 
 \subsection{HRP-2Kai movement trajectories} \label{HRP2_Traj}
 
-The biological movements played on HRP-2Kai in robot co-worker and robot covered co-worker conditions were a playback of the human arm movements (Fig.~\ref{fig:trajectories}, blue plot) recorded in a preliminary experiment with three volunteers using the same (Motion Analysis Co.) motion tracking system, while the human movements were cued by an audio metronome. Movements were collected at several frequencies between 0.16 to 1.1Hz. We found the movements of the three volunteers to be statistically similar in the Cartesian velocity profiles (p$>$0.05), and showing similar trend in movement height with movement frequency --trajectory height consistently decreased with increase of movement frequency. We therefore chose to use the movements recorded from one volunteer (a male) in this experiment.
+The biological movements that were played on HRP-2Kai in robot co-worker and robot covered co-worker conditions were a playback of the human arm movements (Fig.~\ref{fig:trajectories}, blue plot). We have already discussed this in detail in the subsection of previous Chapter~\ref{hrpTraj}.
 
-
+ 
 \begin{figure}[hpt]
 		\centering{\includegraphics[width=\columnwidth]{plots/c3-plots/Fig3}}
 	\caption{{\bf HRP-2Kai movement trajectories.} The trajectories played by the robot in robot co-worker, robot covered co-worker, robot non-biol co-worker and robot indus co-worker conditions.}
@@ -89,7 +75,7 @@ The biological movements played on HRP-2Kai in robot co-worker and robot covered
 \end{figure}
 
 
-Well learnt human movements are characterized by a bell-shaped velocity profile. The peak of the bell-shaped profile may be shifted forward in time when precision is required at the reach end (like in our task when the participants required to touch inside a given target region), but the velocity profile is normally characterized by a single peak. Therefore, to develop a `non-biological' movement profile for the robot non-biol co-worker condition, we developed a movement profile with multiple velocity peaks. This profile was developed in position-time (cyan plots in Figs.~\ref{fig:trajectories} and~\ref{fig:trajectories2}) profile using fifth and third order polynomial segments (lift-off, carry, set-down)~\cite{Biagiotti:Springer:2008}. We observed that human volunteers' movements to predominantly be in the Y-Z plane. The piece-wise polynomial trajectory for the robot non-biol co-worker condition was designed over the $y$ (horizontal) and $z$ (vertical) dimensions, while $x$ was always kept constant zero.
+It is well known that human movements can be characterized by a bell-shaped velocity profile~\cite{flash1985coordination}. Generally when the movements are governed goal oriented, (when the end positions of the goal is fixed). In such cases, it is possible to see the peak of the bell-shaped profile to be shifted forward (in the direction of goal target) in time when the precision is required near the end of motion. Similar case is also true in our task where the participants were required to touch inside circles, within a given target region. However the velocity profiles of human movements are normally characterized by a single peak. Therefore, to formulate and design a `non-biological' movement profile for the robot non-biol co-worker condition, which consists of essence from both biological and industrial movements, we developed a a new movement profile with multiple velocity peaks. This movement profile was developed in position-time (cyan plots in Fig.~\ref{fig:trajectories}) profile using segments of fifth and third order polynomials during the lift-off, carry, set-down phases~\cite{Biagiotti:Springer:2008} (see cyan plots in Fig.~\ref{fig:trajectories2}). Again, our observations suggested that human volunteers made movements predominantly in the \texttt{Y}-\texttt{Z} plane. Therefore, this piece-wise polynomial trajectory for the robot non-biol co-worker condition was also designed over the $y$ (horizontal) and $z$ (vertical) dimensions, while $x$ was always kept at constant zero.
 
 
 \begin{figure}[hpt]
@@ -99,14 +85,34 @@ Well learnt human movements are characterized by a bell-shaped velocity profile.
 \end{figure}
 
 
-The industrial trajectory was characterized by a constant velocity phase. Inspired from the industrial manipulators, and keeping in mind our HRP-2Kai joint constraints during fast movements, we improvised the traditionally used industrial trapezoidal velocity profile, with a third order velocity sections in the acceleration and deceleration phase (magenta plots in Figs.~\ref{fig:trajectories} and~\ref{fig:trajectories2}). Again, since our movements were restricted in the Y-Z plane, we designed our smooth trapezoidal trajectory over the $y$ (horizontal) and $z$ (vertical) dimensions, while $x$ is kept constant and zero. The Z elevation ($z_{\max}$) in this trajectory was set to 13~cm when the robot moved from left to right, and 8 cm during the return.
+The industrial trajectory was characterized by a constant velocity phase. Note that this trajectory is same as the trajectory in $R_{\text{nonbiol}}$ condition, which was mentioned in the previous Chapter. We have only changed name of the trajectory to robot indus co-worker (magenta plots in Figs.~\ref{fig:trajectories} and~\ref{fig:trajectories2}), again to avoid confusion with the results of previous Chapter.
+ 
+\clearpage
 
+\section{Data analysis} \label{data_analysis}
 
 \subsection{Variables}
 
-Our analysis is based on the position data from both the participant's and co-worker's stylus markers. To extract out possible behavioral differences between the movements forward and backward, between the touch points, we analyzed behavioral variables across each movement between the red circles on the touchscreen, which we call as \textit{iterations} (such that two iterations make a movement cycle). As participants and co-workers were required to make non-stop continuous movements between touches, we could extract individual iterations of participant's and co-worker's by looking for changes in the direction of $y$-velocity in the recorded motion capture data. In this study, we were interested in the task performance of participants, and therefore we primarily concentrated on the time between the alternate touches in each iteration, which we refer to as the half-time period ({\it htp}) or $\tau$, and the location of their touches on the touchscreen (in the \texttt{X}-\texttt{Y} plane). In addition, we also analyzed various measures of position, velocity and acceleration along the \texttt{Y} (horizontal) and \texttt{Z} (vertical) axes over each iteration. However, these results are out of scope of this study.
+Here again, our analysis is based on the position data of both the participant's and co-worker's stylus markers. 
 
-\section{Data analysis} \label{data_analysis}
+
+Specifically we analyzed the 
+
+The method to tease out the possible available behavioral differences between the forward and return movements between touch points
+ 
+To extract out possible behavioral differences between the movements forward and backward, between the touch points,
+
+we analyzed behavioral variables across each movement between the red circles on the touchscreen, which we call as \textit{iterations} (such that two iterations make a movement cycle).
+
+As participants and co-workers were required to make non-stop continuous movements between touches, we could extract individual iterations of participant's and co-worker's by looking for changes in the direction of $y$-velocity in the recorded motion capture data.
+
+In this study, we were interested in the task performance of participants, and therefore we primarily concentrated on the time between the alternate touches in each iteration, which we referred as the half-time period ({\it htp}) or $\tau$, and the location of their touches on the touchscreen (in the \texttt{X}-\texttt{Y} plane).
+
+
+In addition, we have already analyzed and discussed the various measures of position, velocity and acceleration along the \texttt{Y} (horizontal) and \texttt{Z} (vertical) axes over each iteration in the Chapter~\ref{distinct motor contagion}.
+
+
+
 
 We quantified the motor contagion in a participant' {\it htp} (the average time between two consecutive alternate touches) by analyzing the change of participant's {\it htp} between the together period and alone-period (see Fig.~\ref{fig:trialprotocol2}) in a trial ($\tau_p^t(i)-\tau_p^a(i)$), relative to the {\it htp} of the co-worker behavior in the same trial ($\tau_c (i)-Av(\tau_p^a)$), where $Av(\tau_p^a)$ represents the average undisturbed {\it htp} by a participants across his/her participant-alone periods. This data was regressed with either a first or second order regression model that was chosen based on the Akaike Information Criteria (AIC)~\cite{Akaike:ISIT:1973} and by using MATLAB's {\tt fitlm} function for each participant. The tangent slope at the minimum data abscissa value ($\min[\tau_c(i)-Av(\tau_p^a)]$) was collected across participants, checked for normality using the Shapiro-Wilk test and then analyzed for difference from zero using a one sample T-test (in case the distribution was normal) or a Signed Rank test. The fitting of {\it htp} in one sample participant from each of the six reported conditions are shown in Fig.~\ref{fig:allfit}, and the plot of the collection of slopes are in shown in Fig.~\ref{fig:slope_allcond}. A similar procedure was used to analyze the change in a participant's average X press location, average Y press location, standard deviation of X press location, and standard deviation of Y press locations relative to the {\it htp} of the co-worker behavior in the same trial ($\tau_c(i)-Av(\tau_p^a)$). The slopes from these analysis are shown in Fig.~\ref{fig:variance}.
 
@@ -203,6 +209,7 @@ As reported earlier, every participant in our study participated in three condit
 
 % Results and Discussion can be combined.
 \clearpage
+
 \section{Results}
 
 \subsection{Robot behavior influences human movement frequency}
@@ -249,6 +256,7 @@ We received answers from 23 participants on our robot exposure questionnaire. Ou
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
+
 \section{Discussion}
 In summary, primarily, we observed that the performance frequencies of human participants were influenced by the presence of a humanoid robot co-worker (or a human co-worker). We observed that participants not only become slower with a slower co-worker, but also faster with faster co-workers. Here we were interested to see the change of participant behavior `relative' to the robot behavior. Hence we looked at a ratio, hence to quantify the motor contagion, we analyzed change in participant's \textit{htp} between the together period and alone-period in a trial and relative to the {\it htp} of the co-worker behavior in the same trial. When the numerator term ($\tau_p^t(i)-\tau_p^a(i)$) is negative that means participants get faster from their initial participant-alone period \textit{htp} (movement speed) and vice versa. Note that the subtraction in the denominator (of $Av(\tau_p^a)$ ) is a constant that only shifts the curve and does not effect the slope.  
 

@@ -8,17 +8,23 @@
 
 Several studies in the past have demonstrated that just by observing an action performed by human or robot can affect the movements of an observing human; an effect widely known as motor contagion. Although, these previous studies have either analyzed the motor contagions induced during (which we call \emph{on-line} contagions), or induced after (\emph{off-line} contagions) the observation of the robot, but never together. Therefore, it is still unclear whether and how these two motor contagions differ from each other. We designed a paradigm inspired by the industrial co-worker setting and examined the differences between the induced on-line and \textit{off-line} contagions in participants by the observation of the same movements performed by both human and humanoid robot co-worker. Our findings suggest that on-line contagions affect participant's movement frequency while the \textit{off-line} contagions mainly affect their movement velocity. Moreover, on-line contagions were equally effective with either a human or a humanoid robot co-worker, and the \textit{off-line} contagions were notable after observing another human. Finally these results suggest that the actions by a humanoid robot co-worker can induce distinct effects on human behaviors, during and after observation.
 
-\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                              %
 %		                           M E T H O D S                               %
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \clearpage
+
 \section{Materials and methods}
+
+\subsection{Participants}
+
+In total 45 healthy adults participated in our study. 3 participants (2 males and a female of 3 nationalities, 29.6$\pm$5, mean$\pm$SD, aged 25-35) worked as volunteer models for capturing the human arm motion data. A total of 42 participants (22 females, 20 males of 11 nationalities, age between 20-39, mean$\pm$SD, 25.9$\pm$4.35) participated as `co-worker' in the main study. All human participants had normal or corrected to normal vision. However according to the {\it Edinburgh Handedness Inventory}~\cite{robinson2013edinburgh}, three of them were left-handed. We had received prior approval from the local ethics committee at the National Institute of Advanced Industrial Science and Technology (AIST) in Tsukuba, Japan to conduct these experiments.
+
+Before beginning the experiment, all participants were carefully instructed and informed regarding the experiment and task procedure. All of the participants agreed and gave their written consent to participate in this study. However, participants were unaware of the motives of the experiment as they were not told what aspect of their behavior we will be analyzing later. This na\"ive nature of the participants were crucial as to avoid biasing in the results, since we were mainly interested in the implicit effects of motor contagions. Each participant was awarded with 2021 Japanese Yen for their valuable contribution.
+
+Participants for the study were recruited through an advertisement via a local event forum, Facebook page of our experiment and via word of mouth in the Tsukuba University, Tsukuba, Japan. There were no restrictions, apart from participants needed to be at least 18 years old to participate in this experiment.
 
 
 \begin{figure}[hb]
@@ -27,24 +33,21 @@ Several studies in the past have demonstrated that just by observing an action p
 	\label{fig:setup}
 \end{figure}
 
-\begin{figure*}[t]
+
+\subsection{Setup}
+
+The experimental setup is shown in Fig.~\ref{fig:setup}. Initially participants were requested to sit comfortably on a chair in front of a large table. While the `co-worker' was sitting on the other side of the same table. The `co-worker' was either a humanoid robot or a human experimenter. A touchscreen was placed horizontally underneath the table such that both the co-worker and the participant were presented with a unique pair of red circles on their respective side of the table. Each circle for participants had a diameter $\oslash$5cm and the circles for co-worker had a diameter $\oslash$9cm, also each pair of circles were at a distance of 50cm from each other. We had enclosed the experimental setup by movable panels and covered the panel behind the co-worker with a dark grey curtain. 
+
+We placed ten passive reflective markers on the hands, arms, elbows and shoulders of the participants and co-worker. We used six kestrel infra-red cameras (\texttt{Motion Analysis Co.,}) at 200Hz to track the position of these markers.
+
+A biped humanoid robot HRP-2Kai (154cm tall, 58kg, 32DOF) was used as robot co-worker~\cite{Kaneko:RAS_ICHR:2015}. A male, trained experimenter (age: 37) was assigned to act as the human co-worker. During the experiment both co-workers used their right hand.
+
+
+\begin{figure*}[phtb]
 	\includegraphics[width=\textwidth,height=6cm]{plots/c2-plots/trialprotocol}
 	\caption{A) Trial protocol: The participants worked in repeated trials with either a robot or human co-worker (the figure shows the trial with a human co-worker). Each trial consisted of a period when the participant worked alone and co-worker relaxed (participant-alone period), both worked together (together period), and the co-worker worked alone (co-worker-alone period). The notation of the kinematic and time variables (represented in general by \boldmath{$\eta$}) in each period are shown in the figure. B) The trajectories made by the robot co-worker in the $\textit{R}_{\text{biol}}$ and $\textit{R}_{\text{nonbiol}}$ conditions. C) The time trajectories followed by the robot co-worker in the $\textit{R}_{\text{nonbiol}}$ condition in the Y and Z dimension, and the via-points (blue circles) used to generate the trajectory.}
 	\label{fig:trial}
 \end{figure*}
-
-
-\subsection{Participants}
-
-A total of 42 participants (22 females, 20 males of 11 nationalities, age between 20-39, mean$\pm$SD, 25.9$\pm$4.35) participated in our study. All human participants had normal or corrected to normal vision. However according to the {\it Edinburgh Handedness Inventory}~\cite{robinson2013edinburgh}, two of them were left-handed. We had received prior approval from the local ethics committee at the National Institute of Advanced Industrial Science and Technology (AIST) in Tsukuba, Japan to conduct these experiments. All of the participants agreed and gave their written consent to participate in this study prior to the experiment. The participants were na{\"i}ve to the goal and motives of this study. 
-
-\subsection{Setup}
-
-The experimental setup is shown in Fig.~\ref{fig:setup}. Initially participants were requested to sit comfortably on a chair in front of a large table. While the `co-worker' was sitting on the other side of the same table. The `co-worker' was either a humanoid robot or a human experimenter. A touchscreen was placed horizontally underneath the table such that both the co-worker and the participant were presented with a unique pair of red circles on their respective side of the table. Each circle for participants had a diameter $\oslash$5cm and the circles for co-worker had a diameter $\oslash$9cm, also each pair of circles were at a distance of 50cm from each other. 
-
-We placed ten passive reflective markers on the hands, arms, elbows and shoulders of the participants and co-worker. We used six kestrel infra-red cameras (\texttt{Motion Analysis Co.,}) at 200Hz to track the position of these markers.
-
-HRP-2Kai (154cm tall, 58kg, 32DOF) was used as humanoid robot co-worker~\cite{Kaneko:RAS_ICHR:2015}. A male, trained experimenter (age: 37) was assigned to act as the human co-worker. During the experiment both co-workers used their right hand.
 
 \subsection{Experimental task and conditions}
 
@@ -64,8 +67,7 @@ The participant worked in a series of 10 trials in each condition. The co-worker
 
 We played back recorded human hand movement as the arm movements of HRP-2Kai in the $R_{\text{biol}}$ condition. In a preliminary experiment, we recorded the hand movements of three volunteers (a female and 2 males). {\it Motion Analysis Co.,} motion tracking system was used to record their hand movements, while at the same time, volunteers were cued by an audio metronome to help maintain their hand movement frequency. These movements were acquired at several frequencies between 0.16 to 1.1Hz. Interestingly these three volunteers movements were found statistically similar in the $x$, $y$ and $z$ velocity profiles ($p > 0.05$), and showed similar fashion in movement height with movement frequency, \texttt{i.e.}, trajectory height consistently decreased with increase of movement frequency. Therefore in this experiment, we chose to only use the recorded movements from one of the male volunteer. In order to maintain the trajectory shape and also the characteristic variance of human trajectories, we purposely decided that it is better than taking an average of trajectories by the three volunteers. 
 
-In our task, the human movements were distinguished by smooth velocity changes but did not exhibit any direction changes (via points). Therefore for the $R_{\text{nonbiol}}$ condition, we designed a via-points based robot trajectory. Inspired by the industrial manipulators trajectories of constant velocity phase and trapezoidal shape during {\it pick-n-place} task, we re-designed a trapezoidal trajectory for this condition. Our task required the humans to make movements mainly in the YZ plane, hence we also designed the robot arm trajectory in the YZ plane. Using two temporal via-points~\cite{Biagiotti:Springer:2008}, we designed a smooth piece-wise polynomial trajectory in position-time using the third order polynomial segments. The boundary conditions restricted the slope (velocity) to zero at the start, the end and the via-points (see Fig.~\ref{fig:trial}C). The initial ($y_0$) and final ($y_f$) positions in \texttt{Y} were set to zero and 50cm respectively, as per the movements required by the participants. To give a non-biological behavior, we set the maximum \texttt{Z} height ($z_{\max}$) for the robot in the $R_{\text{nonbiol}}$ condition to 13cm one way and 8cm the other. 
-
+In our task, the human movements were distinguished by smooth velocity changes but did not exhibit any direction changes (via points). Therefore for the $R_{\text{nonbiol}}$ condition, we designed a via-points based robot trajectory. Inspired by the industrial manipulators trajectories of constant velocity phase and trapezoidal shape during {\it pick-n-place} task and keeping in mind our HRP-2Kai joint constraints during fast movements, we redesigned a trapezoidal shape trajectory for this condition with smooth curves between the acceleration and deceleration transition phases. Our task required the humans to make movements mainly in the YZ plane, hence we also designed the robot arm trajectory in the YZ plane. Using two temporal via-points~\cite{Biagiotti:Springer:2008}, we designed a smooth piece-wise polynomial trajectory in position-time using the third order polynomial segments. The boundary conditions restricted the slope (velocity) to zero at the start, the end and the via-points (see Fig.~\ref{fig:trial}C). The initial ($y_0$) and final ($y_f$) positions in \texttt{Y} were set to zero and 50cm respectively, as per the movements required by the participants. To give a non-biological behavior, we set the maximum \texttt{Z} height ($z_{\max}$) for the robot in the $R_{\text{nonbiol}}$ condition to 13cm one way and 8cm the other. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,11 +77,12 @@ In our task, the human movements were distinguished by smooth velocity changes b
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
+
 \section{Data analysis}
 
 \subsection{Variables}
 
-Our analysis is based on the position data of the markers placed on the participant's and co-worker's stylus. In order to bring out the possible behavioral differences between the movements towards and back between the touches on the touchscreen, we analyzed behavioral variables across each movement between the red circles on the touchscreen, which we call as \textit{iterations} (such that two consecutive iterations constituted a movement cycle). The participants and co-workers made non-stop continuous movements between the touches, and hence we could extract individual iterations by a participant or co-worker by examining the directional changes of their $y$-velocity in the recorded motion capture data. We focused our efforts on the kinematic variables along the \texttt{Y} and \texttt{Z} axes inside each iteration and analyzed the maximum movement length ($y_{\max}$), maximum movement height ($z_{\max}$), maximum absolute velocities ($\max|\dot{y}|$, $\max|\dot{z}|$), mean absolute velocities ($|\overline{\dot{y}}|$, $|\overline{\dot{z}}|$), maximum accelerations ($\max(\ddot{y})$, $\max(\ddot{z})$), and minimum accelerations ($\min(\ddot{y})$, $\min(\ddot{z})$), by the participants and co-workers to understand whether and how the co-worker behavior were affected by the \textit{on-line} and \textit{off-line} contagions. In addition to the kinematic variables, we also analyzed the time between the touches in each iteration, which we will refer to as the half-time period or ({\it htp}).
+Our analysis is based on the position data of the markers placed on the participant's and co-worker's stylus. In order to bring out the possible behavioral differences between the movements towards and back between the touches on the touchscreen, we analyzed behavioral variables across each movement between the red circles on the touchscreen, which we call as \textit{iterations} (such that two consecutive iterations constituted a movement cycle). The participants and co-workers made non-stop continuous movements between the touches, and hence we could extract individual iterations by a participant or co-worker by examining the directional changes of their $y$-velocity in the recorded motion capture data. In this Chapter, we focused our efforts on the kinematic variables along the \texttt{Y} and \texttt{Z} axes inside each iteration and analyzed the maximum movement length ($y_{\max}$), maximum movement height ($z_{\max}$), maximum absolute velocities ($\max|\dot{y}|$, $\max|\dot{z}|$), mean absolute velocities ($|\overline{\dot{y}}|$, $|\overline{\dot{z}}|$), maximum accelerations ($\max(\ddot{y})$, $\max(\ddot{z})$), and minimum accelerations ($\min(\ddot{y})$, $\min(\ddot{z})$), by the participants and co-workers to understand whether and how the co-worker behavior were affected by the \textit{on-line} and \textit{off-line} contagions. In addition to the kinematic variables, we also analyzed the time between the touches in each iteration, which we will refer to as the half-time period or ({\it htp}).
 
 \subsection{Participant sample size}
 
@@ -124,6 +127,7 @@ Moreover, during the \textit{on-line} contagions, we also investigated if moveme
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
+
 \section{Results}
 
 \subsection{\textit{Off-line} contagions affect mean velocities but not htps}
@@ -170,6 +174,7 @@ Our data analysis and results stipulate no difference in the $|\overline{\dot{y}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
+
 \section{Discussion}
 
 %\st{In the Subsection~\nameref{motor contagion} of Chapter~\ref{sota}}

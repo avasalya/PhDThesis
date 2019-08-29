@@ -118,7 +118,7 @@ Just like during human to human object handover, another thing that we incorpora
 \clearpage
 
 \section{Experimental setup}
-We chose our AIST-CNRS-Joint Robotics Laboratory in Tsukuba Japan as the environment to perform our handover routine between human and humanoid robot co-worker. Our experiment setup is shown in Fig.~\ref{fig:halfsit}. Initially we started by having human (participant) and robot co-worker standing comfortably in front of each other at a distance of 1.2 meters from each other. We have always started handover \textit{cycle} by handing over object from human to robot co-worker. The object that needs to be handover was initially either presented to human participant by the experimenter or were kept on the table next to participant, ready to be grasped by him/her. We assume that human participant is ready with the intention to handover object to robot if he/she is holding the object in his/her hand. The whole setup was partially enclosed by movable panels as we didn't wish to perform this experiment under total isolation.
+We chose our AIST-CNRS-Joint Robotics Laboratory in Tsukuba Japan as the environment to perform our handover routine between human and humanoid robot co-worker. Our experiment setup is shown in (Fig.~\ref{fig:halfsit}). Initially we started by having human (participant) and robot co-worker standing comfortably in front of each other at a distance of 1.2 meters from each other. We have always started handover \textit{cycle} by handing over object from human to robot co-worker. The object that needs to be handover was initially either presented to human participant by the experimenter or were kept on the table next to participant, ready to be grasped by him/her. We assume that human participant is ready with the intention to handover object to robot if he/she is holding the object in his/her hand. The whole setup was partially enclosed by movable panels as we didn't wish to perform this experiment under total isolation.
 
 
 \subsection{Robot}
@@ -130,7 +130,7 @@ We used motion capture (in short \textit{mocap}) system manufactured by ({\it Mo
 
 \subsection{Handover object(s)}
 
-As shown in Fig.~\ref{fig:objects}, we used three easily distinguishable objects during the single hand handover between the human and the humanoid robot co-worker. We chose these objects because they have different physical structure and mass. These object's mass ranges from $0.22$ kg to $1.1$ kg.
+As shown in (Fig.~\ref{fig:objects}), we used three easily distinguishable objects during the single hand handover between the human and the humanoid robot co-worker. We chose these objects because they have different physical structure and mass. These object's mass ranges from $0.22$ kg to $1.1$ kg.
 
 
 \begin{figure}[htpb]
@@ -281,7 +281,7 @@ Let $\mathcal{M}$ (Mocap) and $\mathcal{R}$ (Robot) be the two fixed frames with
 
 \section{Human hand orientation model}\label{hand_orientation}
 
-We propose a simple solution to grasp the object either considering the relative orientation of the human hand or the object itself. To get the orientation of human hand, we placed a rigid body with a shape similar to an alphabet $L$ on wrist of human hand(s) as shown in Fig~\ref{fig:lshapes}. The three mocap markers $A, B$ and $C$ make up the three vertices of $\mathcal{L}$ shape body, such that during object handover scenario, vector $\vec{AB}^{\,}$ along the longer side and vector $\vec{BC}^{\,}$ along the shorter side are set to be parallel with the $X$-axis and $Y$-axis of the mocap frame $\mathcal{M}$ respectively. The vectors $\vec{AB}^{\,}$ and $\vec{BC}^{\,}$ are orthogonal to each other. For simplicity, let $\hat{x}$ be the unit vector, which is parallel and along the $X$-axis and likewise, unit vector $\hat{y}$ is parallel and along the $Y$-axis of the mocap frame $\mathcal{M}$, such that
+We propose a simple solution to grasp the object either considering the relative orientation of the human hand or the object itself. To get the orientation of human hand, we placed a rigid body with a shape similar to an alphabet $L$ on wrist of human hand(s) as shown in (Fig~\ref{fig:lshapes}). The three mocap markers $A, B$ and $C$ make up the three vertices of $\mathcal{L}$ shape body, such that during object handover scenario, vector $\vec{AB}^{\,}$ along the longer side and vector $\vec{BC}^{\,}$ along the shorter side are set to be parallel with the $X$-axis and $Y$-axis of the mocap frame $\mathcal{M}$ respectively. The vectors $\vec{AB}^{\,}$ and $\vec{BC}^{\,}$ are orthogonal to each other. For simplicity, let $\hat{x}$ be the unit vector, which is parallel and along the $X$-axis and likewise, unit vector $\hat{y}$ is parallel and along the $Y$-axis of the mocap frame $\mathcal{M}$, such that
 
 \begin{figure}[ht]
 	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/lshpe-lt-rt}}
@@ -326,7 +326,7 @@ To get the orientation of human hand we used these unit vectors $\hat{x}, \hat{y
 
 In case of handover, the estimation of handover time as well as the exact position of handover must be realized early in order to bring the end-effector at appropriate location and approximately at same time ---to be ready to receive the object. Algorithm (\ref{positionalgo}) explains the procedure of predicting human hand position and estimating handover location. Inputs to the prediction model are robot left end-effector pose $\mathcal{}^{ef}{X}_R$ (eq~\ref{X_R_ef}) in the robot frame and human hand mocap markers positions ${}^{h}\mathcal{P}_M$ (eq~\ref{X_M_h}) in the mocap frame of reference.
 
-Note that for simplicity, we formulated the problem with a common origin {\it O}, such that frame $\mathcal R \equiv M$, also from onwards by ${}^{h}\mathcal{P}_M$ we meant position of the point $A$ on the $\mathcal{L}$ shape body as the human hand marker position as shown in Fig~\ref{fig:lshapes}.
+Note that for simplicity, we formulated the problem with a common origin {\it O}, such that frame $\mathcal R \equiv M$, also from onwards by ${}^{h}\mathcal{P}_M$ we meant position of the point $A$ on the $\mathcal{L}$ shape body as the human hand marker position as shown in (Fig~\ref{fig:lshapes}).
 
 
 The prediction model behavior can be tuned by two initially required constant time periods, $t_{observe}$ ---a predefined time period required to observe the motion of human hand and $t_{predict}$ ---required to predict the human hand position in advance.
@@ -345,7 +345,7 @@ where, $dt$ is controller run-time, in our case it is 5ms, see Section~\nameref{
 \end{equation}
 
 
-The prediction model then updates and converges itself over time and in doing so update the robot end-effector position towards the human hand, upon condition if updated position is within the end-effector's reachable workspace. \sout{see Fig XXX.}
+The prediction model then updates and converges itself over time and in doing so update the robot end-effector position towards the human hand, upon condition if updated position is within the end-effector's reachable workspace. \sout{see (Fig XXX.)}
 
 Using equations (\ref{rotationmatrix}) and (\ref{predict}) we get the orientation and translation components of ${}^{h}{X}_M$ in (\ref{X_M_h}), and recalling equations (\ref{X_ef_h1}) and (\ref{X_ef_h2}), the updated translation component of pl\"ucker transformation ${}^{h}{X}_{ef}$, which provides the predicted position of human hand with respect to robot end-effector in the robot coordinate system is given by (\ref{X_ef_ht}), the relative orientation component of ${}^{h}{X}_{ef}$ is discussed in next Section~\nameref{relOri}.
 
@@ -432,12 +432,12 @@ The translation component of ${}^{ef}{X}_R $ in the equation (\ref{X_R_ef}) is u
 	\label{fig:robot_lt_hand_2layers}
 \end{figure} 
 
-Since our robot HRP-2Kai lacks conventional anthropomorphic hands, but instead it has gripper alike hands~\cite{kaneko2015humanoid, stasse2019overview} mainly to increase the manipulability. For relative orientation model to work, we were required to know the fixed initial orientation of the robot end-effector, in which object handover is feasible between human and robot HRP-2Kai, irrespective of the human hand orientation, therefore consider a possible  scenario where the robot end-effector orientation is fixed throughout the handover cycle (transfer of object from human to robot and return to human), irrespective of the condition where robot is a giver or receiver. Let ${{}^{efInit}\mathcal{O}_R}$ denote the initial and fixed orientation of the robot end-effector in the robot frame $\mathcal{R}$ during such human robot object handover scenarios as shown in Fig~\ref{fig:robot_lt_hand_obj}, and Fig~\ref{fig:robot_lt_hand_2layers}, where, ${{}^{efInit}\mathcal{O}_R}$ $\subset$ ${{}^{ef}\mathcal{O}_R}$.
+Since our robot HRP-2Kai lacks conventional anthropomorphic hands, but instead it has gripper alike hands~\cite{kaneko2015humanoid, stasse2019overview} mainly to increase the manipulability. For relative orientation model to work, we were required to know the fixed initial orientation of the robot end-effector, in which object handover is feasible between human and robot HRP-2Kai, irrespective of the human hand orientation, therefore consider a possible  scenario where the robot end-effector orientation is fixed throughout the handover cycle (transfer of object from human to robot and return to human), irrespective of the condition where robot is a giver or receiver. Let ${{}^{efInit}\mathcal{O}_R}$ denote the initial and fixed orientation of the robot end-effector in the robot frame $\mathcal{R}$ during such human robot object handover scenarios as shown in (Fig~\ref{fig:robot_lt_hand_obj}, and Fig~\ref{fig:robot_lt_hand_2layers}), where, ${{}^{efInit}\mathcal{O}_R}$ $\subset$ ${{}^{ef}\mathcal{O}_R}$.
 
 
 
 
-In order to correctly transform desired human hand orientation into robot end-effector frame, we further utilize the equation (\ref{X_ef_ht}). We take advantage of the QP's \texttt{Orientation} Task~\cite{murray2017mathematical, ladder-HRP-2Kai} (see Subsection~\nameref{QPTasks}) and compute the task error $Err$ between \textit{current} human hand orientation and \textit{fixed} robot end-effector orientation, the resulting orientation from the \texttt{Orientation} Task is the desired robot end-effector orientation relative to the human hand orientation (see Fig~\ref{fig:robot_lt_orientations} for few of many possible orientations), therefore using fixed orientation component  ${{}^{efInit}\mathcal{O}_R}$, of equation (\ref{X_R_ef}) and current human hand orientation ${}^{h}\mathcal{O}_M$ from equation (\ref{rotationmatrix}) derived in Section~\nameref{hand_orientation}, we further modify equation (\ref{X_ef_ht}) to get the desired orientation $ {}^{h}\mathcal{O}_{ef} $ of robot end-effector to handover the object.
+In order to correctly transform desired human hand orientation into robot end-effector frame, we further utilize the equation (\ref{X_ef_ht}). We take advantage of the QP's \texttt{Orientation} Task~\cite{murray2017mathematical, ladder-HRP-2Kai} (see Subsection~\nameref{QPTasks}) and compute the task error $Err$ between \textit{current} human hand orientation and \textit{fixed} robot end-effector orientation, the resulting orientation from the \texttt{Orientation} Task is the desired robot end-effector orientation relative to the human hand orientation (see (Fig~\ref{fig:robot_lt_orientations}) for few of many possible orientations), therefore using fixed orientation component  ${{}^{efInit}\mathcal{O}_R}$, of equation (\ref{X_R_ef}) and current human hand orientation ${}^{h}\mathcal{O}_M$ from equation (\ref{rotationmatrix}) derived in Section~\nameref{hand_orientation}, we further modify equation (\ref{X_ef_ht}) to get the desired orientation $ {}^{h}\mathcal{O}_{ef} $ of robot end-effector to handover the object.
 
 \begin{figure}[ht]
 	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/robot_lt_orientations}}
@@ -476,7 +476,7 @@ We had to find the equilibrium for robot to know the appropriate \textit{timing}
 HRP-2Kai is equipped with 6-axis \textit{wrist} force sensor on both hands, capable of precisely sensing interaction forces and torques with the environment along $x, y, z$ axes of the sensor local coordinate frame (let's call it $s$). We designed a model of interaction forces which enable the robot end-effector to interact with the object independent of the knowledge of object's mass in advance.
 
 \subsection{Method 1: mocap markers}
-Without actual haptic sensor feedback information from the robot end-effector, we had to rely on the wrist force sensor and mocap markers data of the robot end-effector(see Fig.~\ref{fig:markerEf}), therefore we used mocap makers in conjunction with the force feedback from the wrist sensor of HRP-2Kai robot to know whether the object is within its vicinity to grasp or not. Mocap makers on the robot end-effector were crucial to know the relative position of object from the human hand holding it and the humanoid robot end-effector(s). We placed four passive infra-red markers on the robot end-effector(s) in rectangular shape configuration as shown in Fig.~\ref{fig:markerEf2}. Two of the markers were placed parallel and along the local $x$-axis of force sensor on the wrist of robot end-effector and rest two markers were placed on the gripper tips as shown in Fig.~\ref{fig:markerEf}.
+Without actual haptic sensor feedback information from the robot end-effector, we had to rely on the wrist force sensor and mocap markers data of the robot end-effector (see Fig.~\ref{fig:markerEf}), therefore we used mocap makers in conjunction with the force feedback from the wrist sensor of HRP-2Kai robot to know whether the object is within its vicinity to grasp or not. Mocap makers on the robot end-effector were crucial to know the relative position of object from the human hand holding it and the humanoid robot end-effector(s). We placed four passive infra-red markers on the robot end-effector(s) in rectangular shape configuration as shown in (Fig.~\ref{fig:markerEf2}). Two of the markers were placed parallel and along the local $x$-axis of force sensor on the wrist of robot end-effector and rest two markers were placed on the gripper tips as shown in (Fig.~\ref{fig:markerEf}).
 
 \begin{figure}[ht]
 	\centering{\includegraphics[width=.5\linewidth]{plots/c4-plots/markerEf.jpg}}
@@ -485,7 +485,7 @@ Without actual haptic sensor feedback information from the robot end-effector, w
 \end{figure} 
 
 
-Let \{${}^{wa}\vec P, {}^{wb}\vec P, {}^{ga}\vec P, {}^{gb}\vec P$\} $\in \mathbb{R}^{3}$ be the four position vectors of the mocap markers that are placed on the robot end-effector wrist and gripper tips respectively, also let ${}^{obj}\vec P\in \mathbb{R}^{3}$ be the position vector of mocap marker that placed on the object as shown in the Figures~\ref{fig:robot_lt_hand_obj} and~\ref{fig:robot_lt_orientations}. To get the relative position of object and human hand with respect to robot end-effector, assuming human has the object and is ready with the intent to handover the object. We utilized basic linear algebra and vector products~\cite{brand1947vector, crowe1994history, artin2016geometric} to get the area of triangles $\triangle{{}^{wa}P {}^{wb}P {}^{ga}P}$, $\triangle{{}^{wa}P {}^{wb}P {}^{gb}P}$ and $\triangle{{}^{wa}P {}^{wb}P {}^{obj}P}$ using equation (\ref{area general}) such that upon the satisfaction of following conditions in equation (\ref{area bool}) would give us the relative position of object. Basically we were interested in the output of function $f({}^{obj}\vec{P})$, positive output means that object is within the graspable reach of robot end-effector and that the robot now is ready to close the gripper.
+Let \{${}^{wa}\vec P, {}^{wb}\vec P, {}^{ga}\vec P, {}^{gb}\vec P$\} $\in \mathbb{R}^{3}$ be the four position vectors of the mocap markers that are placed on the robot end-effector wrist and gripper tips respectively, also let ${}^{obj}\vec P\in \mathbb{R}^{3}$ be the position vector of mocap marker that placed on the object as shown in the (Fig.~\ref{fig:robot_lt_hand_obj} and Fig.~\ref{fig:robot_lt_orientations}). To get the relative position of object and human hand with respect to robot end-effector, assuming human has the object and is ready with the intent to handover the object. We utilized basic linear algebra and vector products~\cite{brand1947vector, crowe1994history, artin2016geometric} to get the area of triangles $\triangle{{}^{wa}P {}^{wb}P {}^{ga}P}$, $\triangle{{}^{wa}P {}^{wb}P {}^{gb}P}$ and $\triangle{{}^{wa}P {}^{wb}P {}^{obj}P}$ using equation (\ref{area general}) such that upon the satisfaction of following conditions in equation (\ref{area bool}) would give us the relative position of object. Basically we were interested in the output of function $f({}^{obj}\vec{P})$, positive output means that object is within the graspable reach of robot end-effector and that the robot now is ready to close the gripper.
 
 % https://math.stackexchange.com/questions/738236/how-to-calculate-the-area-of-a-triangle-abc-when-given-three-position-vectors-az
 
@@ -565,7 +565,7 @@ where, ${}^{surf}X_{s}^{*}$ is the transformation matrix for transformation of f
 	\label{fig:h-to-r}
 \end{figure}
 
-The whole handover routine is a continuous process but for clarity we have divided it into several transition steps of Finite State Machine (FSM)~\cite{johnson1968automatic}, also see Fig.~\ref{fig:fsm} for graphical implementation and Algorithm (\ref{interaction forces}) as well, the transitions between states are set to be continuous upon the success of previous transition. In order to understand the interaction forces model, let $\mathcal{\vec{F}}\in \mathbb{R}^3$ denote the current \textit{gravity-free} force sensor reading in the robot frame $\mathcal{R}$. During human to robot handover cycle when human holds the object (see Fig.~\ref{fig:h-to-r}), in such a situation due to any acceleration of the robot end-effector while approaching towards the object, a wrist force sensor would only read inertial forces~\cite{spong2008robot}, which we termed ${}^{zero}\vec{\mathcal{F}}$ as force sensor offset reading (see equation~\ref{Fzero}). Let ${}^{obj}\overline{\mathcal{F}}\in \mathbb{R}^3$ be the average of contact forces between the end-effector (gripper) and the environment (object) during the resting (${}^{ef}v=0$) period of robot end-effector along the $xyz$ axes and let ${}^{inert}\vec{\mathcal{F}}$ be the inertial force acting on the object due to the acceleration (lets call it ${}^{ef}a$) of robot end-effector when moving towards the predicted pose of human hand during the 2$^{nd}$ cycle of handover as shown in Fig.~\ref{fig:r-to-h}. Let ${}^{pull}\vec{\mathcal{F}}$ be the current \textit{minimum} interaction force exerted on the object and sensed by the robot wrist force sensor while retreating the object during robot to human handover cycle and let ${}^{old}T$, ${}^{new}T$ $\in \mathbb{R}^3$ be the respective initial default hand-tuned and updated force thresholds. We now explain each state of FSM as shown in Fig.~\ref{fig:fsm}.
+The whole handover routine is a continuous process but for clarity we have divided it into several transition steps of Finite State Machine (FSM)~\cite{johnson1968automatic}, also (see Fig.~\ref{fig:fsm}) for graphical implementation and Algorithm (\ref{interaction forces}) as well, the transitions between states are set to be continuous upon the success of previous transition. In order to understand the interaction forces model, let $\mathcal{\vec{F}}\in \mathbb{R}^3$ denote the current \textit{gravity-free} force sensor reading in the robot frame $\mathcal{R}$. During human to robot handover cycle when human holds the object (see Fig.~\ref{fig:h-to-r}), in such a situation due to any acceleration of the robot end-effector while approaching towards the object, a wrist force sensor would only read inertial forces~\cite{spong2008robot}, which we termed ${}^{zero}\vec{\mathcal{F}}$ as force sensor offset reading (see equation~\ref{Fzero}). Let ${}^{obj}\overline{\mathcal{F}}\in \mathbb{R}^3$ be the average of contact forces between the end-effector (gripper) and the environment (object) during the resting (${}^{ef}v=0$) period of robot end-effector along the $xyz$ axes and let ${}^{inert}\vec{\mathcal{F}}$ be the inertial force acting on the object due to the acceleration (lets call it ${}^{ef}a$) of robot end-effector when moving towards the predicted pose of human hand during the 2$^{nd}$ cycle of handover as shown in (Fig.~\ref{fig:r-to-h}). Let ${}^{pull}\vec{\mathcal{F}}$ be the current \textit{minimum} interaction force exerted on the object and sensed by the robot wrist force sensor while retreating the object during robot to human handover cycle and let ${}^{old}T$, ${}^{new}T$ $\in \mathbb{R}^3$ be the respective initial default hand-tuned and updated force thresholds. We now explain each state of FSM as shown in (Fig.~\ref{fig:fsm}).
 
 %\footnote{\label{appendixC} To get more information on how we transformed force sensor local frame $s$ into robot world frame $\mathcal{R}$ and without gravity free reading please see Appendix~\ref{handover appendix}.}
 
@@ -650,7 +650,7 @@ The whole handover routine is a continuous process but for clarity we have divid
         {}^{close}\vec{\mathcal{F}} = \vert{\vec{\mathcal{F}}}
         \end{equation}
     
-    Robot closes gripper, presumably object is grasped as well. However it is easy to check if the object is really grasped by robot or if its a false close. It is safe to say that its a false close if output of equation (\ref{area bool}) is $0$, along with the condition $\norm{{}^{zero}\vec{\mathcal{F}}-{}^{close}\vec{\mathcal{F}}} \simeq{0}$, since these are same measured force sensor offsets. Therefore, in such scenario next transition would be \textbf{t6} to open gripper and repeat, otherwise \textbf{t7}, as shown in Fig.~\ref{fig:fsm}.
+    Robot closes gripper, presumably object is grasped as well. However it is easy to check if the object is really grasped by robot or if its a false close. It is safe to say that its a false close if output of equation (\ref{area bool}) is $0$, along with the condition $\norm{{}^{zero}\vec{\mathcal{F}}-{}^{close}\vec{\mathcal{F}}} \simeq{0}$, since these are same measured force sensor offsets. Therefore, in such scenario next transition would be \textbf{t6} to open gripper and repeat, otherwise \textbf{t7}, as shown in (Fig.~\ref{fig:fsm}).
     
     \item Open Gripper, due to false close.
     
@@ -803,7 +803,7 @@ As mentioned earlier in~\nameref{handover routine}, up till now we have discusse
 		\path [line] (rr) edge  node[above, kant]{} (hr);
 
 	\end{tikzpicture}
-	\caption{Possible handover scenarios between human humanoid robot.}
+	\caption{Possible handover scenarios between human and humanoid robot.}
 	\label{fig:handover scenarios}
 \end{figure}
 
@@ -812,7 +812,7 @@ In this section we will only mention changes that need to be incorporated into t
 %, this is mainly because recent study has shown that right hand human tend to prefer right hand over left
 
 
-The choice or preference of employing end-effector (either left or right) by the robot is based on the shortest relative distance of object to either human hand using equation (\ref{human obj dist}) along with the direction (mainly along $y$-axis) and shortest relative distance of \textit{that} human hand with respect to both end-effectors, as per equations (\ref{human hand dir} and~\ref{robot obj dis}) respectively. For example, if human is holding object in his/her right hand ${}^{hr}{P}$ and if the estimated predicted position of his/her hand (see Section~\nameref{prediction_model}) is converging somewhere in the negative $y$-coordinate space, then robot right end-effector ${}^{efr}{P}$ would be utilized to receive the object during handover as shown in Fig.~\ref{fig:hr-to-rr}.
+The choice or preference of employing end-effector (either left or right) by the robot is based on the shortest relative distance of object to either human hand using equation (\ref{human obj dist}) along with the direction (mainly along $y$-axis) and shortest relative distance of \textit{that} human hand with respect to both end-effectors, as per equations (\ref{human hand dir} and~\ref{robot obj dis}) respectively. For example, if human is holding object in his/her right hand ${}^{hr}{P}$ and if the estimated predicted position of his/her hand (see Section~\nameref{prediction_model}) is converging somewhere in the negative $y$-coordinate space, then robot right end-effector ${}^{efr}{P}$ would be utilized to receive the object during handover as shown in (Fig.~\ref{fig:hr-to-rr}).
 
 
 \begin{figure}[hpt]
@@ -887,7 +887,7 @@ The object(s) (two of them) we chose to handover between human and humanoid robo
 \end{figure}
 
 
-The object's origin is located at its center as shown in Fig.~\ref{fig:pipe_ex} and Fig.~\ref{fig:pipe_ori} with respective $xyz$ local coordinate axes in local frame $o$ and are along the direction of robot frame axes. The object pose (position and orientation) is given by ${}^{o}{X}_M$. Let ${{}^{o}\mathcal{O}_M} \in \mathbb{R}^{3\times3}$ and ${{}^{o}\mathcal{P}_M} \in \mathbb{R}^{3}$, denotes the object orientation and position respectively in the $\mathcal{M}$ frame, obtained from another $\mathcal{L}$ shape body attached on the object. Object orientation can be formulated similarly to human hand orientation, see Section~\nameref{hand_orientation} for more information.
+The object's origin is located at its center as shown in (Fig.~\ref{fig:pipe_ex} and Fig.~\ref{fig:pipe_ori}) with respective $xyz$ local coordinate axes in local frame $o$ and are along the direction of robot frame axes. The object pose (position and orientation) is given by ${}^{o}{X}_M$. Let ${{}^{o}\mathcal{O}_M} \in \mathbb{R}^{3\times3}$ and ${{}^{o}\mathcal{P}_M} \in \mathbb{R}^{3}$, denotes the object orientation and position respectively in the $\mathcal{M}$ frame, obtained from another $\mathcal{L}$ shape body attached on the object. Object orientation can be formulated similarly to human hand orientation, see Section~\nameref{hand_orientation} for more information.
 \begin{gather}\label{X_M_o}
 {}^{o}{X}_M =
 \left[\begin{array}{cc}
@@ -917,7 +917,7 @@ Here we approach differently during the 1${}^{st}$ and 2${}^{nd}$ \textit{cycle}
 
 
 \paragraph*{Contact surface(s)} 
-The contact surfaces or surface patches were initially defined on the palm of each gripper in advance. Grippers local frame are shown in Fig.~\ref{fig:gripper-intern}. The contacts are established, when during the handover routine the robot grasp the object and its grippers internal surface come in contact with the object's graspable surface. These contacts are necessary to move freely or limit the motion of end-effectors in one or more direction (3 \texttt{x} translation or 3 \texttt{x} rotation)~\cite{bouyarmane2018multi}. Thus robot may lose one or more degrees of freedom (DOF) in motion due to the constraints introduced by the object's body.
+The contact surfaces or surface patches were initially defined on the palm of each gripper in advance. Grippers local frame are shown in (Fig.~\ref{fig:gripper-intern}). The contacts are established, when during the handover routine the robot grasp the object and its grippers internal surface come in contact with the object's graspable surface. These contacts are necessary to move freely or limit the motion of end-effectors in one or more direction (3 \texttt{x} translation or 3 \texttt{x} rotation)~\cite{bouyarmane2018multi}. Thus robot may lose one or more degrees of freedom (DOF) in motion due to the constraints introduced by the object's body.
 
 %Let $s_l$, $s_r$ be the respective robot left and right gripper surfaces and $s_o$ be the object surface. Let $\phi(q)$ be the function of distance between these contact surfaces.
 
@@ -1071,12 +1071,12 @@ we humans are surprisingly able to predict where our partner would handover an o
 
 \section{User study}
 
-\subsection{Setup}
-\subsubsection{Participants}
-\subsubsection{Instructions/Trial protocol}
+%\subsection{Participants}
 
+\subsection{Handover task protocol}
 
 \subsection{Data analysis}
+
 refer below link for parameters to analyze
 % \url{file:///home/avasalya/Dropbox%20(CNRS-AIST%20JRL)/PhD/Papers/other's%20thesis/thesis-antonio-bussy.pdf}
 
