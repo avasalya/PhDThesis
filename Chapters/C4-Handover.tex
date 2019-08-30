@@ -8,22 +8,11 @@
 
 \section{Introduction}\label{introduction}
 
-We introduced a novel framework of bi-directional object handover between human and humanoid robot co-worker using whole-body control (WPC). We develop our controller by gaining insights from the previous state-of-the-art research during the human-human and the human-robot object handover studies......
+add one line to~\textbf{make some link with previous chapters-- like moving from HRI to pHRI\\}
 
+In the previous human-robot interaction studies~\cite{huber2008human, strabala2013toward, shibata1995experimental} and also in our work in Chapter~\ref{more than just co-workers}, we have shown that the human acceptance of the robot co-worker during a task increases when the robot appears and behaves human-like, specially during a collaborative interactive task. Therefore, in our studies we primarily chose to consider humanoid robot HRP-2Kai as the robot co-worker. 
 
-\subsection{Proactive handover formulation}\label{handover formulation}
-
-We concentrated our efforts towards developing a simple yet robust and efficient handover controller for bi-directional object exchange and transfer between the human and the robot co-workers using robot whole-body control (WBC). WBC allows simultaneous execution of several tasks at once, for example, a humanoid robot capable of using and configuring either single or both hands during the handover and manipulation of the object. At the same time, being proactive and capable of taking a one-step-walk or more during the exchange and transfer of the object. WBC exploits the full potential of entire floating based robot body and allows interaction with the environment using multi-contact strategies~\cite{ladder-HRP-2Kai}. Several previous studies such as~\cite{strabala2013toward, huber2008human} have treated object handover routine as non-continuous entity, and analyzed individually the routine of handover into three main sub-tasks — approach, deliver and retreat. However, we take similar approach as one mentioned in the~\cite{medina2016human, nemlekarprompt} and treat the object handover between human and humanoid robot co-worker as one-shot continuous fluid motion.
-
-\cite{vahrenkamp2009humanoid, vezzani2017novel} and~\cite{kim2004advanced} have adapted object handover and manipulation using dual arm motion planning but didn't consider robot locomotion. Also in former studies, dual arm manipulation is limited between robot arms only without involving the human co-worker. Our handover controller however enables both human and robot to utilize either single or both hands simultaneously during the object handover routine.
-
-We initially formulate our handover problem under the scenario of human robot bi-directional object handover using human right hand and robot left end-effector. We mainly focus on three important key features during the human humanoid robot object handover routine ---the \textit{timing}(s) of handover, the \textit{pose} of handover and the \textit{magnitude} of the interaction forces between human hand(s) and humanoid robot end-effector(s). Basically we answer the following questions in below sections, ---\textbf{when}(\textit{timing}), \textbf{where} (\textit{position in space}), \textbf{how}(\textit{orientation and interaction forces}) of the handover.
-
-%The novelty of our handover controller is that it can be generalized our 
-
-Later, we present generalized handover controller, where both human and robot is capable of selecting either of their hand to handover and exchange the object. Furthermore, by utilizing WPC configuration, our handover controller is able to allow robot to use both hands simultaneously during the object handover. Depending upon the shape and size of the object that needs to be transferred. Our bi-directional handover controller is smooth and intuitive, also it is adaptable to several objects of distinguishable physical properties (shape, size and mass). Our handover controller only needs the pertinent information of the environment (object), mainly handover object's shape and size information, though knowing mass of the object is not important in the beginning.
-
-Finally, we explored the full capabilities of biped humanoid robot and added a scenario where robot needs to proactively take one-step-walk in order to handover or exchange the object between its human co-worker. We have tested this scenario during both when human-robot dyad uses either single or both hands simultaneously.
+In this Chapter,  we introduced a novel framework and particularly focused on solving the problem of intuitive and proactive bi-directional object handover between human and a biped humanoid robot dyad using robot whole-body control (WBC). We took inspiration and insights from the previous state-of-the-art research in the field of object handover between human-human and human-robot dyads in general and formulated our handover problem.
 
 %\clearpage
 
@@ -32,7 +21,7 @@ Finally, we explored the full capabilities of biped humanoid robot and added a s
 We take similar approach as one mentioned in the~\cite{medina2016human, nemlekarprompt} and treat the object handover between human and humanoid robot co-worker as one stage cycle to perform intuitive and responsive handover of an object between them. Each handover routine consist of two handover \textit{cycle}s. From onwards we will refer the process of object handover between human and humanoid robot as \textit{cycle}, such that object handover from human to humanoid robot is one \textit{cycle} and return of object from humanoid robot to human as another \textit {cycle}. Therefore, it takes two full handover \textit{cycle}s to return the object back to where it started and complete single handover routine.
 
 \begin{figure}[htbp]
-		\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/halfsit}}
+		\centering{\includegraphics[width=0.6\columnwidth]{plots/c4-plots/halfsit}}
 		\caption{Human and humanoid robot starting posture.}
 		\label{fig:halfsit}
 \end{figure}
@@ -134,7 +123,7 @@ As shown in (Fig.~\ref{fig:objects}), we used three easily distinguishable objec
 
 
 \begin{figure}[htpb]
-	\centering{\includegraphics[width=0.8\columnwidth]{plots/c4-plots/objects}}
+	\centering{\includegraphics[width=0.6\columnwidth]{plots/c4-plots/objects}}
 	\caption{Distinguishable shape and mass objects used during single hand handover between human and humanoid robot co-worker.}
 	\label{fig:objects}
 \end{figure}
@@ -284,7 +273,7 @@ Let $\mathcal{M}$ (Mocap) and $\mathcal{R}$ (Robot) be the two fixed frames with
 We propose a simple solution to grasp the object either considering the relative orientation of the human hand or the object itself. To get the orientation of human hand, we placed a rigid body with a shape similar to an alphabet $L$ on wrist of human hand(s) as shown in (Fig~\ref{fig:lshapes}). The three mocap markers $A, B$ and $C$ make up the three vertices of $\mathcal{L}$ shape body, such that during object handover scenario, vector $\vec{AB}^{\,}$ along the longer side and vector $\vec{BC}^{\,}$ along the shorter side are set to be parallel with the $X$-axis and $Y$-axis of the mocap frame $\mathcal{M}$ respectively. The vectors $\vec{AB}^{\,}$ and $\vec{BC}^{\,}$ are orthogonal to each other. For simplicity, let $\hat{x}$ be the unit vector, which is parallel and along the $X$-axis and likewise, unit vector $\hat{y}$ is parallel and along the $Y$-axis of the mocap frame $\mathcal{M}$, such that
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/lshpe-lt-rt}}
+	\centering{\includegraphics[width=0.8\columnwidth]{plots/c4-plots/lshpe-lt-rt}}
 	\caption{$\mathcal{L}$ shape rigid body on the human hand(s)}
 	\label{fig:lshapes}
 \end{figure}
@@ -514,7 +503,7 @@ where $\vec{A}$, $\vec{B}$, $\vec{C}$ are the three coordinate vectors of a tria
 
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=\linewidth]{plots/c4-plots/efmarkers.png}}
+	\centering{\includegraphics[width=.8\linewidth]{plots/c4-plots/efmarkers.png}}
 	\caption{Passive IR markers on the robot HRP-2Kai right end-effector, human left hand and object during handover.}
 	\label{fig:markerEf2}
 \end{figure} 
@@ -526,7 +515,7 @@ We explained further in detail in the Subsection~\nameref{FSM}, but before that 
 \subsection{Method 2: surface wrench}\label{surface wrench}
 
 \begin{figure}[ht]
-	\centering{\includegraphics[width=0.8\columnwidth]{plots/c4-plots/wrist-surface2}}
+	\centering{\includegraphics[width=0.7\columnwidth]{plots/c4-plots/wrist-surface2}}
 	\caption{Virtual intrinsic surfaces (green) on robot wrists.}
 	\label{fig:wrist-surface2}
 \end{figure}
@@ -810,7 +799,7 @@ The choice or preference of employing end-effector (either left or right) by the
 
 
 \begin{figure}[hpt]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/hr-rr}}
+	\centering{\includegraphics[width=0.7\columnwidth]{plots/c4-plots/hr-rr}}
 	\caption{Object handover between human right hand and humanoid robot right end-effector.}
 	\label{fig:hr-to-rr}
 \end{figure}
@@ -875,7 +864,7 @@ The object(s) (two of them) we chose to handover between human and humanoid robo
 
 
 \begin{figure}[hpt]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c4-plots/robot_has_pipe}}
+	\centering{\includegraphics[width=0.8\columnwidth]{plots/c4-plots/robot_has_pipe}}
 	\caption{HRP-2Kai using both end-effectors to manipulate handover object based on the human hand relative orientation.}
 	\label{fig:pipe_ori}
 \end{figure}
@@ -1038,60 +1027,34 @@ Finally handover occurs when the set of conditions in the equation (\ref{Fpull})
 
 %\clearpage
 
-\section{Step-walk handover}
-
-None of the previous work considered object handover and locomotion in a single framework using a Humanoid robot such as HRP-2Kai.
-
-here we have demonstrated with either hand individual but same method can also be applied on handover procedure using both hands.
-
-~\cite{caron2018stair} -- walking and stablization from here
-%\url{https://scaron.info/}
-%
-\cite{caron2016humanoids} walking pattern
-%
-%\url{file:///home/avasalya/Dropbox%20(CNRS-AIST%20JRL)/PhD/Papers/other's%20thesis/thesis-agravante.pdf}
-
-\cite{kajita2010biped}
-
-\subsection{Handover with step-walk}
-
-we humans are surprisingly able to predict where our partner would handover an object, often without an explicit communication. Studies have shown that we humans often handover an object at the middle of our interpersonal distances ~\cite{hansen2017human, kato2018humans, kato2019handovers}.
+\section{Locomotion and handover}
 
 
-\textit{ Handovers require one individual’s hand to enter the peri-personal space of another individual, which is a space around an individual’s body that they are known to be protective of [22], [23]studies of peri-personal space has shown that it is affected by an individual’s reach [24] [25] and hence we hypothesized that an individual’s size and arm length to affect handovers. } from ~\cite{kato2019handovers}
+how we plan to achieve this \textbf{Handover task protocol\\} using Step-walk
 
 
 %\clearpage
 
-\section{User study}
-
-%\subsection{Participants}
-
-\subsection{Handover task protocol}
-
-\subsection{Data analysis}
-
-refer below link for parameters to analyze
-% \url{file:///home/avasalya/Dropbox%20(CNRS-AIST%20JRL)/PhD/Papers/other's%20thesis/thesis-antonio-bussy.pdf}
-
-for questionnaire
-~\cite{huber2009evaluation, bussy2013approche, qin2013effect, weiss2009addressing}
-
-for analysis
-~\cite{li2015predicting} \textit{For each reaching motion trial, the end position
-	prediction performance is measured by the ratio of prediction
-	error to the motion range of that trial. With all the trials from
-	a testing subject, we plot distribution of the prediction error
-	ratio every 10\% of the motion to show how the prediction
-	error ratio changes as the motion develop}
-
-
-\subsection{Results}
-
+%\section{Preliminary user study}
+%\subsection{Data analysis}
+%\subsection{Results}
+%
+%refer below link for parameters to analyze
+%% \url{file:///home/avasalya/Dropbox%20(CNRS-AIST%20JRL)/PhD/Papers/other's%20thesis/thesis-antonio-bussy.pdf}
+%
+%for questionnaire
+%~\cite{huber2009evaluation, bussy2013approche, qin2013effect, weiss2009addressing}
+%
+%for analysis
+%~\cite{li2015predicting} \textit{For each reaching motion trial, the end position
+%	prediction performance is measured by the ratio of prediction
+%	error to the motion range of that trial. With all the trials from
+%	a testing subject, we plot distribution of the prediction error
+%	ratio every 10\% of the motion to show how the prediction
+%	error ratio changes as the motion develop}
 
 
 %\clearpage
-
 
 \section{Discussion}
 

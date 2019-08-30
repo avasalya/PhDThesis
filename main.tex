@@ -5,15 +5,12 @@
 % Set up the document
 \documentclass[a4paper, 11pt, oneside]{Thesis}
 %\documentclass[a4paper, 11pt, oneside, draft]{Thesis}
-%\graphicspath{Figures/}
-
 
 %\usepackage[square, numbers, comma, sort&compress]{natbib}
-\usepackage{natbib} %pour pouvoir ne citer que l'année
+\usepackage{natbib}
 
-
-\usepackage{verbatim}  % Needed for the "comment" environment to make LaTeX comments
-\usepackage{vector}  % Allows "\bvec{}" and "\buvec{}" for "blackboard" style bold vectors in maths
+\usepackage{verbatim} 
+\usepackage{vector}
 \usepackage{soul}
 \usepackage{paralist}
 \usepackage[usenames, dvipsnames]{color}
@@ -83,8 +80,6 @@
 \hypersetup{urlcolor=blue, colorlinks=true}
 
 
-
-
 \makeatletter
 \def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
 \def\@makechapterhead#1{%
@@ -127,15 +122,6 @@
 
 %% ----------------------------------------------------------------
 \begin{document}
-
-% =======================================================================
-%                              Title
-% =======================================================================
-
-%\title  {Towards Non-physical to Physical Interactions between Human-Humanoid Robot Co-workers }
-%\setboolean{@twoside}{false}
-% \includepdf[pages={1},width=\textwidth]{cover.pdf} 
-% \includepdf[pages={1},offset=75 -75]{cover.pdf}
 
 \thispagestyle{empty}
 
@@ -217,82 +203,136 @@
 \pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
 
 \clearpage
-%% ----------------------------------------------------------------
-%% Declaration Page required for the Thesis, your institution may give you a different text to place here
-%\Declaration{
+
+
+
+%% ------------------------Acknowledgements----------------------
+
+%\setstretch{1.3}  % Reset the line-spacing to 1.3 for body text (if it has changed)
 %
+%% The Acknowledgements page, for thanking everyone
+%\acknowledgements{
 %\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
 %
-%I, AUTHOR NAME, declare that this thesis titled, `THESIS TITLE' and the work presented in it are my own. I confirm that:
-%
-%\begin{itemize} 
-%\item[\tiny{$\blacksquare$}] This work was done wholly or mainly while in candidature for a research degree at this University.
-% 
-%\item[\tiny{$\blacksquare$}] Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
-% 
-%\item[\tiny{$\blacksquare$}] Where I have consulted the published work of others, this is always clearly attributed.
-% 
-%\item[\tiny{$\blacksquare$}] Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
-% 
-%\item[\tiny{$\blacksquare$}] I have acknowledged all main sources of help.
-% 
-%\item[\tiny{$\blacksquare$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.
-%\\
-%\end{itemize}
-% 
-% 
-%Signed:\\
-%\rule[1em]{25em}{0.5pt}  % This prints a line for the signature
-% 
-%Date:\\
-%\rule[1em]{25em}{0.5pt}  % This prints a line to write the date
+%The acknowledgements and the people to thank go here, don't forget to include your project advisor\ldots
 %}
-%\clearpage  % Declaration ended, now start a new page
+%\clearpage  % End of the Acknowledgements
 
-%% ----------------------------------------------------------------
-%% The "Funny Quote Page"
-%\pagestyle{empty}  % No headers or footers for the following pages
-%
-%\null\vfill
-%% Now comes the "Funny Quote", written in italics
-%\textit{``Write a funny quote here.''}
-%
-%\begin{flushright}
-%If the quote is taken from someone, their name goes here
-%\end{flushright}
-%
-%\vfill\vfill\vfill\vfill\vfill\vfill\null
-%\clearpage  % Funny Quote page ended, start a new page
-%% ----------------------------------------------------------------
+%% --------------------ABSTRACT + Introduction -------------------------------
 
-\setstretch{1.3}  % Reset the line-spacing to 1.3 for body text (if it has changed)
+% Review Version
+{\color{red}\section*{\huge \centering{Review Version}\\}} % temporary
 
-% The Acknowledgements page, for thanking everyone
-\acknowledgements{
-%\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
+\addtotoc{Abstract}
+{\color{blue}\section*{\huge Abstract}}
 
-The acknowledgements and the people to thank go here, don't forget to include your project advisor\ldots
+don: start story with a focus on \textit{\textbf{humanoid robot} This definition also implies that humanoids are at the convergence of several robotics research areas: legged locomotion, manipulation control for the arms and hands, sensor processing, just to name a few} some figures of humanoids.... 
 
+don: \textit{The diversity is evident but the similarity in form allows us to be generic in our approach to programming humanoids such as these, which is one of the main goals of this thesis. Although these prototypes are certainly impressive, current day humanoids are still
+a long way from achieving the functionalities that we desire or envision. Since the
+form is human-like, the performance of tasks is similarly expected to be humanlike. }
+
+don: \textit{However, in recent years, there has been a significant emerging branch
+of industrial robots that brought along a paradigm shift: collaborative robots that
+are designed to safely work side-by-side with humans. }
+
+Humanoid robots are an amazing yet complex systems, therefore during an human robot interaction, it is crucial to understand what makes a humanoid robot a human-like and the sense of trust that comes with it. In today's industry there is a strong need of collaboration between human and robot, these robots are required to move around the human co-worker, interact with them, understand their need and communicate with them if need be. The sense of safety is the key here during these interactions between the human and the robot co-worker. The main question that needs to be answered here is the sense of understanding during an interaction between human and robot co-worker.
+
+don: \textbf{This thesis is a contribution towards the convergence of the last two areas: humanoid robots with the ability of working together with humans.}
+
+don: \textbf{Humanoid robots are robots with an anthropomorphic form. However, this term is often used loosely, since the robot can have varying degrees of similarity with a
+human. For this thesis, a humanoid is defined as a robot having two legs and two arms, that are attached to a torso with a head, all of which are functional.}
+
+This thesis is divded int two parts, first part focuses on the HRI and behavioral science: motor contagion while the 2nd part focues on the pHRI namely bidireconal handover.
+\textit{The second part of this thesis focuses on the control of humanoid robots in the context of pHR} -- change this sentence language
+
+\textit{Our contributions in this part are thus to integrate  ---bla bla in handove to enable it wbc}
+
+\textit{ demonstrate how the basic principles of intuitive handover-- on a complex platform biped humanoid robot while exploiting all the capabilities of such platforms and (iii), highlight the limitations of the passivity-based approaches often used in pHRI, and thereby justify further research in the field of pHRI}
+
+
+some Handover thesis: 
+%\textbf{file:///C:/Users/Ashesh/Dropbox%20(CNRS-AIST%20JRL)/PhD/Handover/Literatures/already%20read/a%20%20human-inspired%20controller%20for%20%20robot-human%20object%20handovers.pdf}
+
+
+\textbf{explain term co-worker}
+
+\textbf{start story with the effect of appearance/uncanny valley etc}
+
+\textbf{talk about HRI challenges in comanoids}
+
+vincent: \textbf{Recently, humanoid robots have been considered (i) for rescue and intervention in disaster situations Kakiuchi et al. [2017]; (ii) as home service companions to assist frail and aging people; and (iii) as collaborative workers (i.e. as cobots termed“comanoids”) in large-manufacturing assembly plants2 where wheeled and rail-ported robots cannot be used (e.g. aircrafts and shipyards), among other applications. These three example applications have different social and economic impacts, different business models, but they also have different requirements in terms of hardware, perception capabilities, and dexterity. Humanoids are highly complex systems and stabilizing them is still a big challenge.
 }
-\clearpage  % End of the Acknowledgements
-%% ----------------------------------------------------------------
 
-% The Abstract Page
-\addtotoc{Abstract}  % Add the "Abstract" page entry to the Contents
-%\abstract{
-\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
-\section*{\huge Abstract}
-%\ldots
+vincent: \textbf{ontrol is undermined.
+	As for any other robotic systems, humanoid robots shall preserve first the human
+	integrity, secondly their surrounding environment integrity, and finally their own integrity. This is a well-know behavior formulated in the iconic so-called Asimov’s laws:
+	1. ’Law 1: A robot may not injure a human being or, through inaction, allow a
+	human being to come to harm’
+	2. ’Law 2: A robot must obey the orders given it by human beings except where
+	such orders would conflict with the First Law’
+	3. ’Law 3: A robot must protect its own existence as long as such protection does
+	not conflict with the First or Second Law’
+}
+
+
+evard: \textbf{	To avoid conflicts among the partners’ intentions, the leader-follower model
+	defines a task leader, who imposes a task plan to the other partners, while the latter
+	act as follower and follow at best the intentions of the leader. This model has often
+	been used in physical Human-Robot Interaction (pHRI). Because robotic systems
+	have limited cognitive capabilities in comparison to human beings, a follower role
+	has generally been assigned to robotic systems to cooperate with human operators.
+	Recently, thanks to the increasing computational power embedded into the robots,
+	more and more initiative has been given to robotic assistants. In some recent works,
+	robots were sometimes even given the possibility to lead human operators}
+
+
+
+bussy: \textbf{But safe interaction is not the only issue of physical human-robot interaction (pHRI). When two persons interact physically, they perceive intentions from each other. Getting
+	back to the example of transporting a piece of furniture: human dyads are able to guess each
+	other’s intentions to move the object in a certain direction and at a certain velocity. They
+	are able to negotiate the direction and velocity, without being a burden to each other and
+	even without much of voice communication: they are proactive to each other. Guessing each
+	other’s intention and proactivity are key features in human-human interaction. Therefore,
+	robots for human partnership must be endowed with the capability to guess/understand human’s intentions instantly for a variety of tasks that requires physical interaction, such as
+	carrying an object together, walking hand in hand or handshaking.} 
+
+\paragraph*{Research Goals\\}
+
+\paragraph*{Contributions\\}
+
+This thesis contributes in the broad field of human robot interactions (specially with the humanoid robot) both at a safer distance and physical interaction, namely human-robot interaction(HRI) and physical human robot interaction(pHRI). The work done in this thesis is about the interactions between human and humanoid robot as co-workers in the industrial scenarios. By interactions, we started with a non-physical human-robot interaction scenario based on a industrially inspired \textit{Pick-n-Place} task example and then try to move towards physical human-robot interactions with an example of human humanoid dual arm bi-directional object handover.
+
+
+%\addcontentsline{toc}{section}{Thesis outline}
+\paragraph*{Thesis Outline\\}
+During an empirical industrial co-worker setting, in one HRI study (Chapter \ref{distinct motor contagion}), we examine the effect of motor contagions induced in participants during and after by the observation of the same movements performed by a human, or a humanoid robot co-worker. While in  another study (Chapter \ref{more than just co-workers}) we systematically varied the robot behavior, and observed whether and how the performance of a human participant is affected by the presence of the humanoid robot. We also investigated the effect of physical form of humanoid robot co-worker where torso and head were covered, and only the moving arm was visible to the human participants. Finally, we compared these behaviors with a human co-worker, and examined how the observed behavioral affects scale with experience of robots. In final pHRI study (Chapter \ref{handover chapter}) we designed intuitive bi-directional object handover routine between human and humanoid robot using whole-body control and locomotion, we also predict and estimate the handover position in advance along with the relative orientation of object or human hand during handover and examined the interaction forces during handover of an unknown mass object as well as the effect of robot's physical form on the timing of object handover routine.
+
+
+
+
+
+%\paragraph*{Chapter \ref{sota}}
+%talk little about each chapter
+%
+%\paragraph*{Chapter \ref{distinct motor contagion}}
+
+%\paragraph*{Chapter \ref{more than just co-workers}}
+
+%\paragraph*{Chapter \ref{handover chapter}}
 
 \clearpage  % Abstract ended, start a new page
 
-%% ----------------------------------------------------------------
 
+
+
+
+
+%% ----------------------------------------------------------------
 
 \pagestyle{fancy}  %The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
 
-%% ----------------------------------------------------------------
-
+%\addtotoc{Contents}
 \lhead{\emph{Contents}}  % Set the left side page header to "Contents"
 \tableofcontents  % Write out the Table of Contents
 
@@ -301,73 +341,27 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 \lhead{\emph{List of Figures}}  % Set the left side page header to "List if Figures"
 \listoffigures  % Write out the List of Figures
 
-%% ----------------------------------------------------------------
 
-\lhead{\emph{List of Tables}}  % Set the left side page header to "List of Tables"
-\listoftables  % Write out the List of Tables
+%%% ----------------------------------------------------------------
+%
+%\lhead{\emph{List of Tables}}  % Set the left side page header to "List of Tables"
+%\listoftables  % Write out the List of Tables
 
-%% ----------------------------------------------------------------
 
-%\setstretch{1.5}  % Set the line spacing to 1.5, this makes the following tables easier to read
-%\clearpage  % Start a new page
-%\lhead{\emph{Abbreviations}}  % Set the left side page header to "Abbreviations"
-%\listofsymbols{ll}  % Include a list of Abbreviations (a table of two columns)
-%{
-%% \textbf{Acronym} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or \\
-%\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere \\
-%}
-
-%% ----------------------------------------------------------------
-
-%\clearpage  % Start a new page
-%\lhead{\emph{Physical Constants}}  % Set the left side page header to "Physical Constants"
-%\listofconstants{lrcl}  % Include a list of Physical Constants (a four column table)
-%{
-%% Constant Name & Symbol & = & Constant Value (with units) \\
-%Speed of Light & $c$ & $=$ & $2.997\ 924\ 58\times10^{8}\ \mbox{ms}^{-\mbox{s}}$ (exact)\\
-%}
-
-%% ----------------------------------------------------------------
-
-%\clearpage  %Start a new page
-%\lhead{\emph{Symbols}}  % Set the left side page header to "Symbols"
-%\listofnomenclature{lll}  % Include a list of Symbols (a three column table)
-%{
-%% symbol & name & unit \\
-%$a$ & distance & m \\
-%$P$ & power & W (Js$^{-1}$) \\
-%& & \\ % Gap to separate the Roman symbols from the Greek
-%$\omega$ & angular frequency & rads$^{-1}$ \\
-%}
-%% ----------------------------------------------------------------
-
-% End of the pre-able, contents and lists of things
-% Begin the Dedication page
+%%% ----------------------------------------------------------------
 
 \setstretch{1.3}  % Return the line spacing back to 1.3
-
 \pagestyle{empty}  % Page style needs to be empty for this page
-
-%% ----------------------------------------------------------------
-
-%\dedicatory{For/Dedicated to/To my\ldots}
-
-%% ----------------------------------------------------------------
-
-%\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
 
 %% ----------------------------------------------------------------
 \mainmatter	  % Begin normal, numeric (1,2,3...) page numbering
 
 \pagestyle{fancy}  % Return the page headers back to the "fancy" style
 % Include the chapters of the thesis, as separate files
-% Just uncomment the lines as you write the chapters
 
-\input{Chapters/Introduction.tex} % Introduction
+%\input{Chapters/Introduction.tex} % Introduction
 
 \input{Chapters/C1-StateOfTheArt.tex} % S-O-T-A
-
-%\input{Chapters/Methods.tex} % motor contagion user study
 
 \input{Chapters/C2-RoMan.tex} % Ro-MAN distinct
 
@@ -377,29 +371,22 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 
 \input{Chapters/Conclusion.tex} %  Conclusion Discussion/future possibilities
 
-% ======================================================================= %
-% Now begin the Appendices, including them as separate files
-% ======================================================================= %
 
-\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+%% ----------------------------------------------------------------
+%% Appendices, including them as separate files
 
 \appendix
-
 \input{Appendices/Appendix_A}\label{contagion appendix}
-
 %\input{Appendices/Appendix_B}\label{handover appendix}
 
-\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
-
+%\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
 \backmatter
 
 %% ----------------------------------------------------------------
 \label{Bibliography}
 \lhead{\emph{Bibliography}}
-%\bibliographystyle{unsrtnat}
 \bibliographystyle{plainnat}
 \bibliography{bib}
-
 
 \end{document}  % The End
 %% ----------------------------------------------------------------

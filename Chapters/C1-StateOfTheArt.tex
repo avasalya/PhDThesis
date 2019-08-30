@@ -34,18 +34,17 @@
 %%\url{https://onedrive.live.com/redir?resid=52CDCC7290FBBB36%21414703&page=Edit&wd=target%28Read%20paper%20summary.one%7C664fe7ce-8808-4584-88a1-91adf3b4b827%2FHuman-in-the-loop%20%5C%2F%5C%2F%20Collaborative%20%7C6df6c193-c236-423d-94c7-1ae0fdda87a0%2F%29}
 
 \subsection{Cognitive Robotics}
+
 Human cognition is a field that deals with the study and research on how humans learn motor skills and preceptual behaviour using their sensory information. Cognitive Robotics on the other hand is a field of study based on the research on how robots can learn and acquire such human skills to carry to human-like tasks on a daily basis, either alone or during an active interaction with the humans.
 
 
 \textbf{In this study we wanted to choose a task that is simple, yet rich, and is representative of many industrial co-worker scenarios. We found that (repetitive) pick and place tasks to be the most common industrial tasks in which robots are employed. We therefore chose to start with a cyclic touch task in this experiment.}
 
 
-\paragraph{plosone}
-\textbf{Our results show that human task frequency, but not task accuracy, is affected by the observation of a humanoid robot co-worker, provided the robot's head and torso are visible.
+plosone::\textbf{Our results show that human task frequency, but not task accuracy, is affected by the observation of a humanoid robot co-worker, provided the robot's head and torso are visible.
 }
 
-\paragraph{roman}
-\textbf{ Our findings suggest that on-line contagions affect participant's movement frequency while the \textit{off-line} contagions mainly affect their movement velocity. Moreover, on-line contagions were equally effective with either a human or a humanoid robot co-worker, and the \textit{off-line} contagions were notable after observing another human. Finally these results suggest that the actions by a humanoid robot co-worker can induce distinct effects on human behaviors, during and after observation.}
+roman::\textbf{ Our findings suggest that on-line contagions affect participant's movement frequency while the \textit{off-line} contagions mainly affect their movement velocity. Moreover, on-line contagions were equally effective with either a human or a humanoid robot co-worker, and the \textit{off-line} contagions were notable after observing another human. Finally these results suggest that the actions by a humanoid robot co-worker can induce distinct effects on human behaviors, during and after observation.}
 
 
 
@@ -57,6 +56,7 @@ Human cognition is a field that deals with the study and research on how humans 
 %1.1.1Terminology with a cognitive and behavioral science
 
 \subsection{Behavioral science: motor contagion}\label{motor contagions}
+
 %\url{https://onedrive.live.com/redir?resid=52CDCC7290FBBB36%21414703&page=Edit&wd=target%28Read%20paper%20summary.one%7C664fe7ce-8808-4584-88a1-91adf3b4b827%2FSummary%7Cc9d7bb87-4a0b-4d20-8084-fbfa6f12f0fd%2F%29}
 
 Motor contagions are implicit effects that cause certain features of an individual's action (like kinematics, goal, or outcome) to become similar to that of the observed action. Studies over the past two decades have reported various motor contagions in human behaviors caused by the observation of other humans as well as robots \cite{Blakemore:Neuropsychologia:2005, Fadiga:JNeuroPhys:1995, Ganesh:Springer:2015, Sciutti:IJSR:2012, Prinz:EJPAP:1997}. Understanding the effects of robots has recently developed pace due to the increased use of robots in co-worker scenarios with humans. In these scenarios, understanding how the behavior of robots affect humans can be beneficial for developing robot behaviors, both to ensure that they are perceived well and do not disturb humans, as well as for modulating human behaviors for the benefit of the task and humans.  
@@ -94,19 +94,17 @@ To address these issues, we examined an empirical repetitive industrial task in 
 %\clearpage
 
 \section{Physical human robot interaction(pHRI)}
+%Proactive approaches in pHRI
 
-\subsection{Proactive approaches in pHRI}
 
-
-\subsection{Robot handover behaviors}
+\subsection{Proactive robot handover behaviors}
 %\url{https://personalrobotics.cs.washington.edu/publications/strabala2013handoff.pdf}
 %
 %strabala paper important for handover introduction
 
 The usage of robots in the personal as well as in the commercial sectors have evolved significantly in the recent years. Moreover, robot working and sharing common workspace with humans as co-workers in these sectors can often lead to opportunities where human and robot have to work together and collaborate within a confined space. One of the most often task that occurs during these human-robot collaborative interaction is the handing-over or exchange of an object such as tools in industrial scenarios or a glass of water in personal scenarios from either robot to human or vice-versa. This problem of object handover is a complex collaborative task that occurs seamlessly and effortlessly during the physical interaction between the human dyads, often without any explicit communication.  Object handover examples such as handing over a glass of water to a patient by the care-giver, sharing a tool to a mechanic, handing business card to a client and many more are often fundamental in our society. These natural yet simple physical interactive task occurs flawlessly multiple times between the human dyads on a daily basis and under several scenarios in space and time. Although handovers are fluent phase-less natural events between human-human interactions, but during the human-robot dyad interactions, the handover of an object is a challenging task and often regarded as unnatural behavior. 
 
-This unnatural behavior mainly arises due the lack of responsiveness and unreliability of the robot co-worker, and the safety issues of the human co-worker during the interaction. In the previous human-robot interaction studies~\cite{huber2008human, strabala2013toward, shibata1995experimental} and also in our work Chapter (\nameref{more than just co-workers}), we have shown that the human acceptance of the robot co-worker during a task increases when the robot appears and behaves human-like, specially during a collaborative interactive task. Therefore, in our study we primarily chose to consider humanoid robot HRP-2Kai as the robot co-worker. In this Chapter we particularly focused on solving the problem of intuitive and proactive bi-directional object handover between human and a biped humanoid robot dyad using robot whole-body control (WBC). We take inspiration and insights from the previous works in the field of object handover between human-human and human-robot dyads in general and formulate our handover problem.
-
+This unnatural behavior mainly arises due the lack of responsiveness and unreliability of the robot co-worker, and the safety issues of the human co-worker during the interaction. In the previous human-robot interaction studies~\cite{huber2008human, strabala2013toward, shibata1995experimental} and also in our work Chapter (\nameref{more than just co-workers}), we have shown that the human acceptance of the robot co-worker during a task increases when the robot appears and behaves human-like, specially during a collaborative interactive task. Therefore, in our study we primarily chose to consider humanoid robot HRP-2Kai as the robot co-worker. In Chapter~\ref{handover chapter} we particularly focused on solving the problem of intuitive and proactive bi-directional object handover between human and a biped humanoid robot dyad using robot whole-body control (WBC). We take inspiration and insights from the previous works in the field of object handover between human-human and human-robot dyads in general and formulate our handover problem.
 
 
 \subsubsection{Previous handover studies}
@@ -126,9 +124,46 @@ Although predicting handover location is not enough, robot must also be able to 
 \textbf{Studies on interaction forces\\}
 Previous studies on the forces during these handover interactions analyzed the relationship between grip force (applied on the object by the human) and the load force (object weight shared by the robot).~\cite{mason2005grip} findings suggest a gradual change in the grip force while the human dyad implicitly share the load force during the transfer of the object.~\cite{chan2013human} investigated the grip forces applied on an object while it is being exchanged between the human-human dyad during a handover. They found a linear relationship between these forces, suggesting that the \textit{giver} is responsible for safety of object during the transfer and \textit{receiver} is responsible for the timing of handover.~\cite{nagata1998delivery} demonstrated a grasping system based on the 6DOF wrench (force and torque) feedback that first acknowledges the stable and secure grasp on the object by the human, only after that the object is released by the robot.~\cite{medina2016human} learned from the insights during the human dyad handovers and developed a dynamic force controller which greatly reduces the internal forces between the human-robot dyad compared to the traditional threshold based controller. Inspired by the human object grasping~\cite{sadigh2009safe} designed a robotic grasping controller with minimal normal forces while grasping an object to make sure it does not slip.~\cite{parastegari2018failure} proposed object re-grasping controller in case of false grasping.~\cite{kupcsik2016learning} presented a dynamic object handover controller based on the contextual policy search, where robot learns about the object handover while interacting with the human and dynamically adapts to the motion of the human.~\cite{chan2014implementation} designed a controller to estimate the applied grip force and load force by measuring the joint position/angle errors on a compliant underactuated humanoid hand. However in most of these studies, knowledge of object mass is a prerequisite. In our approach, knowing object mass in advance is optional as it can be calculated during the handover routine but we do rely on knowing the object physical structural properties. 
 
-\subsubsection{Locomotion and handover}
-
+%\subsubsection{Locomotion and handover}
 \textbf{Studies on robot motion planning\\}
 Majority of studies related to human-robot object handovers were carried out in the past with traditional robotic arm manipulators attached to either a stationary-base or to a wheeled-base mobile robotic system~\cite{medina2016human, vogt2018one, huber2008Indus, kupcsik2016learning, cakmak2011human} and latter studies are often related to the robot motion planning and navigation in a large space and lacks proactive behavior using biped locomotion of a humanoid robot which are capable of walking like human does. To the best of our knowledge, bi-directional object handover with biped walking have not been considered in the previous works on the human-robot dyad object handover. However~\cite{vezzani2017novel, chan2014implementation} have utilized biped walking capable humanoid robots in their studies but without considering locomotion. Therefore in order for the robot to be fully proactive, we believe it is important to consider the possibility of robot taking a step to handover or exchange an object with the human co-worker, in scenarios where a short distance travel is required. We do not focus on the problem of motion planning in a large cluttered environment~\cite{mainprice2012sharing, vahrenkamp2009humanoid, kim2004advanced} but instead we concentrated our efforts to solve and optimize object handover problem which requires immediate shared efforts between human-robot dyad in a small space where a \textit{one-step-walk} cycle is necessary and enough for a comfortable and convenient object handover. We proposed simple but effective methods to take advantage of humanoid robot and deal with the problem of bi-directional object handover using robot whole-body control.
+
+\textbf{WBC based handover\\}
+\textbf{evard 4.4 WBC}
+None of the previous work considered object handover and locomotion in a single framework using a Humanoid robot such as HRP-2Kai.
+
+here we have demonstrated with either hand individual but same method can also be applied on handover procedure using both hands.
+
+~\cite{caron2018stair} -- walking and stablization from here
+%\url{https://scaron.info/}
+%
+\cite{caron2016humanoids} walking pattern
+%
+%\url{file:///home/avasalya/Dropbox%20(CNRS-AIST%20JRL)/PhD/Papers/other's%20thesis/thesis-agravante.pdf}
+
+\cite{kajita2010biped}
+
+%\subsection{Handover with step-walk}
+
+we humans are surprisingly able to predict where our partner would handover an object, often without an explicit communication. Studies have shown that we humans often handover an object at the middle of our interpersonal distances ~\cite{hansen2017human, kato2018humans, kato2019handovers}.
+
+
+\textit{ Handovers require one individual’s hand to enter the peri-personal space of another individual, which is a space around an individual’s body that they are known to be protective of [22], [23]studies of peri-personal space has shown that it is affected by an individual’s reach [24] [25] and hence we hypothesized that an individual’s size and arm length to affect handovers. } from ~\cite{kato2019handovers}
+
+
+
+\textbf{Proactive handover formulation\\}
+We concentrated our efforts towards developing a simple yet robust and efficient handover controller for bi-directional object exchange and transfer between the human and the robot co-workers using robot whole-body control (WBC). WBC allows simultaneous execution of several tasks at once, for example, a humanoid robot capable of using and configuring either single or both hands during the handover and manipulation of the object. At the same time, being proactive and capable of taking few steps or more during the exchange and transfer of the object. WBC exploits the full potential of entire floating based robot body and allows interaction with the environment using multi-contact strategies~\cite{ladder-HRP-2Kai}. Several previous studies such as~\cite{strabala2013toward, huber2008human} have treated object handover routine as non-continuous entity, and analyzed individually the routine of handover into three main sub-tasks — approach, deliver and retreat. However, we take similar approach as one mentioned in the~\cite{medina2016human, nemlekarprompt} and treat the object handover between human and humanoid robot co-worker as one-shot continuous fluid motion.
+
+\cite{vahrenkamp2009humanoid, vezzani2017novel} and~\cite{kim2004advanced} have adapted object handover and manipulation using dual arm motion planning but didn't consider robot locomotion. Also in former studies, dual arm manipulation is limited between robot arms only without involving the human co-worker. Our handover controller however enables both human and robot to utilize either single or both hands simultaneously during the object handover routine.
+
+We initially formulate our handover problem under the scenario of human robot bi-directional object handover using human right hand and robot left end-effector. We mainly focus on three important key features during the human humanoid robot object handover routine ---the \textit{timing}(s) of handover, the \textit{pose} of handover and the \textit{magnitude} of the interaction forces between human hand(s) and humanoid robot end-effector(s). Basically we answer the following questions in below sections, ---\textbf{when}(\textit{timing}), \textbf{where} (\textit{position in space}), \textbf{how}(\textit{orientation and interaction forces}) of the handover.
+
+%The novelty of our handover controller is that it can be generalized our 
+
+Later, we present generalized handover controller, where both human and robot is capable of selecting either of their hand to handover and exchange the object. Furthermore, by utilizing WPC configuration, our handover controller is able to allow robot to use both hands simultaneously during the object handover. Depending upon the shape and size of the object that needs to be transferred. Our bi-directional handover controller is smooth and intuitive, also it is adaptable to several objects of distinguishable physical properties (shape, size and mass). Our handover controller only needs the pertinent information of the environment (object), mainly handover object's shape and size information, though knowing mass of the object is not important in the beginning.
+
+Finally, we explored the full capabilities of biped humanoid robot and added a scenario where robot needs to proactively take few steps in order to handover or exchange the object between its human co-worker. We have tested this scenario during both when human-robot dyad uses either single or both hands simultaneously.
+
 
 \clearpage
