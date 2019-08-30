@@ -6,7 +6,7 @@
 
 \section{Introduction}
 
-Several studies in the past have demonstrated that just by observing an action performed by human or robot can affect the movements of an observing human; an effect widely known as motor contagion. Although, these previous studies have either analyzed the motor contagions induced during (which we call \emph{on-line} contagions), or induced after (\emph{off-line} contagions) the observation of the robot, but never together. Therefore, it is still unclear whether and how these two motor contagions differ from each other. We designed a paradigm inspired by the industrial co-worker setting and examined the differences between the induced on-line and \textit{off-line} contagions in participants by the observation of the same movements performed by both human and humanoid robot co-worker. Our findings suggest that on-line contagions affect participant's movement frequency while the \textit{off-line} contagions mainly affect their movement velocity. Moreover, on-line contagions were equally effective with either a human or a humanoid robot co-worker, and the \textit{off-line} contagions were notable after observing another human. Finally these results suggest that the actions by a humanoid robot co-worker can induce distinct effects on human behaviors, during and after observation.
+Several studies in the past have demonstrated that just by observing an action performed by human or robot can affect the movements of an observing human; an effect widely known as motor contagion. Although, these previous studies have either analyzed the motor contagions induced during (which we call \emph{on-line} contagions), or induced after (\emph{off-line} contagions) the observation of the robot, but never together. Therefore, it is still unclear whether and how these two motor contagions differ from each other. In this Chapter, we designed a paradigm inspired by the industrial co-worker setting and examined the differences between the induced on-line and \textit{off-line} contagions in participants by the observation of the same movements performed by both human and humanoid robot co-worker.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -14,9 +14,9 @@ Several studies in the past have demonstrated that just by observing an action p
 %		                           M E T H O D S                               %
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+%\clearpage
 
-\section{Materials and methods}
+\section{Materials and methods}\label{roman method}
 
 \subsection{Participants}
 
@@ -76,7 +76,7 @@ In our task, the human movements were distinguished by smooth velocity changes b
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\clearpage
+%\clearpage
 
 \section{Data analysis}
 
@@ -84,7 +84,7 @@ In our task, the human movements were distinguished by smooth velocity changes b
 
 Our analysis is based on the position data of the markers placed on the participant's and co-worker's stylus. In order to bring out the possible behavioral differences between the movements towards and back between the touches on the touchscreen, we analyzed behavioral variables across each movement between the red circles on the touchscreen, which we call as \textit{iterations} (such that two consecutive iterations constituted a movement cycle). The participants and co-workers made non-stop continuous movements between the touches, and hence we could extract individual iterations by a participant or co-worker by examining the directional changes of their $y$-velocity in the recorded motion capture data. In this Chapter, we focused our efforts on the kinematic variables along the \texttt{Y} and \texttt{Z} axes inside each iteration and analyzed the maximum movement length ($y_{\max}$), maximum movement height ($z_{\max}$), maximum absolute velocities ($\max|\dot{y}|$, $\max|\dot{z}|$), mean absolute velocities ($|\overline{\dot{y}}|$, $|\overline{\dot{z}}|$), maximum accelerations ($\max(\ddot{y})$, $\max(\ddot{z})$), and minimum accelerations ($\min(\ddot{y})$, $\min(\ddot{z})$), by the participants and co-workers to understand whether and how the co-worker behavior were affected by the \textit{on-line} and \textit{off-line} contagions. In addition to the kinematic variables, we also analyzed the time between the touches in each iteration, which we will refer to as the half-time period or ({\it htp}).
 
-\subsection{Participant sample size}
+\subsection{Participant sample size}\label{roman sample size}
 
 We initially conducted our experiment with the sample size of 35 participants such that all of them participated in the $R_{\text{biol}}$ condition and 14 participants in each of the five other conditions. We call it as \textit{participant group}, where participants performed in $R_{\text{biol}}$ condition along with one of the five other condition. Thus a total of five \textit{participant group}s. Note that these groups are different from the previously mentioned six \emph{condition combination group}s. The number `14' also represents the participant numbers in similar previous studies~\cite{Bisio:PlosOne:2010, Bisio:PlosOne:2014} and this participant number `14' also corresponds to the G* power analysis~\cite{Erdfelder:JBRMIC:1996} using two-way one sample {\it T}-test ($\alpha$ = 0.05, $\beta$ = 0.85, $d$ = 0.9)~\cite{Verma:power_analysis:2017} for the biological experiments. We discovered notable motor contagions in the {\it htp}s in the $R_{\text{biol}}$ condition (median = 0.014, Z(31) = 3.14, $p = 0.0016$, 3 participants with slopes beyond the 95\% confidence interval were removed as outliers). We thus believed that a positive {\it htp} slope in $R_{\text{biol}}$ condition as true, and checked the {\it htp} values in the $R_{\text{biol}}$ conditions in each participant group. But with these participants numbers, the {\it htp} slopes in the $R_{\text{biol}}$ condition were not significant across the participant groups ($p<0.05$, one-way ANOVA). The {\it htp} slope during $R_{\text{biol}}$ condition were observed to be significant with two participant groups ($p = 0.022$, $p = 0.038$), marginally significant with other two participant groups ($p = 0.07$, $p = 0.08$) and not significant in one participant group ($p = 0.36$). Hence, we later proposed and decided to add 7 participants (50\%) across these groups, making a total of 42 participants. This addition of participants ensured that the {\it htp} slopes across the participant groups become similar ($P = 0.99$; one-way Kruskal-Wallis H-test). After removal of three outliers, this gave us participants numbers of 13 in the $H$ condition, 18 in the $R_{\text{nonbiol}}$, and 39 in total for the $R_{\text{biol}}$ condition.
 
@@ -106,7 +106,7 @@ After observing the co-worker, we quantified the participant's change in behavio
 To quantify the effects due to the \textit{on-line} contagions, we now looked again at the average value of each of the analyzed kinematic or time variable $\eta_p$ but this time in the together period. Note that in order to remove any persistent \textit{off-line} contagions in this period, we regressed the \textit{change} in the participant's behavior, between the together period and alone-period in a trial ($\eta_p^t (i)- \eta_p^a (i)$), and the corresponding value of the same variable in the co-worker behavior in the same trial $\eta_c(i)$. A first order, or second order regression model was chosen again using AIC for each participant, and similarly with the \textit{off-line} contagion analysis, the slope of tangent at the minimum co-worker variable value ($\min[\eta_c(i)]$) was gathered across participants, then checked for normality using the {\it Shapiro-Wilk}, and finally analyzed for difference from zero using a one-sample {\it T}-test or a {\it Signed Rank} test. The Fig.~\ref{fig:fitting}B illustrates the fitting of {\it htp} in representative participants in the three reported conditions and the collection of slopes are in shown in Fig.~\ref{fig:online}B.
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c2-plots/offline_result_vel_htp}}	
+	\centering{\includegraphics[width=0.8\columnwidth]{plots/c2-plots/offline_result_vel_htp}}	
 	\caption{The \textit{off-line} contagions: Observed changes in the participant's \boldmath{$|\overline{\dot{y}}|$} and \textit{htp} in the $\textit{H}$ (orange plots), $\textit{R}_{\text{biol}}$ (blue plots), $\textit{R}_{\text{nonbiol}}$ (magenta plots) conditions. All p values are Bonferroni corrected.}
 	\label{fig:offline}
 \end{figure}
@@ -126,7 +126,7 @@ Moreover, during the \textit{on-line} contagions, we also investigated if moveme
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\clearpage
+%\clearpage
 
 \section{Results}
 
@@ -140,7 +140,7 @@ Interestingly, the participant's {\it htp}s due to \textit{off-line} contagions 
 
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c2-plots/online_result_vel_htp}}	
+	\centering{\includegraphics[width=0.8\columnwidth]{plots/c2-plots/online_result_vel_htp}}	
 	\caption{The \textit{on-line} contagions: Observed changes in the participant's \boldmath{$|\overline{\dot{y}}|$} and \textit{htp} in the $\textit{H}$ (orange plots), $\textit{R}_{\text{biol}}$ (blue plots), $\textit{R}_{\text{nonbiol}}$ (magenta plots) conditions. All p values are Bonferroni corrected.}
 	\label{fig:online}
 \end{figure}
@@ -157,7 +157,7 @@ However, in the $H$ condition, we found an effect on the mean absolute $y$-veloc
 
 
 \begin{figure}[t]
-	\centering{\includegraphics[width=1\columnwidth]{plots/c2-plots/online_result_cong}}
+	\centering{\includegraphics[width=.7\columnwidth]{plots/c2-plots/online_result_cong}}
 	\caption{Effect of congruency on \textit{on-line} contagions: the difference in slopes, between the velocity congruent and incongruent iterations across participants, was zero for both the \boldmath{$|\overline{\dot{y}}|$} and \textit{htp}s of participants during the observation of the human ($\textit{H}$, orange plot) condition and robot co-worker ($\textit{R}_{\text{biol}}$, blue plot) condition. The lack of effect difference suggests that the \textit{on-line} contagion does not affect the movement velocities in our study.}
 	\label{fig:cong}
 \end{figure}
@@ -173,7 +173,7 @@ Our data analysis and results stipulate no difference in the $|\overline{\dot{y}
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\clearpage
+%\clearpage
 
 \section{Discussion}
 
@@ -186,5 +186,8 @@ In this study we quantified the \textit{on-line} contagions as the relation (slo
 Interestingly, our findings suggests that the nature of the co-worker, (human or a robot), \textit{tend} to influence the \textit{off-line} contagions significantly more than the \textit{on-line} contagions. While with the human co-worker, strong \textit{off-line} contagions were measured in the participant's $|\overline{\dot{y}}|$ ($p = 0.017$, Fig.~\ref{fig:offline}A), but with the robot co-worker, this effect seemed diminished ($p = 0.063$, Fig.~\ref{fig:offline}A). Although the difference of these effects between the two conditions ($p = 0.34$) weren't significant enough to conclude definitely. However, the effect on the participant's {\it htp}s was clearly visible due to \textit{on-line} contagions, both with the human co-worker ($p = 0.0017$, Fig.~\ref{fig:online}B) and robot co-worker ($p = 0.0002$, Fig.~\ref{fig:online}B), and as well these affects were not different from each other ($p = 0.62$). Therefore as our results suggest, compared to the \textit{on-line} contagions, perhaps the \textit{off-line} contagion is more sensitive to the nature of the co-worker. There is also a factor of age, physical and behavioral charateristics of the partner, which may indirectly affect these two motor contagions, however this study didn't deal with these factors sufficiently and perhaps should be a topic of discussion for future research. Also, both the \textit{off-line} and \textit{on-line} contagions were observed to be sensitive to the behavior of the co-worker (human and robot), while with the robot co-worker only when the movement's of the robot was biological in nature. 
 
 Finally, the overall observations made in this Chapter emphasize on our hypothesis that distinct motor contagions are induced in human participant's \emph{during} the observation of a co-worker (\textit{on-line} contagions) and as well as \emph{after} the observations of a co-worker (\textit{off-line} contagions). These observed distinctions in the affected movement features and the sensitivity of these effects to the nature of the co-worker provide a better understanding on how human movements may be influenced by the robot co-workers working near them. This insights could be crucial to the physical and behavioral design of robots working near humans.
+
+
+In the next Chapter, we further explored the topic of motor contagions between human and humanoid robot co-workers and our findings suggest that by exploiting motor contagions, one can influence the performance of human co-worker and while where ethically valid, these motor contagions may also be used to improve worker performance speed and hence productivity in a industrial task.
 
 \clearpage

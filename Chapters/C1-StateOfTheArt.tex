@@ -19,7 +19,8 @@
 \subsection{Biped locomotion}
 
 
-\clearpage
+%\clearpage
+
 \section{Human robot interaction(HRI)}
 
 %%2.1.6 Challenges for the application to pHRI: reasons for a haptic language
@@ -34,6 +35,19 @@
 
 \subsection{Cognitive Robotics}
 Human cognition is a field that deals with the study and research on how humans learn motor skills and preceptual behaviour using their sensory information. Cognitive Robotics on the other hand is a field of study based on the research on how robots can learn and acquire such human skills to carry to human-like tasks on a daily basis, either alone or during an active interaction with the humans.
+
+
+\textbf{In this study we wanted to choose a task that is simple, yet rich, and is representative of many industrial co-worker scenarios. We found that (repetitive) pick and place tasks to be the most common industrial tasks in which robots are employed. We therefore chose to start with a cyclic touch task in this experiment.}
+
+
+\paragraph{plosone}
+\textbf{Our results show that human task frequency, but not task accuracy, is affected by the observation of a humanoid robot co-worker, provided the robot's head and torso are visible.
+}
+
+\paragraph{roman}
+\textbf{ Our findings suggest that on-line contagions affect participant's movement frequency while the \textit{off-line} contagions mainly affect their movement velocity. Moreover, on-line contagions were equally effective with either a human or a humanoid robot co-worker, and the \textit{off-line} contagions were notable after observing another human. Finally these results suggest that the actions by a humanoid robot co-worker can induce distinct effects on human behaviors, during and after observation.}
+
+
 
 %http://www.cogsci.rpi.edu/~heuveb/Teaching/CognitiveRobotics/What%20Is%20Cognitive%20Robotics.html\\
 %
@@ -69,11 +83,16 @@ Robotics is now increasingly shifting to service and application fields, where r
 Observation of actions performed by others is known to induce implicit effects on an individual's action. These effects, that are referred to as motor contagions, have been extensively studied in psychology and sports science~\cite{heyes2011automatic,Blakemore:Neuropsychologia:2005,Becchio:BJN:2007,Ganesh:Springer:2015,Ikegami:SciReport:2014,Hillebrandt:SciReports:2014,Chaminade:BRB:2008,Oztop:RAS_ICHR:2004,Kilner:CurBio:2003,Sciutti:IJSR:2012}. In comparison, studies of motor contagions during human-robot interactions~\cite{Vasalya:roman:2018} are sparse, and have examined either how the observation of robots affect a human's movement velocity~\cite{Noy:B&C:2009,Kilner:SocialNeuro:2007,Bisio:PlosOne:2010,Bisio:PlosOne:2014}, or how it affects a human's movement variance~\cite{Kupferberg:Methods:2009,Kupferberg:PlosOne:2012,Brass:ActaPsych:2001,Press:CBR:2005}. However, the studies that reported changes in movement variance utilize arguably abstract tasks, and the studies reporting changes in movement speed do not analyze at how the participant movement variance changed with the speed. On the other hand, most industrial tasks require specific precisions in the movements and therefore, the performance in these tasks needs to be defined by considering both task speed (or frequency) and task accuracy. Here primarily, we analyzed how looking at a robot affects both, the speed and variance of the observing human's movement, to see whether we can quantify how human \textit{performance} is affected by motor contagions.  
 Furthermore, while there is contradictory evidence to suggest that the physical form of a robot co-worker (specifically whether it is humanoid or not) does~\cite{Chaminade:JPP:2009} or does not~\cite{Kupferberg:PlosOne:2012} affect the variance of movements by human's, it is unclear whether this is also true for the case of movements speeds, and hence performance. Finally, it is unclear whether and how the performance effects due to a robot co-worker are modulated by a human co-worker's prior experience with robots, an issue that is crucial to understand how the human performance will change with continued exposure to a robot co-worker.
 
+
+\textbf{Studies in motor control have exhibited that human movements are constrained by motor noise, which increases with the magnitude of motor commands in the muscles~\cite{Harris:Nature:1998}. In the case of `regular' and automatic movements in daily life, this leads to a trade-off between the speed and accuracy of the movement~\cite{Fitts:JEP:1954}. However, the accuracy of movements is also modulated by the regulation of arm impedance by muscle co-contraction~\cite{Burdet:nature:2001, Franklin:JoN:2008, Ganesh:RAS:2013}. As mentioned earlier, to comment on the task performance of the human co-worker, we next analyzed whether and how the touch accuracy of the participants changed alongside the contagions in their {\it htp}. 
+}
+
 %\st{see Fig.~\ref{fig:setup}}
 To address these issues, we examined an empirical repetitive industrial task in which a human participant and a humanoid robot work near each other. We systematically varied the behavior, specifically frequency of robot movements and examined whether and how the frequency of movements by the human participants, and their task accuracy, is affected by the presence of the robot. To investigate the effect of physical form, we added conditions where the robot co-worker torso and head were covered, and only the moving arm was visible to the human participants. Finally, in order to compare the humanoid co-worker to a human co-worker, we also checked how the effects on the participants changed with a human co-worker, with and without his/her torso and head visible. To anticipate our results, we found that the presence of a humanoid co-worker can affect human performance, but only when it's humanoid form is visible. Furthermore, the effect was observed to increase with prior robot experience by the humans.
 
 
-\clearpage
+%\clearpage
+
 \section{Physical human robot interaction(pHRI)}
 
 \subsection{Proactive approaches in pHRI}
@@ -111,3 +130,5 @@ Previous studies on the forces during these handover interactions analyzed the r
 
 \textbf{Studies on robot motion planning\\}
 Majority of studies related to human-robot object handovers were carried out in the past with traditional robotic arm manipulators attached to either a stationary-base or to a wheeled-base mobile robotic system~\cite{medina2016human, vogt2018one, huber2008Indus, kupcsik2016learning, cakmak2011human} and latter studies are often related to the robot motion planning and navigation in a large space and lacks proactive behavior using biped locomotion of a humanoid robot which are capable of walking like human does. To the best of our knowledge, bi-directional object handover with biped walking have not been considered in the previous works on the human-robot dyad object handover. However~\cite{vezzani2017novel, chan2014implementation} have utilized biped walking capable humanoid robots in their studies but without considering locomotion. Therefore in order for the robot to be fully proactive, we believe it is important to consider the possibility of robot taking a step to handover or exchange an object with the human co-worker, in scenarios where a short distance travel is required. We do not focus on the problem of motion planning in a large cluttered environment~\cite{mainprice2012sharing, vahrenkamp2009humanoid, kim2004advanced} but instead we concentrated our efforts to solve and optimize object handover problem which requires immediate shared efforts between human-robot dyad in a small space where a \textit{one-step-walk} cycle is necessary and enough for a comfortable and convenient object handover. We proposed simple but effective methods to take advantage of humanoid robot and deal with the problem of bi-directional object handover using robot whole-body control.
+
+\clearpage
