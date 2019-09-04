@@ -462,7 +462,7 @@ We had to find the equilibrium for robot to know the appropriate \textit{timing}
 HRP-2Kai is equipped with 6-axis \textit{wrist} force sensor on both hands, capable of precisely sensing interaction forces and torques with the environment along $x, y, z$ axes of the sensor local coordinate frame (let's call it $s$). We designed a model of interaction forces which enable the robot end-effector to interact with the object independent of the knowledge of object's mass in advance.
 
 \subsection{Method 1: mocap markers}
-Without actual haptic sensor feedback information from the robot end-effector, we had to rely on the wrist force sensor and mocap markers data of the robot end-effector (see Fig.~\ref{fig:markerEf}), therefore we used mocap makers in conjunction with the force feedback from the wrist sensor of HRP-2Kai robot to know whether the object is within its vicinity to grasp or not. Mocap makers on the robot end-effector were crucial to know the relative position of object from the human hand holding it and the humanoid robot end-effector(s). We placed four passive infra-red markers on the robot end-effector(s) in rectangular shape configuration as shown in (Fig.~\ref{fig:markerEf2}). Two of the markers were placed parallel and along the local $x$-axis of force sensor on the wrist of robot end-effector and rest two markers were placed on the gripper tips as shown in (Fig.~\ref{fig:markerEf}).
+Without actual haptic sensor feedback information from the robot end-effector, we had to rely on the wrist force sensor and mocap markers data of the robot end-effector (see Fig.~\ref{fig:markerEf}), therefore we used mocap makers in conjunction with the force feedback from the wrist sensor of HRP-2Kai robot to know whether the object is within its vicinity to grasp or not. Mocap makers on the robot end-effector were crucial to know the relative position of object from the human hand holding it and the humanoid robot end-effector(s). We placed four passive infra-red markers on the robot end-effector(s) in rectangular shape configuration as shown in (Fig.~\ref{fig:markerEf} and~\ref{fig:markerEf2}). Two of the markers were placed parallel and along the local $x$-axis of force sensor on the wrist of robot end-effector and rest two markers were placed on the gripper tips as shown in (Fig.~\ref{fig:markerEf}).
 
 \begin{figure}[ht]
 	\centering{\includegraphics[width=.5\linewidth]{plots/c4-plots/markerEf.jpg}}
@@ -649,7 +649,7 @@ The whole handover routine is a continuous process but for clarity we have divid
     ${}^{obj}\overline{\mathcal{F}}$, is pure force sensor reading when ${}^{ef}a=0$ and object is grasped by the robot, $n$ is the low-level controller time-step counter increments every $5$ms (see Section~\nameref{QPController}), we intentionally stay on this state for 1 second i.e. until $i==200$ to measure average of ${}^{obj}\vec{\mathcal{F}}$ over 200 samples. Object $mass$ can be obtained using equation (\ref{obj mass}).
     
     \begin{equation}\label{obj mass}
-        objMass = \norm{{}^{obj}\overline{\mathcal{F}}}/9.81
+        objMass = \norm{{}^{obj}\overline{\mathcal{F}}}/9.8
     \end{equation}
 
     \item Go to rest pose \\
@@ -677,7 +677,7 @@ The whole handover routine is a continuous process but for clarity we have divid
     {}^{new}\vec{T} = {}^{obj}\overline{\mathcal{F}} + {}^{old}\vec{T}
     \end{equation}
     
-    where, we chose to maintain ${}^{old}\vec{T}$ as default $[5, 5, 5]$ N.
+    where, we chose to maintain ${}^{old}\vec{T}$ as default $[10, 10, 10]$ N.
     
     \item Open Gripper, human grasps the object if both below conditions satisfy
 
@@ -722,7 +722,7 @@ The whole handover routine is a continuous process but for clarity we have divid
 		\tcc{when robot holds the object}
 		${}^{obj}\overline{\mathcal{F}} = \frac{1}{n}\sum_{i=1}^{i=n} \vert{ (\vert{\mathcal{F}} - \vert{{}^{zero}\mathcal{F}}) }$
 		
-		$objectMass = \norm{{}^{obj}\overline{\mathcal{F}}}/9.81 $\tcp*{get object mass}
+		$objectMass = \norm{{}^{obj}\overline{\mathcal{F}}}/9.8 $\tcp*{get object mass}
 		
 		${}^{inert}\mathcal{F} = objectMass * efAce$ \tcp*{$efAce$ - end-effector acceleration}
 		
