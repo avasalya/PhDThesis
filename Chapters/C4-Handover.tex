@@ -541,7 +541,7 @@ and therefore, force vector in the surface frame $surf$ can be obtained by utili
     {}^{surf}\vec{f} = {}^{surf}X_{s}^{*} {}^s\vec{f}
 \end{equation}
 
-where, ${}^{surf}X_{s}^{*}$ is the transformation matrix for transformation of force vector from force sensor frame $s$ to gripper intrinsic surface frame $surf$. Finally we measure noise free $\abs{{}^{surf}\vec{f}}$ along the gripper's insertion ($z$)-axis, during the interaction between object and gripper just prior to handover and if the measured $\abs{{}^{surf}\vec{f}}$ is greater than 3N along with the outcome of equation (\ref{area}) then it is safe for robot to close the gripper and hence grasp the object. We further explained complete handover routine utilizing above discussed methods in the next Subsection~\nameref{FSM} on FSM.
+where, ${}^{surf}X_{s}^{*}$ is the transformation matrix for transformation of force vector from force sensor frame $s$ to gripper intrinsic surface frame $surf$. Finally we measure noise free $\abs{{}^{surf}\vec{f}}$ along the gripper's insertion ($z$)-axis, during the interaction between object and gripper just prior to handover and if the measured $\abs{{}^{surf}\vec{f}}$ is greater than 5.5N along with the outcome of equation (\ref{area}) then it is safe for robot to close the gripper and hence grasp the object. We further explained complete handover routine utilizing above discussed methods in the next Subsection~\nameref{FSM} on FSM.
 
 \subsection{Finite state machine}\label{FSM}
 
@@ -992,7 +992,7 @@ where, ${}^{o}\mathcal{O}_M$ provides the orientation of object in the mocap fra
 	{}^{h}{X}_{ef}(\text{off}) =  {\bf{}^{\text{\bf off}}{X}_M}  {}^{M}{X}_R {{}^{ef}{X}_R}^{-1}
 \end{equation}
 
-Finally at the handover location, we measure the noise free $\abs{{}^{surf}\vec{f}}$ forces along the both gripper's insertion ($z$)-axes during the interaction between object and gripper just prior to handover. Handover occurs when $\abs{{}^{surf}\vec{f}}$ exceeds 3N on both end-effectors along with the set of following conditions in equation (\ref{min_posErr_vel}) satisfy for both robot end-effectors.
+Finally at the handover location, we measure the noise free $\abs{{}^{surf}\vec{f}}$ forces along the both gripper's insertion ($z$)-axes during the interaction between object and gripper just prior to handover. Handover occurs when $\abs{{}^{surf}\vec{f}}$ exceeds 5.5N on both end-effectors along with the set of following conditions in equation (\ref{min_posErr_vel}) satisfy for both robot end-effectors.
 
 %\begin{figure}[htbp]
 %	\centering{\includegraphics[width=0.8\columnwidth]{plots/c4-plots/handoverpipeIntern}}
