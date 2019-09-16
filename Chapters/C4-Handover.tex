@@ -1029,35 +1029,21 @@ Finally handover occurs when the set of conditions in the equation (\ref{Fpull})
 %\clearpage
 
 
-\section{Step-walk and handover \textit{incomplete**}}
+\section{Locomotion and handover}
 
-To the best of our knowledge, none of the previous work on the human-robot dyad considered object handover and `walking' in a single framework using a \textit{biped} humanoid robot such as HRP-2Kai.
+To the best of our knowledge, none of the previous work on the human-robot dyad considered object handover and `walking' in a single framework using a \textit{biped} humanoid robot platform such as HRP-2Kai. Therefore in order for the robot to be fully proactive, we believe it is important to consider the possibility of robot taking a step to handover or exchange an object with the human co-worker, in scenarios where a short distance travel is required.
 
+Up till now we formulated our handover problem under the assumption that both human and robot co-worker are stationary on their respective position in the world frame. While on the other hand, next in this section, we further extended our handover problem and added another scenario in which robot takes a step(\textit{s}) to handover or receive the object from the human co-worker based on the interpersonal distance between them. We have tested this scenario during both when human-robot dyad uses either single or both hands simultaneously.
 
-here we have demonstrated with either hand individual but same method can also be applied on handover procedure using both hands.
-
-we humans are surprisingly able to predict where our partner would handover an object, often without an explicit communication. Studies have shown that we humans often handover an object at the middle of our interpersonal distances ~\cite{hansen2017human, kato2018humans, kato2019handovers}.
-
-
-\textit{ Handovers require one individual’s hand to enter the peri-personal space of another individual, which is a space around an individual’s body that they are known to be protective of [22], [23]studies of peri-personal space has shown that it is affected by an individual’s reach [24] [25] and hence we hypothesized that an individual’s size and arm length to affect handovers. } from ~\cite{kato2019handovers}
+We humans are surprisingly able to predict where our partner would handover an object, often without an explicit communication. Studies have shown that we humans often handover an object at the middle of our interpersonal distances ~\cite{hansen2017human, kato2018humans, kato2019handovers}.
 
 
-\textbf{since WPG treats physical interactions as disturbance therefore we trigger motion of hands only during the final double support phase.....}: \textit{the robot pushes only during the double support phase (when both feet are
-in contact with the ground), to allow a larger support polygon (and equivalently
-stability margin) during pushing.}
+\textit{ Handovers require one individual’s hand to enter the peri-personal space of another individual, which is a space around an individual’s body that they are known to be protective of [22], [23]studies of peri-personal space has shown that it is affected by an individual’s reach [24] [25] and hence we hypothesized that an individual’s size and arm length to affect handovers. } from ~\cite{kato2019handovers}\\
 
-talk about strategy-- which discussed with ganesh earlier on\\
-how we plan to achieve this \textbf{Handover task protocol\\} using Step-walk
 
-\textbf{Whole-body control and walking:} WBC based handover
+\subsection{Step-walk}
 
-%\url{https://www.ieee-ras.org/whole-body-control}
-%whole body control~\cite{sentis2006whole} A Whole-Body Control Framework for Humanoids Operating in Human Environments
-
-%\textbf{don chapter 4 no wbc}
-%file:///C:/Users/Ashesh/Dropbox%20(CNRS-AIST%20JRL)/PhD/Papers/other's%20thesis/thesis-agravante.pdf
-
-%\textbf{evard 4.4 WBC}
+In this study, for locomotion (step-walk), we primarily chose to adopt walking pattern generator (WPG) based on the Linear Inverted Pendulum Mode (LIPM) which was designed and tested in our group~\cite{caron2016humanoids, kajita20013d} along with its native stabilizer~\cite{caron2018stair, kajita2010biped}.
 
 
 
@@ -1088,6 +1074,12 @@ don -1.2.1
 \cite{kajita2010biped}
 
 
+\textbf{since WPG treats physical interactions as disturbance therefore we trigger motion of hands only during the final double support phase.....}: \textit{the robot pushes only during the double support phase (when both feet are
+	in contact with the ground), to allow a larger support polygon (and equivalently
+	stability margin) during pushing.}
+
+talk about strategy-- which discussed with ganesh earlier on\\
+how we plan to achieve this \textbf{Handover task protocol\\} using Step-walk
 
 
 
