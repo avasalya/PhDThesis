@@ -22,9 +22,8 @@
 \usepackage{amsmath}
 \usepackage{physics}
 \usepackage{hyphenat}
-\usepackage{hyphenat}
-\usepackage{hyphenat}
 \usepackage{hyperref}
+%\usepackage[colorlinks=true, citecolor=blue, linkcolor=red]{hyperref}%
 \usepackage{bookmark}
 \usepackage{amsmath,empheq}
 \usepackage{caption}
@@ -64,8 +63,15 @@
 	stringstyle=\color{red} % string color
 }
 
-\setlength{\parindent}{15pt} % Default is 15pt.
+\AtBeginDocument{% optionally set colors to your liking
+	\hypersetup{
+		urlcolor=red,
+		citecolor=cyan,
+		linkcolor=blue,
+	}%
+}
 
+\setlength{\parindent}{15pt} % Default is 15pt.
 
 
 \tolerance=1
@@ -202,49 +208,54 @@
 \rhead{\thepage}  % Sets the right side header to show the page number
 \lhead{}  % Clears the left side page header
 
-\pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
+%\pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
 
 \clearpage
 
-
-
 %% ------------------------Acknowledgements----------------------
-
-% Review Version
-{\color{red}\section*{\huge \centering{Review Version}\\}} % temporary
-
 
 \setstretch{1.3}  % Reset the line-spacing to 1.3 for body text (if it has changed)
 %% The Acknowledgements page, for thanking everyone
 \acknowledgements{
 \addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
 
-
-acknowledgements will go here
 }
 
+\clearpage
 
-\clearpage  % End of the Acknowledgements
+%% --------------------Resume de la thesis -------------------------------
+
+{\color{blue}\chapter*{\centering{Résumé de thèse de doctorat}}}
+\addcontentsline{toc}{chapter}{Résumé de thèse de doctorat}
+\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
+\pagestyle{plain}
+
+\clearpage
 
 %% --------------------ABSTRACT -------------------------------
 
-%\setstretch{1.1}  % Return the line spacing back to 1.3
-%\addtotoc{Abstract}
-%{\color{blue}\section*{\huge Abstract}}
+{\color{blue}\chapter*{Abstract}}
+\addcontentsline{toc}{chapter}{Abstract}
+\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
+\pagestyle{plain}
+
+\clearpage
 
 
 %% ----------------------------------------------------------------
 
 \pagestyle{fancy}  %The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
 
-%\addtotoc{Contents}
+\addtotoc{Contents}
 \lhead{\emph{Contents}}  % Set the left side page header to "Contents"
 \tableofcontents  % Write out the Table of Contents
+\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
 
 %% ----------------------------------------------------------------
 
 \lhead{\emph{List of Figures}}  % Set the left side page header to "List if Figures"
 \listoffigures  % Write out the List of Figures
+\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
 
 
 %%% ----------------------------------------------------------------
@@ -255,7 +266,7 @@ acknowledgements will go here
 
 %%% ----------------------------------------------------------------
 
-\setstretch{1.1}
+%\setstretch{1.3}
 
 \pagestyle{empty}  % Page style needs to be empty for this page
 
@@ -265,28 +276,32 @@ acknowledgements will go here
 \pagestyle{fancy}  % Return the page headers back to the "fancy" style
 % Include the chapters of the thesis, as separate files
 
-\input{Chapters/Introduction.tex} % Introduction
-
-\input{Chapters/C1-StateOfTheArt.tex} % S-O-T-A
-
-\input{Chapters/C2-RoMan.tex} % Ro-MAN distinct
-
-\input{Chapters/C3-PlosOne.tex} % PLosOne morethan
+%\input{Chapters/Introduction.tex} % Introduction
+%
+%\input{Chapters/C1-StateOfTheArt.tex} % S-O-T-A
+%
+%\input{Chapters/C2-RoMan.tex} % Ro-MAN distinct
+%
+%\input{Chapters/C3-PlosOne.tex} % PLosOne morethan
 
 \input{Chapters/C4-Handover.tex} % Handover
 
-\input{Chapters/Conclusion.tex} %  Conclusion Discussion/future possibilities
+%\input{Chapters/Conclusion.tex} %  Conclusion Discussion/future possibilities
+
+\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
 
 
 %% ----------------------------------------------------------------
 %% Appendices, including them as separate files
 
 \appendix
-\input{Appendices/Appendix_A}\label{contagion appendix}
-%\input{Appendices/Appendix_B}\label{handover appendix}
+%\input{Appendices/Appendix_A}\label{contagionAppendix}
+\input{Appendices/Appendix_B}\label{handoverAppendix}
 
-%\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
+\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
+
 \backmatter
+
 
 %% ----------------------------------------------------------------
 \label{Bibliography}

@@ -1,4 +1,130 @@
-\chapter{Handover}
+\chapter{Appendix: Handover}
+
+%%\subsection{Algorithm: position prediction model}
+
+\begin{algorithm}[H] \label{positionalgo}
+	\DontPrintSemicolon
+	\SetNoFillComment
+	
+	\KwInput{$\mathcal{}^{M}{X}_R, {}^{ef}{X}_R, mocapData$}
+	\KwOutput{${}^{h}wp_{ef}$ \tcp*{predicted waypoints}  }
+	\KwData{Initial require: $t_{observe}=20ms, t_{predict}=200ms, i=dt=5ms$}
+	
+	
+	\textit{$\textbf{i+=dt}$} \tcp*{increments as per controller run-time (dt)}
+	
+	\If{$(i\%t_{observe})==0$}
+	{
+		\For{$j = 1 \textrm{ to } t_{observe} $}
+		{
+			${}^{h}\mathcal{P}_M= \textit{mocapData}.handMarker(i-t_{observe})+j)$	
+		}
+		
+		${}^{h}\mathcal{\bar{V}}_{M} = \frac{1}{t_{observe}}{\sum_{j=1}^{j=t_{observe}} ({}^{h}\mathcal{P}_{M}(j)-{}^{h}\mathcal{P}_{M}(j-1))/dt }$\newline 
+		
+		\tcc{predict human hand handover position at $t_{predict}$}
+		${}^{h}\mathcal{P}_M(t_{predict}) = {}^{h}\mathcal{\bar{V}}_{M} \cdot t_{predict}  + {}^{h}\mathcal{P}_{M}(t_{observe})$ %\newline % \times 0.005
+		
+		
+		${}^{h}{X}_M= \begin{bmatrix} {}^{h}\mathcal{O}_{M} &  {}^{h}\mathcal{P}_M	\end{bmatrix}$ \newline
+		
+		\tcc{transform handover position relative to robot end-effector}	
+		${}^{h}{X}_{ef}(t_{predict}) =  {}^{h}{X}_M  {}^{M}{X}_R {{}^{ef}{X}_R}^{-1}$ \newline
+		
+		
+		\tcc{\textit{way points between human hand and robot end-effector handover location}}
+		\SetKwFunction{FMain}{generateWp}
+		\SetKwProg{Fn}{Function}{:}{}
+		\Fn{\FMain{$ {}^{ef}\mathcal{P}_{R}, {}^{h}\mathcal{P}_{ef}(t_{predict}), t_{predict} $}}
+		{
+			\For{$k = 0 \textrm{ to } t_{predict} $}
+			{
+				${}^{h}wp_{ef}(k) = [{}^{h}\mathcal{P}_{ef}(t_{predict}) - {}^{ef}\mathcal{P}_{R}] . (\frac{k}{t_{predict}})  + {}^{ef}\mathcal{P}_{R} $ 
+			}	
+			\textbf{return} $ {}^{h}wp_{ef} $
+		}
+	}
+	\caption{linear position prediction model}
+\end{algorithm}
+
+\clearpage
+
+
+%%\subsection{Algorithm: interaction forces}
+
+
+\begin{algorithm}[H]\label{interaction forces}
+	\DontPrintSemicolon
+	\SetNoFillComment
+	
+	\KwInput{$\mathcal{F}$\tcp*{EF wrist worldWrenchWithoutGravity}}
+	\KwOutput{${}^{pull}\mathcal{F}, {}^{new}T$ \tcp*{Pull force, new threshold based on object mass\newline} }
+	% 	\textit{$\textbf{dt++}$} \tcp*{increments as per controller run-time (5ms)}
+	
+	\If{\text{human hand is near robot}}
+	{
+		\tcc{when human holds the object}
+		\If{$\norm{{}^h{P} - {}^{ef}{P}} < 0.05$ \tcp*{gripper is empty}}
+		{
+			Open Gripper\\
+			$\mathcal{}^{zero}{F}= \mathcal{F}$ \tcp*{wrench offset}
+		}
+		\tcc{when robot holds the object}
+		${}^{obj}\overline{\mathcal{F}} = \frac{1}{n}\sum_{i=1}^{i=n} \vert{ (\vert{\mathcal{F}} - \vert{{}^{zero}\mathcal{F}}) }$
+		
+		$objectMass = \norm{{}^{obj}\overline{\mathcal{F}}}/9.80665 $ \tcp*{get object mass}
+		
+		${}^{inert}\mathcal{F} = objectMass * efAce$ \tcp*{$efAce$ - avg end-effector acceleration}
+		
+		${}^{new}T = {}^{obj}\overline{\mathcal{F}} + {}^{old}T$ \tcp*{$T_{old}$ set to [5,5,5]}
+		
+		\SetKwFunction{FMain}{CheckPullForce}
+		\SetKwProg{Fn}{Function}{:}{}
+		\Fn{\FMain{$\lor x, \lor y, \lor z$}}
+		{	
+			${}^{pull}\mathcal{F} = \vert{(\vert\mathcal{{F}} - \vert{}^{inert}\mathcal{{F}} - \vert{}^{zero}\mathcal{{F}}) }$
+			
+			\If{${}^{pull}\mathcal{F} > {}^{new}T \lor x, \lor y, \lor z$}
+			{
+				\textrm{release object}\tcp*{release object}
+			}
+		}
+	}
+	\caption{Interaction Forces}
+\end{algorithm}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage % end of appendix
+
 
 %\begin{lstlisting}[language=C++,basicstyle=\footnotesize, caption={wrench}]
 %const sva::ForceVecd 
