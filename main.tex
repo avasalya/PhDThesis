@@ -2,13 +2,10 @@
 %% Main.tex -- MAIN FILE (the one that you compile with LaTeX)
 %% ---------------------------------------------------------------- 
 
-%%%%%% Set up the document --- simple & fast
-%\documentclass[a4paper, 11pt, oneside, draft]{Thesis}
-%\usepackage[square, numbers, comma, sort&compress]{natbib}
 
-
-%%%%%% Set up the document --- slow and user friendly
 \documentclass[a4paper, 12pt, oneside]{Thesis}
+
+%\usepackage[square, numbers, comma, sort&compress]{natbib}
 \usepackage{natbib}
 
 
@@ -260,9 +257,9 @@
 
 %%% ----------------------------------------------------------------
 %
-%\lhead{\emph{List of Tables}}  % Set the left side page header to "List of Tables"
-%\listoftables  % Write out the List of Tables
-
+\lhead{\emph{List of Tables}}  % Set the left side page header to "List of Tables"
+\listoftables  % Write out the List of Tables
+\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
 
 %%% ----------------------------------------------------------------
 
@@ -276,17 +273,17 @@
 \pagestyle{fancy}  % Return the page headers back to the "fancy" style
 % Include the chapters of the thesis, as separate files
 
-%\input{Chapters/Introduction.tex} % Introduction
-%
-%\input{Chapters/C1-StateOfTheArt.tex} % S-O-T-A
-%
-%\input{Chapters/C2-RoMan.tex} % Ro-MAN distinct
-%
-%\input{Chapters/C3-PlosOne.tex} % PLosOne morethan
+\input{Chapters/Introduction.tex} % Introduction
+
+\input{Chapters/C1-StateOfTheArt.tex} % S-O-T-A
+
+\input{Chapters/C2-RoMan.tex} % Ro-MAN distinct
+
+\input{Chapters/C3-PlosOne.tex} % PLosOne morethan
 
 \input{Chapters/C4-Handover.tex} % Handover
 
-%\input{Chapters/Conclusion.tex} %  Conclusion Discussion/future possibilities
+\input{Chapters/Conclusion.tex} %  Conclusion Discussion/future possibilities
 
 \addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
 
@@ -295,7 +292,7 @@
 %% Appendices, including them as separate files
 
 \appendix
-%\input{Appendices/Appendix_A}\label{contagionAppendix}
+\input{Appendices/Appendix_A}\label{contagionAppendix}
 \input{Appendices/Appendix_B}\label{handoverAppendix}
 
 \addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
