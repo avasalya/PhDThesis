@@ -1096,7 +1096,7 @@ Initially the problem of handover was formulated under the scenario that both hu
 
 Though, now with the possibility of taking few step(s), our previous handover \textit{routine} can be extended further to some possible scenarios (within and beyond its initially defined reachable workspace) where an object handover could occur between human and humanoid robot co-workers, either using one hand or both hands together, even when human co-worker is out of robot's reachable workspace in the direction of $\bf{X}$-axis. 
 
-The key idea here is to trigger the step-walk when human co-worker goes beyond the robot co-worker's reachable workspace and presents its intention to handover/receive the object. The intention of human co-worker is established when the condition (\ref{triggerWalk}) satisfy followed by the condition (\ref{aboveWaist}) i.e.  (\ref{triggerWalk}) $\bigwedge$ (\ref{aboveWaist}).
+The key idea here is to trigger the step-walk when human co-worker goes beyond the robot co-worker's reachable workspace (stepping backwards) and presents its intention to handover/receive the object. The intention of human co-worker is established when the condition (\ref{triggerWalk}) satisfy followed by the condition (\ref{aboveWaist}) i.e.  (\ref{triggerWalk}) $\bigwedge$ (\ref{aboveWaist}).
 
 \begin{equation}\label{triggerWalk}
 		125\%({}^{i}D) <= D <= 150\%({}^{i}D)
@@ -1106,7 +1106,7 @@ The key idea here is to trigger the step-walk when human co-worker goes beyond t
 		{}^{z}H >= waistHeight
 \end{equation}
 
-where, $ waistHeight $ is the height of respective human co-worker. Also note that $ {}^{z}H $ is not just any human hand but the active human hand height which either holds the object during 1$ {}^{st} $ \textit{cycle} or approaches towards the object in order to grasp it during 2$ {}^{nd} $ \textit{cycle} of a handover \textit{routine}.
+where, $ waistHeight $ is the height of respective human co-worker. Also note that $ {}^{z}H $ is not just any human hand but the active human hand height which either holds the object during 1$ {}^{st} $ \textit{cycle} or approaches towards the object in order to grasp it during 2$ {}^{nd} $ \textit{cycle} of a handover \textit{routine} as shown in (Fig. \ref{fig:handoverWalk}).
 
 
 \begin{figure}[hptb]
