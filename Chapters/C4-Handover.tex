@@ -1087,9 +1087,9 @@ As said above, the moment at which this step-walk should be triggered depends on
 	D = \abs{{}^{b}{H} - {}^{b}{R}}
 \end{equation}
 
-Initially the problem of handover was formulated under the scenario that both human and robot co-worker feet are stationary on their respective position in the world frame, therefore the object handover can happen just by extending their arm(s) and end-effector(s) respectively. However with an exception that human co-worker is allowed to move nearer to the robot co-worker if needed. The initial interpersonal distance $ {}^{i}D $ between the human and robot co-workers bodies was approximately kept $1.2$ meters, such that object handover is possible as long as equations (\ref{reachable} and \ref{D_range}) satisfy,
+Initially the problem of handover was formulated under the scenario that both human and robot co-worker feet are stationary on their respective position in the world frame, therefore the object handover can happen just by extending their arm(s) and end-effector(s) respectively. However with an exception that human co-worker is allowed to move nearer to the robot co-worker if needed. The initial interpersonal distance $ {}^{i}D $ between the human and robot co-workers bodies was approximately kept $1.2$ meters, such that object handover is possible as long as equations (\ref{reachable} and \ref{Di_range}) satisfy,
 
-\begin{equation}\label{D_range}
+\begin{equation}\label{Di_range}
 	0 <= {}^{i}D <= 1.2
 \end{equation}
 
@@ -1119,16 +1119,18 @@ where, $ waistHeight $ is the height of respective human co-worker. Also note th
 
 \section{Handover task protocol}
 
-The handover task protocol is an emblem of our bi-directional object handover problem between human and humanoid robot co-workers. It consists of all the models and methods that we have presented so far. Within the handover task protocol, each trial of handover \textit{routine} starts from an initial posture (standing still with both hands down, as shown earlier in Fig.~\ref{fig:halfsit}), such that it satisfy the condition (\ref{safezone}). 
+The handover task protocol is an emblem of our bi-directional object handover problem between human and humanoid robot co-workers. It consists of all the models and methods that we have presented so far. Within the handover task protocol, each trial of handover \textit{routine} starts from an initial posture, standing still with both hands down as shown earlier in (Fig.~\ref{fig:halfsit}), such that it must satisfy the condition (\ref{safezone}). 
 
 \begin{equation}\label{safezone}
 D > 150\% ({ }{}^{i}D) 
 \end{equation}
 
 
-Afterwards, we asked human co-worker to move to `starting position' (\ref{D_range}), from there it is up to human co-worker, whether he/she chooses to exchange (handover/receive) object from that stationary position or take a step backward, while at the same time raise his/her active hand, which results in signaling the robot to trigger the step-walk and exchange the object as per the conditions (\ref{triggerWalk}) $\bigwedge$ (\ref{aboveWaist}).
+Afterwards, the trial begins when the human co-worker moves to a `starting position' (\ref{D_range}), from there it is up to human co-worker, whether he/she chooses to exchange (handover/receive) object from that stationary position or take a step backward, while at the same time raise his/her active hand, which results in signaling the robot to trigger the step-walk and exchange the object as per the conditions (\ref{triggerWalk}) $\bigwedge$ (\ref{aboveWaist}). Note that we utilize the fundamentals of hysteresis such that robot would trigger forward step-walk only when the conditions (\ref{safezone}) $\bigwedge$ (\ref{D_range}) are valid in following mentioned order.
 
-Later, based on a hysteresis law given by the combination of equations (\ref{safezone}) $\bigwedge$ (\ref{D_range}), 
+\begin{equation}\label{D_range}
+0 <= D <= 1.2
+\end{equation}
 
 When considering step-walk, the (\nameref{handover routine}) can be performed under four possible cases in which an handover could occur between human and humanoid robot co-workers, either when considering one hand handover or two hands handover scenario.
 
@@ -1148,8 +1150,9 @@ When considering step-walk, the (\nameref{handover routine}) can be performed un
 	\end{center}
 \end{table}
 
-we trigger the step-walk when D>1.6 while at the same time $ {}^{z}H $ is above human co-worker's waist. which basically agrees with our assumption that human co-worker is ready with the intention to handover/receive the object. Though at the moment, step-walk is triggered only when interpersonal distance between the co-workers becomes greater than $ 125\% D 150 $
+However, note that in the cases when human co-worker decides to step backward, then the interpersonal distance $ D $ would be larger than 1.2 meters, therefore
 
+we trigger the step-walk when D>1.6 while at the same time $ {}^{z}H $ is above human co-worker's waist. which basically agrees with our assumption that human co-worker is ready with the intention to handover/receive the object. Though at the moment, step-walk is triggered only when interpersonal distance between the co-workers becomes greater than $ 125\% D 150 $
 
 We don't wait for any signal to trigger the backward step-walk, once the object is fully grasped by the robot co-worker (as stated by the transition state XXX), the robot return its end-effector(s) to a relax posture and walks back to where it started.
 
