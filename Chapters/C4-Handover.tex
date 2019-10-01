@@ -1119,12 +1119,13 @@ where, $ waistHeight $ is the height of respective human co-worker. Also note th
 
 \section{Handover task protocol}
 
-The handover task protocol is an emblem of our bi-directional object handover problem between human and humanoid robot co-workers. It consists of all the models and methods that we have presented so far. (\nameref{prediction_model}) for predicting and estimating the handover location in advance, (\nameref{hand_orientation}) for estimating the relative orientation of object or active human hand during handover. (\nameref{interaction model}) for minimizing the forces during the handover of an unknown mass object.
+The handover task protocol is an emblem of our bi-directional object handover problem between human and humanoid robot co-workers. It consists of all the models and methods that we have presented so far. (\nameref{prediction_model}) for predicting and estimating the handover location in advance. (\nameref{hand_orientation}) for estimating the orientation of robot end-effector(s), relative to the orientation of object or active human hand during handover. (\nameref{interaction model}) for minimizing the forces during the handover of an unknown mass object.
 
 Moreover when step-walk is considered, the (\nameref{handover routine}) can be performed under four possible cases (see Table.~\ref{walkTable}) in which an object handover could occur between human and humanoid robot co-workers, either when during (\nameref{both hands individual}) and (\nameref{both hands together}) scenarios.
 
 \begin{table}[hbt]
 	\caption{Possible object exchange cases during the \textit{cycle}s of a handover \textit{routine}.}
+	{During both \textit{cycle}s, human co-worker can handover the object while staying at their starting position or first take a step backward and then handover the object.}
 	\label{walkTable}
 	\begin{center}
 		\begin{tabular}{| c | c|}
@@ -1150,7 +1151,7 @@ D > 150\% ({ }{}^{i}D)
 \end{equation}
 
 
-Afterwards, the trial begins when the human co-worker moves to a `starting position' (\ref{D_range}), from there it is up to human co-worker, whether he/she chooses to exchange (handover/receive) object from that stationary position or take a step backward, while at the same time raise his/her active hand, which results in signaling the robot to trigger the step-walk and eventually exchange the object with the human co-worker as per the conditions (\ref{triggerWalk}) $\cap$ (\ref{aboveWaist}). Note that we utilize the fundamentals of hysteresis such that robot would trigger forward step-walk only when the conditions (\ref{safezone}) $\cap$ (\ref{D_range}) are valid in following mentioned order. During both \textit{cycle}s, human co-worker can handover the object while staying at their starting position or first take a step backward and then handover the object.
+Afterwards, the trial begins when the human co-worker moves to a `starting position' (\ref{D_range}), from there it is up to human co-worker, whether he/she chooses to exchange (handover/receive) object from that stationary position or take a step backward, while at the same time raise his/her active hand, which results in signaling the robot to trigger the step-walk and eventually exchange the object with the human co-worker as per the conditions (\ref{triggerWalk}) $\cap$ (\ref{aboveWaist}). Note that we utilize the fundamentals of hysteresis such that robot would trigger forward step-walk only when the conditions (\ref{safezone}) $\cap$ (\ref{D_range}) are valid in following mentioned order.
 
 
 \begin{equation}\label{D_range}
@@ -1158,7 +1159,7 @@ Afterwards, the trial begins when the human co-worker moves to a `starting posit
 \end{equation}
 
 
-However, note that in the cases when human co-worker decides to step backward, then the interpersonal distance $ D $ would become larger than 1.2 meters, therefore
+However, note that in the cases when human co-worker decides to step backward, then for sometime after the step-walk is triggered, the interpersonal distance $ D $ would become larger than 1.2 meters, therefore
 
 we trigger the step-walk when D>1.6 while at the same time $ {}^{z}H $ is above human co-worker's waist. which basically agrees with our assumption that human co-worker is ready with the intention to handover/receive the object. Though at the moment, step-walk is triggered only when interpersonal distance between the co-workers becomes greater than $ 125\% D 150 $
 
