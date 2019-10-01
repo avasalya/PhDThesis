@@ -470,7 +470,7 @@ HRP-2Kai is equipped with 6-axis \textit{wrist} force sensor on both hands, capa
 
 \subsection{Method 1: mocap markers}
 
-Without actual haptic sensor feedback information from the robot end-effector, we had to rely on the wrist force sensor and mocap markers data of the robot end-effector (see Fig.~\ref{fig:markerEf}), therefore we used mocap makers in conjunction with the force feedback from the wrist sensor of HRP-2Kai robot to know whether the object is within its vicinity to grasp or not. Mocap makers on the robot end-effector were crucial to know the relative position of object from the active human hand holding it and the humanoid robot end-effector. We placed four passive infra-red markers on the robot end-effector(s) in rectangular shape configuration as shown in (Fig.~\ref{fig:markerEf}, \ref{fig:markerEf1} and~\ref{fig:markerEf2}). Two of the markers were placed parallel and along the local $x$-axis of force sensor on the wrist of robot end-effector and rest two markers were placed on the gripper tips as shown in (Fig.~\ref{fig:markerEf}).
+Without actual haptic sensor feedback information from the robot end-effector, we had to rely on the wrist force sensor and mocap markers data of the robot end-effector (see Fig.~\ref{fig:markerEf}), therefore we used mocap makers in conjunction with the force feedback from the wrist sensor of HRP-2Kai robot to know whether the object is within its vicinity to grasp or not. Mocap makers on the robot end-effector were crucial to know the relative position of object from the active human hand holding it and the humanoid robot end-effector. We placed four passive infra-red markers on the robot end-effector(s) in rectangular shape configuration as shown in (Fig.~\ref{fig:markerEf}, \ref{fig:markerEf2} and \ref{fig:markerEf1}). Two of the markers were placed parallel and along the local $x$-axis of force sensor on the wrist of robot end-effector and rest two markers were placed on the gripper tips as shown in (Fig.~\ref{fig:markerEf}).
 
 \begin{figure}[ht]
 	\centering{\includegraphics[width=.5\linewidth]{plots/c4-plots/markerEf.jpg}}
@@ -517,7 +517,7 @@ where $\vec{A}$, $\vec{B}$, $\vec{C}$ are the three coordinate vectors of a tria
 
 \begin{figure}[ht]
 	\centering{\includegraphics[width=.8\linewidth]{plots/c4-plots/hl-rr}}
-	\caption{Passive IR markers on the robot HRP-2Kai right end-effector, human right hand and object during handover.}
+	\caption{Humanoid robot HRP-2Kai trying to grasp object using right end-effector.}
 	\label{fig:markerEf1}
 \end{figure} 
 
@@ -841,7 +841,7 @@ Here as well we have placed an ${\bf L}$ shape rigid body at the center of the o
 
 \subsection{Constraint motion}
 
-Following is an overview of both hands constraint handover motion during handover \textit{routine}.
+Following is an overview of constraint motion during handover \textit{routine} using both hands and end-effectors.
 \begin{compactitem}
 	\item Human moves with the intention to handover the object.
 	\item Both robot end-effectors approaches towards the object.
@@ -1157,7 +1157,7 @@ We don't wait for any signal to trigger the backward step-walk, once the object 
 
 \clearpage
 
-\section{Discussion - incomplete}
+\section{Discussion}
 
 
 This Chapter how we predict and estimate pose of the handover location along with the modeling of interaction forces in order to get the mass of the object as well keeping the magnitude of pull force to minimum.
