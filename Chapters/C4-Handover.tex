@@ -1119,9 +1119,9 @@ where, $ waistHeight $ is the height of respective human co-worker. Also note th
 
 \section{Handover task protocol}
 
-The handover task protocol is an emblem of our bi-directional object handover problem between human and humanoid robot co-workers. It consists of all the models and methods that we have presented so far. (\nameref{prediction_model}) for predicting and estimating the handover location in advance. (\nameref{hand_orientation}) for estimating the orientation of robot end-effector(s), relative to the orientation of object or active human hand during handover. (\nameref{interaction model}) for minimizing the forces during the handover of an unknown mass object.
+The handover task protocol is an emblem of our bi-directional object handover problem between human and humanoid robot co-workers. It consists of all the models and methods that we have presented so far. (\nameref{prediction_model}) for predicting and estimating the handover location. (\nameref{hand_orientation}) for estimating the orientation of robot end-effector(s), relative to the orientation of object or active human hand during handover. (\nameref{interaction model}) for minimizing the forces during the handover of an unknown mass object.
 
-Moreover when step-walk is considered, the (\nameref{handover routine}) can be performed under four possible cases (see Table.~\ref{walkTable}) in which an object handover could occur between human and humanoid robot co-workers, either when during (\nameref{both hands individual}) and (\nameref{both hands together}) scenarios.
+Moreover when step-walk is considered, the (\nameref{handover routine}) can be performed under four possible cases (see Table.~\ref{walkTable}) in which an object handover could occur between human and humanoid robot co-workers, either when during (\nameref{both hands individual}) or (\nameref{both hands together}) scenarios.
 
 \begin{table}[hbt]
 	\caption{Possible object exchange cases during the \textit{cycle}s of a handover \textit{routine}.}
@@ -1151,7 +1151,7 @@ D > 150\% ({}^{i}D)
 \end{equation}
 
 
-Afterwards, the trial begins when the human co-worker moves to a `starting position' (\ref{D_range}), from there it is up to human co-worker, whether he/she chooses to exchange (handover/receive) object from that stationary position or take a step backward, while at the same time raise his/her active hand, which results in signaling the robot to trigger the step-walk and eventually exchange the object with the human co-worker as per the conditions (\ref{triggerWalk}) $\cap$ (\ref{aboveWaist}). Note that we utilize the fundamentals of hysteresis such that robot would trigger forward step-walk only when the conditions (\ref{safezone}) $\cap$ (\ref{D_range}) are valid in following mentioned order.
+Afterwards, the trial begins when the human co-worker moves to a `starting position' (\ref{D_range}), from there it is up to human co-worker, whether he/she chooses to exchange (handover/receive) object from that stationary position or take a step backward, while at the same time raise his/her active hand, which results in signaling the robot to trigger the step-walk and eventually exchange the object with the human co-worker as per the conditions (\ref{triggerWalk}) $\cap$ (\ref{aboveWaist}). Note that we utilize the fundamentals of hysteresis such that robot would trigger forward step-walk only when the conditions are valid in following mentioned order (\ref{safezone}) $\cap$ (\ref{D_range}).
 
 
 \begin{equation}\label{D_range}
@@ -1161,7 +1161,7 @@ Afterwards, the trial begins when the human co-worker moves to a `starting posit
 
 The step-walk is triggered when $ 125\%({}^{i}D) <= D <= 150\%({}^{i}D) $, where $ \max({}^{i}D)  == 1.2 $, while at the same time $ {}^{z}H $ is above human co-worker's waist. This basically agrees with our assumption that human co-worker is ready with the intention to handover/receive the object.
 
-Finally once the object handover has occurred, the robot co-worker needs to go back to its initial starting position, such that it needs to take backward step-walk in order to complete the handover \textit{cycle}. For simpliciy, we have coupled the backward step-walk with the forward step-walk, therefore backward step-walk is triggered only when robot had taken forward step-walk. We trigger the backward step-walk, once the object is fully grasped by the robot co-worker (1$ {}^{st} $ \textit{cycle}), as stated by the transition states \textbf{t7} and \textbf{t8} of (\nameref{FSM}) or by the human co-worker at the end of (2$ {}^{nd} $ \textit{cycle}), as stated by the transition states \textbf{t12} and \textbf{t13}, then the robot safely return its end-effector(s) to a relax/initial posture and walks back to where it started. This concludes one trial of a handover \textit{routine}.
+Finally once the object handover has occurred, the robot co-worker needs to go back to its initial starting position, such that it requires to take backward step-walk in order to complete the handover \textit{cycle}. For simplicity, we have coupled the backward step-walk with the forward step-walk, therefore backward step-walk is triggered only when the robot had taken forward step-walk. We trigger the backward step-walk, once the object is fully grasped by the robot co-worker (1$ {}^{st} $ \textit{cycle}), as stated by the transition states \textbf{t7} and \textbf{t8} of (\nameref{FSM}) or by the human co-worker at the end of (2$ {}^{nd} $ \textit{cycle}), as stated by the transition states \textbf{t12} and \textbf{t13}, then the robot safely return its end-effector(s) to a relax/initial posture and walks back to where it started. This concludes one trial of a handover \textit{routine}.
 
 \clearpage
 
