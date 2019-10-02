@@ -991,7 +991,7 @@ Finally handover occurs when the set of conditions in the equation (\ref{Fpull})
 
 \clearpage
 
-\section{Locomotion and handover}
+\section{Locomotion and handover}\label{locomotion}
 
 General broad definition of locomotion describes it as an ability to move from one place to another, that could be achieved either by walking, running, jumping etc. Though we are mainly interested in the walking locomotion of a \textit{floating} base robot such as our HRP-2Kai in the context of the object handover between human and robot co-workers. However after a thorough search of state-of-the-art research in the related field, none of the previous work on the human-robot dyad considered object handover and `walking' in a single framework using a \textit{biped} humanoid robot platform such as HRP-2Kai. Therefore in order for the robot to be fully proactive, we believe it is important to consider the possibility of robot taking a step or two to handover or exchange an object with the human co-worker, in scenarios where a short distance travel is required to eventually extend robot's reachable workspace. Note that we consider the problem of taking few steps to handover/receive the object rather than motion planning and navigation.
 
@@ -1173,135 +1173,27 @@ Finally once the object handover has occurred, the robot co-worker needs to go b
 
 To summarize this Chapter, we introduced a novel framework to solve the problem of intuitive and proactive bi-directional object handover between a human and a biped humanoid robot co-worker dyad using whole-body control and locomotion. This handover framework has been tested on a real biped humanoid robot HRP-2Kai. Here we designed models to answer three important questions ---when (\textit{timing}), where (\textit{position in space}) and how (\textit{orientation and interaction forces}) of the handover \textit{routine}. By addressing the common key features of object handover between human and robot dyad ---the \textit{timing}(s) and overall duration of handover, the \textit{pose} of handover and the \textit{magnitude} of the interaction forces between human hand(s) and robot end-effector(s).
 
-During the trials of a handover \textit{routine}, we found that our (\nameref{prediction_model}) is able to predict the human hand position such that robot is able to proactively plan its end-effector's motion and arrive at the human chosen handover location approximately at same time as human co-worker, both during the 1$ {}^{st} $ \textit{cycle}s and 2$ {}^{nd} $ \textit{cycle}s. This lead to the overall reduction in the handover trial duration, thanks to the approximate prediction and estimation of handover location in advance. The behavior of prediction model can be tuned by two initially required constant time periods, $t_{observe}$ and $t_{predict}$, though at the moment we did not test its performance thoroughly. The values of  $t_{observe}$ and $t_{predict}$ were set to $ 20 $ ms and $ 200 $ ms respectively in the preliminary tests.
 
-However predicting handover location alone is not enough when robot co-worker is unaware of the grasp configuration that is required to handover the object. Also to keep in mind the comfort and requirement of the human co-worker, it is pivotal for the robot to be able to find the most appropriate configuration to grasp (as \textit{receiver}) or release (as \textit{giver}) the object. Therefore we proposed a way to get the desired object grasping orientation of robot end-effector either by considering the relative orientation of the active human hand or the object itself in (\nameref{orientation_model}). The only limitation of this model is its dependency on the position of $ {\bf L} $ shape mocap markers, that is attached to the object (1$ {}^{st} $ \textit{cycle}) and active human hand wrist (2$ {}^{nd} $ \textit{cycle}). Another thing to note, in this study, we only considered straight shape objects (bottle or pipe), however it is possible to  further generalize this method given the object physical structural properties in advance. Because by knowing the object shape, $ {\bf L} $ body can be placed accordingly and offsets can created for safer handover between human and robot co-workers as discussed in section (\nameref{both hands together}).
+During the trials of a handover \textit{routine}, we found that our (\nameref{prediction_model}) is able to predict the human hand position such that robot is able to proactively plan its end-effector's motion and arrive at the human chosen handover location approximately at same time as human co-worker, both during the 1$ {}^{st} $ \textit{cycle}s and 2$ {}^{nd} $ \textit{cycle}s. This lead to the overall reduction in the handover trial duration, thanks to the approximate prediction and estimation of handover location in advance. The behavior of our prediction model can be tuned by two initially required constant time periods, $t_{observe}$ and $t_{predict}$, though at the moment we did not test its performance thoroughly. The values of  $t_{observe}$ and $t_{predict}$ were set to $ 20 $ ms and $ 200 $ ms respectively in the preliminary tests.
 
-
-\textbf{minimizing interaction forces and knowing object mass is optional}
-
-another problem that we focused here is related to the \textit{timing} of grasping and releasing the object and minimizing the \textit{magnitude} of forces during such interactions. 
-
-We had to find the equilibrium for robot to know the appropriate \textit{timing} at which the handover should occur, which would be intuitive and can be perceived natural to the eyes of human, keeping in mind that HRP-2Kai doesn't have anthropomorphic hands but rather manipulative grippers. In \nameref{interaction model}
-
-
-The \textit{timing} at which the robot should close its gripper(s) in order to grasp the object, if robot tries to close too early to grasp the object when human co-worker is not ready it can lead to collision resulting in an accident or if robot waits too long then it may lead to unreliable behavior.
-
-Along with the previously mentioned problem we also address here another issue related with the \textit{magnitude} of interaction forces between human co-worker hand(s) and robot co-worker end-effector(s) holding the object during the release of object in the 2$^{nd}$ \textit{cycle} of handover i.e. when robot returns the object to the human.
-
-
-and at the same time we needed to come up with a solution to keep the \textit{magnitude} of interaction forces at minimum. 
-
-
-We came up with two methods to tackle this problem, one highlights simplicity and other highlights efficiency but when used together we get a reliable and safest solution possible under such scenario.
-
-
-HRP-2Kai is equipped with 6-axis \textit{wrist} force sensor on both hands, capable of precisely sensing interaction forces and torques with the environment along $x, y, z$ axes of the sensor local coordinate frame (let's call it $s$). We designed a model of interaction forces which enable the robot end-effector to interact with the object independent of the knowledge of object's mass in advance.
-
-
-
-
-\textbf{generalizing}
-
-As mentioned in earlier section (\nameref{handover routine}), up till now we have discussed human-robot bi-directional object handover under the scenario where robot always uses its left end-effector and human always uses his/her right hand. However unlike several handover studies in the past~\cite{cakmak2011human, medina2016human, huber2008Indus, kupcsik2016learning}, we can take the advantage of having a humanoid robot HRP-2Kai at our disposal, therefore we further generalize our human humanoid robot bi-directional object handover \textit{routine} and extend it by exploiting either human left or right hand and similarly left or right end-effector of robot. Basically we extended our one-hand handover \textit{routine} into all four possible scenarios (see Fig.~\ref{fig:handover scenarios}) such as,
-
-\begin{enumerate}
-	\item robot left end-effector $R_{efl}$ $\longleftrightarrow$ human right hand $H_r$
-	\item robot left end-effector $R_{efl}$ $\longleftrightarrow$ human left hand $H_l$
-	\item robot right end-effector $R_{efr}$ $\longleftrightarrow$ human left hand $H_l$
-	\item robot right end-effector $R_{efr}$ $\longleftrightarrow$ human right hand $H_r$
-\end{enumerate}
-
-
-In this framework, the choice or preference of employing end-effector (either left or right) by the robot co-worker is based on the shortest relative distance of object to either human hand, which can be determined by using equation (\ref{human obj dist}) along with together the direction (mainly along $y$-axis) and shortest relative distance of \textit{that} active human hand with respect to both end-effectors, as per equations (\ref{human hand dir} and~\ref{robot obj dis}) respectively. For example, if human is holding object in his/her right hand ${}^{hr}{P}$ and if the estimated predicted position of his/her hand (see section~\nameref{prediction_model}) is converging somewhere in the negative $y$-coordinate space, then robot right end-effector ${}^{efr}{P}$ would be utilized to receive the object during handover as shown in (Fig.~\ref{fig:hr-to-rr}).
-
-
-
-
-
-\textbf{two hands together}
-
-\cite{vahrenkamp2009humanoid, vezzani2017novel} and~\cite{kim2004advanced} have adapted object handover and manipulation using dual arm motion planning but didn't consider robot locomotion. Also in former studies, dual arm manipulation is limited between robot arms only without involving the human co-worker. Our handover controller however enables both human and robot to utilize either single or both hands simultaneously during the object handover routine.
-
-The object(s) (two of them) we chose to handover between human and humanoid robot co-workers are cylindrical in nature (see Fig.~\ref{fig:pipe_ex}). We chose these objects purely for simplicity and demonstration purposes in this study. Though our handover model would practically work on several distinguishable objects as long as object's basic physical structural properties are known, however mass of object is optional. The cylindrical structures we used are hollow yet quite rigid in nature. The inner $r_i$ and outer $r_o$ radii for those two objects are \textins{$0.055$, $0.065$} m and \textins{$0.07$, $ 0.08$} m respectively, lengths $l$ are \textins{$0.90$, $ 0.12$} m, and the mass of objects are \textins{$0.40$, $1.1$} kg, again we don't need to know mass of object in advance as it can be computed during handover \textit{routine} when robot carries the object as already explained earlier in the subsection (\nameref{FSM})
-
-
-Compared to one-handed handover scenario which was discussed in previous section (\nameref{both hands individual}). Here during human to robot co-worker object handover \textit{cycle} instead of just predicting human hand positions individually like earlier, we also measure the euclidean distances of each human hand on the object's surface with respect to the object's center using following set of equations (\ref{hand rel pos on obj}). These distances acts as an offset correction to the predicted positions of human hands, along the length of the object. These offsets are important as they allow robot to find safe and optimum positions on the object's surface to grasp. Also while making sure end-effectors stay quite away from the human hands occupied object's surface (see Fig.~\ref{fig:h-r-pipe-handover}). Moreover, it avoids any possible head-on collision between the end-effectors and the human hands when the robot tries to approach and grasp the object.
-
-
-Initially we predict and estimate human hand positions by utilizing previously discussed prediction model from section (\nameref{prediction_model}). Given the object shape and its structural properties (in our case length of cylindrical shaft), the offsets along object's length can be calculated using set of equations (\ref{hand rel pos on obj}) in the object local frame $o$ (see Fig.~\ref{fig:pipe_ex} B) from the center in both directions. This offset is then further transform into robot frame and finally added to already predicted position of the human hands with respect to robot end-effectors using equation (\ref{offset_transform}).
-
-\textbf{wbc - locomotion, proactivity}
-
-we take similar approach as one mentioned in the~\cite{medina2016human, nemlekarprompt} and treat the object handover between human and humanoid robot co-worker as one-shot continuous fluid motion.
  
-We concentrated our efforts towards developing a simple yet robust and efficient handover controller for bi-directional object exchange and transfer between the human and the robot co-workers using robot Whole-Body Control (WBC). WBC allows simultaneous execution of several tasks at once, for example, a humanoid robot capable of using and configuring either single or both hands during the handover and manipulation of the object. At the same time, being proactive and capable of taking few steps or more during the exchange and transfer of the object.
-
-Therefore in order for the robot to be fully proactive, we believe it is important to consider the possibility of robot taking a step to handover or exchange an object with the human co-worker, in scenarios where a short distance travel is required
+However predicting handover location alone is not enough when robot co-worker is unaware of the grasp configuration that is required to handover the object. Also to keep in mind the comfort and requirement of the human co-worker~\cite{aleotti2012comfortable}, it is pivotal for the robot to be able to find the most appropriate configuration to grasp (as \textit{receiver}) or release (as \textit{giver}) the object. Moreover, according to~\cite{cakmak2011human}, we humans prefer handover of an object in its default orientation. Therefore, we mainly chose to handover the object in which it is most commonly being grasped hence the default orientation. We proposed a method to get the desired object grasping orientation of robot end-effector either by considering the relative orientation of the active human hand or the object itself in (\nameref{orientation_model}). The only limitation of this model is its dependency on the position of $ {\bf L} $ shape mocap markers, that is attached to the object (1$ {}^{st} $ \textit{cycle}) and active human hand wrist (2$ {}^{nd} $ \textit{cycle}). Another thing to note, in this study, we only considered rigid straight shape objects (bottle or pipe), however it is possible to  further generalize this method given the object physical structural properties in advance. Because by knowing the object shape, $ {\bf L} $ body can be placed accordingly and offsets can created for safer handover between human and robot co-workers as discussed in section (\nameref{both hands together}). The model is adaptable to objects of different mass within consecutive trials.
 
 
-We do not focus on the problem of motion planning or navigation in a large cluttered environment~\cite{mainprice2012sharing, vahrenkamp2009humanoid, kim2004advanced} but instead we concentrated our efforts to solve and optimize object handover problem which requires immediate shared efforts between human-robot dyad in a small space where few steps are necessary and enough for a comfortable and convenient object handover. We proposed simple but effective methods to take advantage of biped humanoid robot and deal with the problem of bi-directional object handover using robot whole-body control
+Another solution that we proposed here using (\nameref{interaction model}) is related to the \textit{timing} of grasping and releasing the object while at the same time minimizing the \textit{magnitude} of forces during the release of object in such interactions. We designed a model of interaction forces using (\nameref{FSM}) which enables the robot end-effector to interact with the object independent of the knowledge of its mass in advance. We proposed two methods within this model, in first method we made sure that robot grasps/releases the object only when active human hand is within its gripper's graspable space using the mocap markers position and in second method we established the intention of the human co-worker to handover/receive the object by measuring the noise free acting force on the intrinsic surface of the gripper along its insertion ($z$)-axis at the time of contact. Moreover, during the 2$ {}^{nd} $ \textit{cycle}, prior to handover the object from robot to human co-worker, the object mass has been calculated in the transition state ($ \bf{t7} $) of FSM, which was later utilized to set the optimal threshold ($ \bf{t11} $) in order to minimize the interaction force during the release of object. Though this optimal threshold is dependent on the object mass, but it was calculated within this model. We have tested this interaction forces model  using variety of objects with mass ranging from [$ 0.17 $ to $ 1.1 $] kg.
 
 
+Initially we asked three important questions and we answered them now by utilizing (\nameref{prediction_model}) to answer \textbf{where}, we answered \textbf{when} by utilizing (\nameref{prediction_model}) and (\nameref{interaction model}) and finally answered \textbf{how} by using both (\nameref{orientation_model}) and (\nameref{interaction model}), during a handover \textit{routine}.
 
 
-\textbf{drawbacks/limitations}
-
-though our method allows us to not stop the motion of end-effector and still being able to handover (both ways) the object, however, if the handover occurs while both human and robot end- effectors are moving then this problem of handover would be extend to the problem of object collaboration and manipulation, which were already being extensively studied in our research group XXXcite don, bussy.
-therefore concenterate on solely on the handover problem, we decided to reduce the ef vel during the time of handover. 
-
-
-chance of human error of few centimeters due to manually aligning the mocap and robot frames
-
-Note that it is important to mention that we do not consider the problem of motion planning and navigation.
-
-However, note that in the cases when human co-worker decides to step backward, then for sometime after the step-walk is triggered, the interpersonal distance $ D $ would become larger than 1.2 meters, therefore
-
-Though at the moment, step-walk is triggered only when interpersonal distance between the co-workers becomes greater than $ 125\% <= D <= 150\% $, more possibilities including the estimation of direction in which human co-worker may wishes to move and handover the object. 
+Though up till now we have discussed our human-robot bi-directional object handover under the scenario where robot always uses its left end-effector and human always uses his/her right hand. However taking into account that HRP-2Kai has two arms (end-effectors), therefore based on above discussed models, we further generalized our human humanoid robot bi-directional object handover \textit{routine} and extend it by exploiting either human left or right hand and similarly left or right end-effector of robot. Basically we extended our one-hand handover \textit{routine} into all four possible scenarios, robot left end-effector $\longleftrightarrow$ human right hand, robot left end-effector $\longleftrightarrow$ human left hand, robot right end-effector $\longleftrightarrow$ human left hand, robot right end-effector  $\longleftrightarrow$ human right hand. In this framework, the choice or preference of employing end-effector (either left or right) by the robot co-worker was based on the shortest relative distance of object to either human hand along with together the direction (mainly along $y$-axis) and shortest relative distance of active human hand with respect to both end-effectors. During our preliminary tests with HRP-2Kai and based on above defined conditions, we found that the robot was able to properly choose its left or right end-effector.
+ 
+ 
+Except a study by~\cite{kim2004advanced} which solely focused on grasp planning, we did not find studies on handover which had involved human co-worker during dual arm object manipulation and handover. Therefore we further extended our handover framework to allow robot co-worker to use both of its end-effectors during object manipulation and handover with human co-worker using whole-body control configuration. Within this framework, we chose two hollow cylindrical pipes of slightly distinguishable physical properties for the purpose of demonstration, however knowing mass of object in advance was again optional. Compared to (\nameref{both hands individual}) scenario, here during 1$ {}^{st} $ \textit{cycle} instead of just predicting human hand positions individually like earlier, we also measured the euclidean distances of each human hand on the object's surface with respect to the object's center. These distances acted as an offset correction to the predicted positions of human hands along the length of the object. These offsets were important as they allowed robot to find safe and optimum positions on the object's surface to grasp. Also while making sure end-effectors stay quite away from the human hands occupied object's surface. During the 2$ {}^{nd} $ \textit{cycle} after the object was grasped by the robot co-worker, the successive motion of end-effectors were governed by the kinematic constraint (\nameref{QPConstraints}), that was imposed by the object. This constraint maintained the contacts between the object and the robot grippers surfaces all the time and the concurrent motion of the end-effectors were made possible by targeting a null velocity constraint.
 
 
-
-\textbf{near future work and suggestions}
-
-%\textit{However, intergender or cultural differences during handovers were not the
-%	focus of this research.}
-
-Finally, in near future, a human-user study will be conducted shortly after further improving the performance of the overall handover framework with locomotion.
-
-%\textit{In future studies, we plan to confirm the effectiveness of our proactive model with user study}
+Though some studies~\cite{vahrenkamp2009humanoid, vezzani2017novel} have adapted object handover and manipulation using dual arm motion planning but didn't consider robot locomotion. Also in these studies, dual arm manipulation was limited between robot arms. Therefore in order for the robot to be fully proactive, we believed it was crucial to consider the possibility of robot taking a step to handover or exchange an object with the human co-worker, in scenarios where a short distance travel is required. Hence we added one final dimension to our handover framework in which we utilized robot's whole-body control along with step-walk locomotion (\nameref{locomotion}). During the preliminary tests in both (\nameref{both hands individual} and \nameref{both hands together}) scenarios, we confirmed that the robot was able to take a step-walk forward while at the same time being able to predict the position of active human hand to handover the object. In this method, the step-walk was triggered only when the human co-worker moved away (backward) from the robot and still presented his/her intention to handover the object.
 
 
 \clearpage % end of Handover
-
-
-
-
-%\section{Preliminary study \textit{incomplete**}}
-%\subsection{Data analysis}
-%\subsection{Results}
-%our results from preliminary user study suggests that....
-%refer below link for parameters to analyze
-%% \url{file:///home/avasalya/Dropbox%20(CNRS-AIST%20JRL)/PhD/Papers/other's%20thesis/thesis-antonio-bussy.pdf}
-%
-%for questionnaire
-%~\cite{huber2009evaluation, bussy2013approche, qin2013effect, weiss2009addressing}
-%
-%for analysis
-%~\cite{li2015predicting} \textit{For each reaching motion trial, the end position
-%	prediction performance is measured by the ratio of prediction
-%	error to the motion range of that trial. With all the trials from
-%	a testing subject, we plot distribution of the prediction error
-%	ratio every 10\% of the motion to show how the prediction
-%	error ratio changes as the motion develop}
-
-
-
-%%%%\textit{To address dynamic gait generation, we used a walking pattern generator based on the preview control and on the Zero-Momentum Point (ZMP) condition, proposed by Kajita [52]. This algorithm uses a preview window to compute the control law from a simplified Linearized Inverted Pendulum Model (LIPM), to compute the current control command from the future state of the system. The core part of this algorithm is to solve a quadratic programming (QP) problem, where the cost function is to minimize the jerk of the LIPM and to follow an ideal ZMP trajectory. From this ZMP trajectory defined by the foot prints given as input, the solution of the QP gives a Center of Mass (CoM) trajectory which is dynamically stable. Finally, the reference trajectories are integrated in the Stack of Tasks.}
-
-
-%\textbf{3.3.3.2 -walking bussy}\textit{We also highlighted that the walking capacities of the robot needed to be improved.	Indeed, the stabilizer of the walking pattern generator is designed to work for a humanoid	walking in standalone, a physical contact is seen as an external perturbation and it is certainly not designed to work in a sustained physical contact interaction with a human}\\
-
-
-% 5.Self-Stabilization through pHRI future potential ideas --antonio bussy
-
 
