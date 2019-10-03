@@ -10,6 +10,7 @@
 
 
 \usepackage[normalem]{ulem}
+\usepackage{float}
 \usepackage{verbatim} 
 \usepackage{vector}
 \usepackage{soul}
@@ -133,7 +134,7 @@
 \thispagestyle{empty}
 
 \begin{tikzpicture}[remember picture, overlay, shift=(current page.south)]
-  \shade[top color=white , bottom color=gray] (current page.north west) rectangle (-3, 0);
+  \shade[top color=white , bottom color=gray] (current page.north west) rectangle (-3.5, 0);
 \end{tikzpicture}
 
 \begin{tikzpicture}[remember picture, overlay, shift=(current page.north west)]
@@ -187,11 +188,38 @@
     6 Décembre 2019 %%%% DATE %%%%
     devant le jury composé de};
     
-    \node[text width=12cm] at (15,-23) { %%%% JURY %%%%
-    Civilité Prénom NOM, Grade, Etablissement \hfill Statut Jury \\
-    Civilité Prénom NOM, Grade, Etablissement \hfill Statut Jury \\
-    Civilité Prénom NOM, Grade, Etablissement \hfill Statut Jury \\
-    Civilité Prénom NOM, Grade, Etablissement \hfill Statut Jury \\};
+%    \node[text width=12cm] at (15,-23) { %%%% JURY %%%%
+%    Civilité Prénom NOM, Grade, Etablissement \hfill Rapporteur \\
+%    Civilité Prénom NOM, Grade, Etablissement \hfill Rapporteur \\
+%    Sébastien Courtois, Head of Mechatronics Innovation Depart., Softbank Robotics Europe \hfill Examinateur \\
+%    Gowrishankar GANESH, Senior Researcher (CR-7), CNRS \hfill Codirecteur de th\`ese \\
+%    Abderrahmane KHEDDAR, Directeur de Recherche, CNRS \hfill Directeur de th\`ese \\
+%};
+
+\node[text width=6cm] at (11,-23) {\footnotesize %%%% JURY %%%%
+	Damien CHABLAT\\
+	Erhan OZTOP\\
+	Sébastien COURTOIS\\
+	Ganesh GOWRISHANKAR\\
+	Abderrahmane KHEDDAR
+	\par %for uniform line spacing
+};
+\node[text width=9cm] at (17,-23) {\footnotesize %%%% JURY %%%%
+	Directeur de Recherche, CNRS\\
+	Professor, Ozyegin University\\
+	Head Mechatronics, Softbank Robotics Eu\\
+	Senior Researcher (CR-7), CNRS\\
+	Directeur de Recherche, CNRS
+	\par};
+\node[text width=9cm] at (24,-23) {\footnotesize %%%% JURY %%%%
+	Rapporteur\\
+	Rapporteur\\
+	Examinateur\\
+	Codirecteur de th\`ese\\
+	Directeur de th\`ese
+	\par};
+
+
 \end{tikzpicture}
 
 
@@ -224,7 +252,7 @@
 %\clearpage
 
 %% --------------------Resume de la thesis -------------------------------
-
+\setstretch{1.3}
 \input{Chapters/Resume.tex} % Resume de la thesis
 \addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
 
@@ -283,15 +311,10 @@
 % Include the chapters of the thesis, as separate files
 
 \input{Chapters/Introduction.tex} % Introduction
-
 \input{Chapters/C1-StateOfTheArt.tex} % S-O-T-A
-
 \input{Chapters/C2-RoMan.tex} % Ro-MAN distinct
-
 \input{Chapters/C3-PlosOne.tex} % PLosOne morethan
-
 \input{Chapters/C4-Handover.tex} % Handover
-
 \input{Chapters/Conclusion.tex} %  Conclusion Discussion/future possibilities
 
 \addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
