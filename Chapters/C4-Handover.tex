@@ -809,7 +809,7 @@ Where ${}^{h}{P}$ in equations (\ref{human hand dir} and~\ref{robot obj dis}) co
 
 %\clearpage
 
-\section{Two hands handover}\label{both hands together}
+\section{Bi-manual handover}\label{both hands together}
 
 It is very natural between humans to use both hands to manipulate a heavy or large shape object to gain confidence and maintain stability during a physical interaction or even while performing a collaborative task. Using both hands together during the course of handing over such object to one another is no different. Similarly, in scenarios where use of single hand is not enough or feasible to perform safe and reliable handover of a heavy large object between human and humanoid robot workers, then it should also be an obvious choice for robot as well to use both hands together whenever necessary. 
 
@@ -987,7 +987,7 @@ As already mentioned earlier in this section, the human co-worker is allowed to 
 Where, ${}^\text{hl}{P}$ and ${}^\text{hr}{P}$ are the position vectors of the respective left and right human hand. Depending on the choice of dominant human hand, for example if the left human hand is selected then we remove the \texttt{position} and \texttt{orientation} tasks of the left end-effector and therefore the motion of this end-effector is now governed using the \texttt{contact constraint} by targeting the null velocity. By doing this, the robot right end-effector would lead the motion by predicting and estimating the pose of dominant human hand. The problem of predicting and estimating human hand pose can now be treated similarly to the one-handed handover \textit{routine} as mentioned in the section (\nameref{both hands individual}). Please note, set of equations (\ref{hand rel pos on obj}) is also valid to calculate the offset position of end-effector, when robot predicts and approaches towards the handover location chosen by the dominant human hand. We just need to replace the human hand position vector ${}^{h}{P}$ with the end-effector position vector ${}^{\text{ef}}{P}$. Where $\text{ef}$ in ${}^{\text{ef}}{P}$ is either left $\text{efl}$ or right $\text{efr}$ end-effector.
 
 
-Finally handover occurs when the set of conditions in the equation (\ref{Fpull}) satisfy for both end-effectors (see~\nameref{FSM}). Note that the conditions in the equation (\ref{Fpull}) are valid only if human tries to pull the object from the robot. After the robot grippers release the object, we also remove the null velocity \texttt{contact constraint} between the end-effectors and the object surfaces, and add again the previously removed \texttt{position} and \texttt{orientation} tasks to that end-effector. This leads to the completion of two-handed handover \textit{routine}. 
+Finally handover occurs when the set of conditions in the equation (\ref{Fpull}) satisfy for both end-effectors (see~\nameref{FSM}). Note that the conditions in the equation (\ref{Fpull}) are valid only if human tries to pull the object from the robot. After the robot grippers release the object, we also remove the null velocity \texttt{contact constraint} between the end-effectors and the object surfaces, and add again the previously removed \texttt{position} and \texttt{orientation} tasks to that end-effector. This leads to the completion of bi-manual handover \textit{routine}. 
 
 %\clearpage
 
