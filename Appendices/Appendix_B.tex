@@ -70,7 +70,7 @@
 			$\mathcal{}^\text{zero}{F}= \mathcal{F}$ \tcp*{wrench offset}
 		}
 		\tcc{when robot holds the object}
-		${}^\text{obj}\overline{\mathcal{F}} = \frac{1}{n}\sum_{i=1}^{i=n} \vert{ (\vert{\mathcal{F}} - \vert{{}^\text{zero}\mathcal{F}}) }$
+		${}^\text{obj}\overline{\mathcal{F}} = \frac{1}{n}\sum_{i=1}^{i=n} \vert{ (\vert{\mathcal{F}\vert} - \vert{{}^\text{zero}\mathcal{F}}\vert) }\vert$
 		
 		$objectMass = \norm{{}^\text{obj}\overline{\mathcal{F}}}/9.80665 $ \tcp*{get object mass}
 		
@@ -82,7 +82,7 @@
 		\SetKwProg{Fn}{Function}{:}{}
 		\Fn{\FMain{$\lor x, \lor y, \lor z$}}
 		{	
-			${}^\text{pull}\mathcal{F}$ $= \vert{(\vert\mathcal{{F}} - \vert{}^\text{inert}\mathcal{{F}} - \vert{}^\text{zero}\mathcal{{F}}) }$
+			${}^\text{pull}\mathcal{F}$ $= \vert{(\vert\mathcal{{F}}\vert - \vert{}^\text{inert}\mathcal{{F}}\vert - \vert{}^\text{zero}\mathcal{{F}}\vert) }\vert$
 			
 			\If{${}^\text{pull}\mathcal{F}$ $> {}^\text{new}T \lor x, \lor y, \lor z$}
 			{
